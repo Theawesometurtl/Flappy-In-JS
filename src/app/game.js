@@ -1,20 +1,10 @@
-const canvas = document.querySelector('canvas');
-const ctx = canvas.getContext('2d');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-let timer=0;
-let entityList = {Flappies: [], Pipes: []};
+import { canvas, ctx, globals, entityList } from '../index';
+import { Pipes } from './classes/Pipes'
 
 
 
-let flappy = new Flappy();
-entityList.Flappies.push(flappy);
-let pipe = new Pipes();
-entityList.Pipes.push(pipe);
 
-
-function main() {
+export function main() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     for (const [key, value] of Object.entries(entityList)) {
         for (let j = 0; j < entityList[key]?.length; j++) {
@@ -27,22 +17,13 @@ function main() {
             }
         }
     }
-    if (pressedKeys[32] === true) {
-        flappy.jump();
-        console.log("pressed")
-    }
-    timer ++;
-    if (timer % 100 === 0) {
+    globals.pipeTimer ++;
+
+    if (globals.pipeTimer % 100 === 0) {
         entityList.Pipes.push(new Pipes());
-        console.log('new pipes')
     }
 }
 
-pressedKeys = {}
 
-window.onkeyup = function(e) { pressedKeys[e.keyCode] = false; }
-window.onkeydown = function(e) { pressedKeys[e.keyCode] = true; }
     
 
-
-setInterval(main, 20);

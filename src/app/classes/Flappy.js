@@ -1,4 +1,6 @@
-class Flappy {
+import { entityList, ctx, canvas, pressedKeys } from "../../index";
+
+export class Flappy {
     constructor() {
         this.position = {x: 50, y: 100};
         this.velocity = {x: 0, y: 0};
@@ -39,6 +41,9 @@ class Flappy {
                 this.die();
             }
             
+        }
+        if (pressedKeys[32] === true) {
+            this.jump();
         }
     }
     draw() {

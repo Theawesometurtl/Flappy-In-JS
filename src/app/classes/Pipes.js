@@ -1,4 +1,7 @@
-class Pipes {
+import { entityList, ctx, canvas } from "../../index";
+
+
+export class Pipes {
     static numOfPipes = 0;
     constructor() {
         this.width = 50
@@ -12,6 +15,7 @@ class Pipes {
         this.position.x += this.velocity.x
         this.velocity.y += this.velocity.y
         if (this.position.x < 0 - this.width) {
+            let pipe;
             for (pipe in entityList.Pipes) {
                 if (entityList.Pipes[pipe].pipeNum === this.pipeNum) {
                     entityList.Pipes.splice(pipe, 1);
