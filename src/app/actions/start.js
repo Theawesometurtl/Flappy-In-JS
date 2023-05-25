@@ -9,6 +9,8 @@ export function start() {
     if (!human) {
         entityList.NNs.push(new NN(4, 5, 5, 1));
         entityList.NNs[0].createNeuralNet(0);
+        entityList.NNs[0].fullMutate(0);
+        //console.log(entityList.NNs[0].weightArray);
         entityList.Pipes.push(new Pipes());
     }
         

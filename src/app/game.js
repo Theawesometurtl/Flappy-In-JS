@@ -34,10 +34,11 @@ export function main() {
             entityList.Flappies[0].draw();
             entityList.Flappies[0].update();
         }
-        let l = entityList.Pipes.length
-        for (let i=0; i<l; i++)   {
-            entityList.Pipes[i]?.draw();
-            entityList.Pipes[i]?.update();
+        for (let i=0; i<entityList.Pipes.length; i++)   {
+            entityList.Pipes[i].draw();
+        }
+        for (let i=0; i<entityList.Pipes.length; i++)   {// bad code, but pipes destroying themselves messes things up
+            entityList.Pipes[i].update();
         }
     }
     globals.pipeTimer ++;

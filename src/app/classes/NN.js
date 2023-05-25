@@ -23,7 +23,7 @@ export class NN {
 
         this.weightArray[layer] = [];
         //create weight array for every neuron in layer array (excluding input layer)
-        for (let j = 0; j < this.neuronsPerLayer[layer]; j++) {
+        for (let j = 0; j < this.neuronsPerLayer[layer-1]; j++) {
             this.weightArray[layer][j] = []
             //assign weight to neuron connection
             for (let k = 0; k < this.neuronsPerLayer[layer]; k++) {
@@ -61,11 +61,14 @@ export class NN {
         let outputs = [];
         for (let i = 0; i < this.biasArray[layer].length; i++) {//biases
             outputs[i] = this.biasArray[layer][i];
+            console.log(outputs);
             
         }
         
         for (let i = 0; i < outputs.length; i++) {
             outputs[i] = this.activationFunction(outputs[i]);// sigmoid function
+            console.log(outputs);
+
         }
         
         layer++;
@@ -74,9 +77,11 @@ export class NN {
         }
         
         
-        for (let i = 0; i < this.biasArray[layer].length; i++) {//node in layer
+        for (let i = 0; i < this.biasArray[layer-1].length; i++) {//node in layer
             for (let j = 0; j < this.weightArray[layer][i].length; j++) {//weight in node
                 outputs[i] += this.weightArray[layer][i][j] * inputs[j];//weights
+                console.log(outputs);
+
             }
         }
         return this.update(layer, ...outputs);//recursion (I think linear recursion, but not suure)
@@ -95,13 +100,15 @@ export class NN {
         for (let i = 1; i < this.biasArray.length; i++) {
             for (let j = 0; j < this.neuronsPerLayer[i-1]; j++) {
                 for (let k = 0; k < this.neuronsPerLayer[i]; k++) {
-                    colour = (this.activationFunction(this.neuronsPerLayer[i][j][k]) -0.5) * 250
+                    let colour = (this.weightArray[i][j][k] -0.5) * 200
+                    colour = Math.round(colour)
                     if (colour < 0) {
-                        colour = rgbToHex(-colour, 0, 0)
+                        colour = rgbToHex(255+colour, 0, 0)
                     } else {
-                        colour = rgbToHex(0, 0, colour)
+                        colour = rgbToHex(0, 255 -colour, 0)
                     }
-                    ctx.strokeStyle = 'green';
+
+                    ctx.strokeStyle = colour;
                     ctx.lineWidth = 1;
                     ctx.beginPath
                     ctx.moveTo(((i-1)*xSpace) + xpos, j*ySpace + ypos)
