@@ -44,6 +44,7 @@ export class NN {
 
         layer++;//this skips over the first layer of the weight array
         if (layer === this.biasArray.length) {
+            console.log(this.weightArray, this.biasArray)
             return
         }
 
@@ -61,13 +62,13 @@ export class NN {
         let outputs = [];
         for (let i = 0; i < this.biasArray[layer].length; i++) {//biases
             outputs[i] = this.biasArray[layer][i];
-            console.log(outputs);
+            // console.log(outputs);
             
         }
         
         for (let i = 0; i < outputs.length; i++) {
             outputs[i] = this.activationFunction(outputs[i]);// sigmoid function
-            console.log(outputs);
+            // console.log(outputs);
 
         }
         
@@ -77,10 +78,10 @@ export class NN {
         }
         
         
-        for (let i = 0; i < this.biasArray[layer-1].length; i++) {//node in layer
-            for (let j = 0; j < this.weightArray[layer][i].length; j++) {//weight in node
+        for (let i = 0; i < this.biasArray[layer-1].length; i++) {//node in first layer
+            for (let j = 0; j < this.weightArray[layer].length; j++) {//nodes in second layer
                 outputs[i] += this.weightArray[layer][i][j] * inputs[j];//weights
-                console.log(outputs);
+                // console.log(outputs);
 
             }
         }
@@ -90,33 +91,35 @@ export class NN {
         return 1 / (1 + Math.exp(-num));
     }
 
-    displayNetwork(xSpace, ySpace, xpos, ypos) {
-        for (let i = 0; i < this.biasArray.length; i++) {
-            for (let j = 0; j < this.biasArray[i].length; j++) {
-                this.drawCircle(12, 'yellow', 'black', 3, (i * xSpace) + xpos, (j * ySpace) + ypos);
-            }
-
+    displayNetwork(xSpace, ySpace, xpos, ypos, wArray, bArray, layer) {
+        for (let j = 0; j < this.biasArray[layer].length; j++) {
+            this.drawCircle(12, 'yellow', 'black', 3, (layer * xSpace) + xpos, (j * ySpace) + ypos);
         }
-        for (let i = 1; i < this.biasArray.length; i++) {
-            for (let j = 0; j < this.neuronsPerLayer[i-1]; j++) {
-                for (let k = 0; k < this.neuronsPerLayer[i]; k++) {
-                    let colour = (this.weightArray[i][j][k] -0.5) * 200
-                    colour = Math.round(colour)
-                    if (colour < 0) {
-                        colour = rgbToHex(255+colour, 0, 0)
-                    } else {
-                        colour = rgbToHex(0, 255 -colour, 0)
-                    }
 
-                    ctx.strokeStyle = colour;
-                    ctx.lineWidth = 1;
-                    ctx.beginPath
-                    ctx.moveTo(((i-1)*xSpace) + xpos, j*ySpace + ypos)
-                    ctx.lineTo(i * xSpace + xpos, k*ySpace + ypos)
-                    ctx.stroke()
+        layer++;
+        if (layer === this.biasArray.length) {
+            return
+        }
+
+        for (let j = 0; j < this.neuronsPerLayer[layer-1]; j++) {
+            for (let k = 0; k < this.neuronsPerLayer[layer]; k++) {
+                let colour = (wArray[layer][j][k] -0.5) * 200
+                colour = Math.round(colour)
+                if (colour < 1) {
+                    colour = rgbToHex(255 - ((1-colour) * 255), 0, 0)
+                } else {
+                    colour = rgbToHex(0, colour * 50, 0)
                 }
+
+                ctx.strokeStyle = colour;
+                ctx.lineWidth = 1;
+                ctx.beginPath
+                ctx.moveTo(((layer-1)*xSpace) + xpos, j*ySpace + ypos)
+                ctx.lineTo(layer * xSpace + xpos, k*ySpace + ypos)
+                ctx.stroke()
             }
         }
+        return this.displayNetwork(xSpace, ySpace, xpos, ypos, layer);
 
             
 

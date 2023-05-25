@@ -29,7 +29,7 @@ export function main() {
                 entityList.Flappies[i].jump();
             } 
         }
-        entityList.NNs[0].displayNetwork(100, 50, canvas.width -400, canvas.height - 300);
+        entityList.NNs[0].displayNetwork(100, 50, canvas.width -400, canvas.height - 300, entityList.NNs[0].weightArray, entityList.NNs[0].biasArray, 0);
         for (let i=0; i<entityList.Flappies.length; i++)   {
             entityList.Flappies[0].draw();
             entityList.Flappies[0].update();
