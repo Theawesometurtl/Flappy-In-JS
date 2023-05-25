@@ -19,16 +19,25 @@ export function main() {
             }
         }
     } else {
-        for (let i=0; i<entityList.Pipes.length; i++)   {
-            entityList.Pipes[i].update();
-            entityList.Pipes[i].draw();
-        }
+        
         for (let i=0; i<entityList.NNs.length; i++) {
             
-            entityList.NNs[i].update(0, entityList.Flappies[i].position.y, entityList.Flappies[i].velocity.y, entityList.Pipes[0].position.x, entityList.Pipes[0].position.y)
+            let outputs = entityList.NNs[i].update(0, entityList.Flappies[i].position.y, entityList.Flappies[i].velocity.y, entityList.Pipes[0].position.x, entityList.Pipes[0].position.y)
+            ctx.font = "30px Arial";
+            ctx.fillText(outputs, 10, 50);
             if (outputs[0] > .5) {
                 entityList.Flappies[i].jump();
             } 
+        }
+        entityList.NNs[0].displayNetwork(100, 50, canvas.width -400, canvas.height - 300);
+        for (let i=0; i<entityList.Flappies.length; i++)   {
+            entityList.Flappies[0].draw();
+            entityList.Flappies[0].update();
+        }
+        let l = entityList.Pipes.length
+        for (let i=0; i<l; i++)   {
+            entityList.Pipes[i]?.draw();
+            entityList.Pipes[i]?.update();
         }
     }
     globals.pipeTimer ++;

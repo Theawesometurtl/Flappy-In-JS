@@ -1,4 +1,4 @@
-import { entityList, ctx, canvas, pressedKeys } from "../../index";
+import { entityList, ctx, canvas, pressedKeys, human } from "../../index";
 
 export class Flappy {
     constructor() {
@@ -42,9 +42,14 @@ export class Flappy {
             }
             
         }
-        if (pressedKeys[32] === true) {
+        if (pressedKeys[32] === true && human) {
             this.jump();
         }
+        if (this.position.y < 0 + this.width / 2) {//ceiling check
+            this.velocity.y *= -0.5;
+            this.position.y = 0 + this.width / 2;
+        }
+
     }
     draw() {
         ctx.fillStyle = "yellow";

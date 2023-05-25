@@ -1,4 +1,5 @@
 import { ctx } from '../../index'
+import { rgbToHex } from '../actions/rgbToHex';
 export class NN {
     constructor(...neuronsPerLayer) {
         this.neuronsPerLayer = neuronsPerLayer;
@@ -58,9 +59,9 @@ export class NN {
 
     update(layer, ...inputs) {
         let outputs = [];
-        
         for (let i = 0; i < this.biasArray[layer].length; i++) {//biases
-            outputs[i] += this.biasArray[layer][i];
+            outputs[i] = this.biasArray[layer][i];
+            
         }
         
         for (let i = 0; i < outputs.length; i++) {
@@ -68,37 +69,47 @@ export class NN {
         }
         
         layer++;
-        if (layer > this.neuronsPerLayer.length) {//end of recursion
+        if (layer === this.neuronsPerLayer.length) {//end of recursion
             return outputs;
         }
         
         
-        console.log(layer, inputs)
-        for (let i = 0; i < this.biasArray.length; i++) {
-            for (let j = 0; j < this.weightArray[layer].length; j++) {
-                outputs[i] += this.weightArray[layer][i][j] * inputs[i];//weights
+        for (let i = 0; i < this.biasArray[layer].length; i++) {//node in layer
+            for (let j = 0; j < this.weightArray[layer][i].length; j++) {//weight in node
+                outputs[i] += this.weightArray[layer][i][j] * inputs[j];//weights
             }
-                }
+        }
         return this.update(layer, ...outputs);//recursion (I think linear recursion, but not suure)
     }
     activationFunction(num) {
         return 1 / (1 + Math.exp(-num));
     }
 
-    displayNetwork() {
+    displayNetwork(xSpace, ySpace, xpos, ypos) {
         for (let i = 0; i < this.biasArray.length; i++) {
             for (let j = 0; j < this.biasArray[i].length; j++) {
-                this.drawCircle(15, 'yellow', 'black', 5, i * 20, j * 20);
+                this.drawCircle(12, 'yellow', 'black', 3, (i * xSpace) + xpos, (j * ySpace) + ypos);
             }
-            for (let j = 0; j < this.neuronsPerLayer[i]; j++) {
-                this.weightArray[i][j] = []
-                //assign weight to neuron connection
+
+        }
+        for (let i = 1; i < this.biasArray.length; i++) {
+            for (let j = 0; j < this.neuronsPerLayer[i-1]; j++) {
                 for (let k = 0; k < this.neuronsPerLayer[i]; k++) {
-                    this.weightArray[i][j][k] = 1
+                    colour = (this.activationFunction(this.neuronsPerLayer[i][j][k]) -0.5) * 250
+                    if (colour < 0) {
+                        colour = rgbToHex(-colour, 0, 0)
+                    } else {
+                        colour = rgbToHex(0, 0, colour)
+                    }
+                    ctx.strokeStyle = 'green';
+                    ctx.lineWidth = 1;
+                    ctx.beginPath
+                    ctx.moveTo(((i-1)*xSpace) + xpos, j*ySpace + ypos)
+                    ctx.lineTo(i * xSpace + xpos, k*ySpace + ypos)
+                    ctx.stroke()
                 }
             }
         }
-
 
             
 
