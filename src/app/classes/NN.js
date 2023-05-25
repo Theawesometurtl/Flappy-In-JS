@@ -1,5 +1,4 @@
 import { ctx } from '../../index'
-import { rgbToHex } from '../actions/rgbToHex';
 export class NN {
     constructor(...neuronsPerLayer) {
         this.neuronsPerLayer = neuronsPerLayer;
@@ -91,48 +90,10 @@ export class NN {
         return 1 / (1 + Math.exp(-num));
     }
 
-    displayNetwork(xSpace, ySpace, xpos, ypos, wArray, bArray, layer) {
-        for (let j = 0; j < this.biasArray[layer].length; j++) {
-            this.drawCircle(12, 'yellow', 'black', 3, (layer * xSpace) + xpos, (j * ySpace) + ypos);
-        }
-
-        layer++;
-        if (layer === this.biasArray.length) {
-            return
-        }
-
-        for (let j = 0; j < this.neuronsPerLayer[layer-1]; j++) {
-            for (let k = 0; k < this.neuronsPerLayer[layer]; k++) {
-                let colour = (wArray[layer][j][k] -0.5) * 200
-                colour = Math.round(colour)
-                if (colour < 1) {
-                    colour = rgbToHex(255 - ((1-colour) * 255), 0, 0)
-                } else {
-                    colour = rgbToHex(0, colour * 50, 0)
-                }
-
-                ctx.strokeStyle = colour;
-                ctx.lineWidth = 1;
-                ctx.beginPath
-                ctx.moveTo(((layer-1)*xSpace) + xpos, j*ySpace + ypos)
-                ctx.lineTo(layer * xSpace + xpos, k*ySpace + ypos)
-                ctx.stroke()
-            }
-        }
-        return this.displayNetwork(xSpace, ySpace, xpos, ypos, layer);
-
+    
             
 
         
-    }
-    drawCircle(radius, fillColour, strokeColour, strokeWidth, posX, posY) {
-        ctx.beginPath();
-        ctx.arc(posX, posY, radius, 0, 2 * Math.PI, false);
-        ctx.fillStyle = fillColour;
-        ctx.fill();
-        ctx.lineWidth = strokeWidth;
-        ctx.strokeStyle = strokeColour;
-        ctx.stroke();
-    }
+    
 
 }

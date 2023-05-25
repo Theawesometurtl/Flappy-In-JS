@@ -1,11 +1,14 @@
 import { canvas, ctx, globals, entityList, human } from '../index';
 import { Pipes } from './classes/Pipes';
+import { displayNetwork } from './actions/displayNetwork';
 
 
 
 
 export function main() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = 'black';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
     if (human) {
         for (const [key, value] of Object.entries(entityList)) {
             for (let j = 0; j < entityList[key]?.length; j++) {
@@ -29,7 +32,6 @@ export function main() {
                 entityList.Flappies[i].jump();
             } 
         }
-        entityList.NNs[0].displayNetwork(100, 50, canvas.width -400, canvas.height - 300, entityList.NNs[0].weightArray, entityList.NNs[0].biasArray, 0);
         for (let i=0; i<entityList.Flappies.length; i++)   {
             entityList.Flappies[0].draw();
             entityList.Flappies[0].update();
@@ -40,6 +42,8 @@ export function main() {
         for (let i=0; i<entityList.Pipes.length; i++)   {// bad code, but pipes destroying themselves messes things up
             entityList.Pipes[i].update();
         }
+
+        displayNetwork(100, 50, canvas.width -400, canvas.height - 300, entityList.NNs[0].weightArray, entityList.NNs[0].biasArray, 0);
     }
     globals.pipeTimer ++;
 

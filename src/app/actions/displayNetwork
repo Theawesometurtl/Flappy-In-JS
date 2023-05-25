@@ -1,0 +1,38 @@
+import { rgbToHex } from '../actions/rgbToHex';
+import { drawCircle } from './drawCircle';
+import { ctx } from '../../index';
+
+
+export function displayNetwork(xSpace, ySpace, xpos, ypos, wArray, bArray, layer) {
+    for (let j = 0; j < bArray[layer].length; j++) {
+        drawCircle(12, 'yellow', 'black', 3, (layer * xSpace) + xpos, (j * ySpace) + ypos);
+    }
+
+    layer++;
+    if (layer === bArray.length) {
+        return
+    }
+
+    for (let j = 0; j < wArray[layer].length; j++) {
+        for (let k = 0; k < wArray[layer+1].length; k++) {
+            let colour = (wArray[layer][j][k] -0.5)
+            colour = Math.round(colour)
+            if (colour < 1) {
+                colour*=225
+                colour = rgbToHex(255, colour, colour)
+            } else {
+                colour= 225 - colour*200
+                colour = rgbToHex(colour, 255, colour)
+            }
+
+            ctx.strokeStyle = colour;
+            ctx.lineWidth = 1;
+            ctx.beginPath()
+            ctx.moveTo(((layer-1)*xSpace) + xpos, j*ySpace + ypos)
+            ctx.lineTo(layer * xSpace + xpos, k*ySpace + ypos)
+            ctx.stroke()
+        }
+    }
+    return displayNetwork(xSpace, ySpace, xpos, ypos, wArray, bArray, layer);
+
+}
