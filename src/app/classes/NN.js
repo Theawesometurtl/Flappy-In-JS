@@ -1,12 +1,12 @@
 import { ctx } from '../../index'
+import { displayNetwork } from '../actions/displayNetwork';
 export class NN {
     constructor(...neuronsPerLayer) {
         this.neuronsPerLayer = neuronsPerLayer;
         this.biasArray = []
         this.weightArray = []
-
-        
     }
+
     createNeuralNet(layer) {
         this.biasArray[layer] = [];
         //make value for every bias in layer
@@ -30,7 +30,7 @@ export class NN {
             }
         }
 
-        
+
         return this.createNeuralNet(layer);
 
     }
@@ -59,41 +59,55 @@ export class NN {
 
     update(layer, ...inputs) {
         let outputs = [];
-        for (let i = 0; i < this.biasArray[layer].length; i++) {//biases
-            outputs[i] = this.biasArray[layer][i];
-            // console.log(outputs);
-            
-        }
+        this.updateBiases(layer, 0, outputs);
+        console.log(outputs)
         
-        for (let i = 0; i < outputs.length; i++) {
-            outputs[i] = this.activationFunction(outputs[i]);// sigmoid function
-            // console.log(outputs);
+        outputs = this.activationFunction(...outputs);
+        console.log(outputs)
 
-        }
-        
         layer++;
         if (layer === this.neuronsPerLayer.length) {//end of recursion
             return outputs;
         }
         
+        this.updateWeights(layer, 0, 0, outputs, inputs)
+        console.log(outputs)
         
-        for (let i = 0; i < this.biasArray[layer-1].length; i++) {//node in first layer
-            for (let j = 0; j < this.weightArray[layer].length; j++) {//nodes in second layer
-                outputs[i] += this.weightArray[layer][i][j] * inputs[j];//weights
-                // console.log(outputs);
 
-            }
-        }
+        // displayNetwork(100, 50, canvas.width -400, canvas.height - 300, 'weight', 'bias', 0, false);
+
         return this.update(layer, ...outputs);//recursion (I think linear recursion, but not suure)
     }
-    activationFunction(num) {
-        return 1 / (1 + Math.exp(-num));
+
+    updateBiases(layer, neuron, outputs) {
+        outputs[neuron] = this.biasArray[layer][neuron];
+        neuron++;
+        if (neuron === this.biasArray[layer].length) {
+            return outputs;
+        }
+        // console.log(outputs);
+        return this.updateBiases(layer, neuron, outputs);
     }
 
-    
-            
+    updateWeights(layer, neuron, weight, outputs, inputs) {
+        weight++;
+        if (weight === this.weightArray[layer].length) {
+            neuron++;
+            weight = 0;
+            if (neuron === this.biasArray[layer-1].length) {
+                return outputs
+            }
+        }
+        console.log(outputs)
+        outputs[neuron] += this.weightArray[layer][neuron][weight] * inputs[weight];
 
-        
-    
+        return this.updateWeights(layer, neuron, weight, outputs, inputs);
+    }
 
+    activationFunction(...nums) {
+        for (let i = 0; i < nums.length; i++) {
+            nums[i] = 1 / (1 + Math.exp(-nums[i]));
+        }
+        return nums;
+    }
 }

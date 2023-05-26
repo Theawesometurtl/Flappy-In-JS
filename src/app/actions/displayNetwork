@@ -3,20 +3,36 @@ import { drawCircle } from './drawCircle';
 import { ctx } from '../../index';
 
 
-export function displayNetwork(xSpace, ySpace, xpos, ypos, wArray, bArray, layer) {
-    for (let j = 0; j < bArray[layer].length; j++) {
-        drawCircle(12, 'yellow', 'black', 3, (layer * xSpace) + xpos, (j * ySpace) + ypos);
-    }
+export function displayNetwork(xSpace, ySpace, xPos, yPos, weightArray, biasArray, layer) {
+    drawBiases(xSpace, ySpace, xPos, yPos, biasArray)
 
     layer++;
-    if (layer === bArray.length) {
+    if (layer === biasArray.length) {
         return
     }
+    drawWeights(xSpace, ySpace, xPos, yPos, weightArray)
+    
+    return displayNetwork(xSpace, ySpace, xPos, yPos, weightArray, biasArray, layer);
 
-    for (let j = 0; j < wArray[layer].length; j++) {
-        for (let k = 0; k < wArray[layer+1].length; k++) {
-            let colour = (wArray[layer][j][k] -0.5)
+}
+
+export function drawBiases(xSpace, ySpace, xPos, yPos, biasArray) {
+    for (let j = 0; j < biasArray[layer].length; j++) {
+        drawCircle(12, 'yellow', 'black', 3, (layer * xSpace) + xPos, (j * ySpace) + yPos);
+    }
+}
+
+export function drawWeights(xSpace, ySpace, xPos, yPos, weightArray) {
+    for (let j = 0; j < weightArray[layer].length; j++) {
+        for (let k = 0; k < weightArray[layer][j].length; k++) {
+            let colour = weightArray[layer][j][k]
             colour = Math.round(colour)
+            drawWeightLine(xSpace, ySpace, xPos, yPos, colour)
+        }
+    }
+}
+
+export function drawWeightLine(xSpace, ySpace, xPos, yPos) {
             if (colour < 1) {
                 colour*=225
                 colour = rgbToHex(255, colour, colour)
@@ -28,11 +44,7 @@ export function displayNetwork(xSpace, ySpace, xpos, ypos, wArray, bArray, layer
             ctx.strokeStyle = colour;
             ctx.lineWidth = 1;
             ctx.beginPath()
-            ctx.moveTo(((layer-1)*xSpace) + xpos, j*ySpace + ypos)
-            ctx.lineTo(layer * xSpace + xpos, k*ySpace + ypos)
+            ctx.moveTo(((layer-1)*xSpace) + xPos, j*ySpace + yPos)
+            ctx.lineTo(layer * xSpace + xPos, k*ySpace + yPos)
             ctx.stroke()
-        }
-    }
-    return displayNetwork(xSpace, ySpace, xpos, ypos, wArray, bArray, layer);
-
 }
