@@ -1,6 +1,7 @@
 import { canvas, ctx, globals, entityList, human } from '../index';
 import { Pipes } from './classes/Pipes';
 import { displayNetwork } from './actions/displayNetwork';
+import { activationFunction } from './actions/activationFunction';
 
 
 
@@ -31,7 +32,12 @@ export function main() {
             entityList.Pipes[i].update();
         }
         for (let i=0; i<entityList.NNs.length; i++) {
-            let outputs = entityList.NNs[i].update(0, entityList.Flappies[i].position.y, entityList.Flappies[i].velocity.y, entityList.Pipes[0].position.x, entityList.Pipes[0].position.y)
+            let flappyY = entityList.Flappies[i].position.y;
+            let flappyVelocity = entityList.Flappies[i].velocity.y;
+            let pipeX = entityList.Pipes[0].position.x;
+            let pipeGapY = entityList.Pipes[0].position.y;
+            let inputs = activationFunction(flappyY, flappyVelocity, pipeX, pipeGapY);
+            let outputs = entityList.NNs[i].update(0, ...inputs);
             if (outputs[0] > .5) {
                 entityList.Flappies[i].jump();
                 ctx.font = "30px Arial";

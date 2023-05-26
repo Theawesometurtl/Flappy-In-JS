@@ -48,3 +48,4 @@ export function drawWeightLine(xSpace, ySpace, xPos, yPos) {
             ctx.lineTo(layer * xSpace + xPos, k*ySpace + yPos)
             ctx.stroke()
 }
+
