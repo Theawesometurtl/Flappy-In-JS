@@ -1,7 +1,7 @@
 import { main } from "../game";
 import { Flappy } from "../classes/Flappy"
 import { Pipes } from  "../classes/Pipes"
-import { entityList, fitnessDictionary, human } from "../../index";
+import { entityList, human, globals } from "../../index";
 import { NN } from "../classes/NN"
 import { simulationReset } from "./simulationReset";
 
@@ -11,16 +11,14 @@ export function start() {
     } else {
         
         // console.log(entityList.NNs[0].weightArray);
-        for (let i = 0; i < 100; i++) {
-            entityList.NNs.push(new NN(4, 5, 5, 5, 1));
+        for (let i = 0; i < globals.simulatedFlappies; i++) {
+            entityList.NNs.push(new NN(4, 5, 5, 1));
             entityList.NNs[i].createNeuralNet(0);
             entityList.NNs[i].fullMutate(0, 10, 0.1);
 
-            fitnessDictionary[i] = i;
-            // fitnessDictionary[i].createNeuralNet(0);
+            globals.fitnessDictionary[i] = i;
         }
-        // console.log(fitnessDictionary);
-        simulationReset(10);
+        simulationReset();
     }
     setInterval(main, 1);
 

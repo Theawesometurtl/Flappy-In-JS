@@ -8,16 +8,16 @@ import { artificialSelection, restockEntityList } from "./artificialSelection.js
 
 
 
-export function simulationReset(flappies) {
+export function simulationReset() {
     let fitness = artificialSelection(10);
     restockEntityList(fitness);
     globals.timer = 0;
     globals.pipeTimer = 0;
-    for (let net = 0; net < entityList.NNs.length; net++) {
-        entityList.NNs[net].fullMutate(0, 1000, 0.1);
+    for (let net = 0; net < globals.simulatedFlappies; net++) {
+        entityList.NNs[net].fullMutate(0, 1000, 0.01);
     }    
     entityList.Pipes.push(new Pipes());
-    for (let i = 0; i < flappies; i++) {
+    for (let i = 0; i < globals.simulatedFlappies; i++) {
         entityList.Flappies.push(new Flappy());
         entityList.NNs.push(fitness[i][1]);
     }

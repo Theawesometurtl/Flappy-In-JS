@@ -3,7 +3,7 @@ import { deathCheck } from "../actions/deathCheck";
 
 export class Flappy {
     constructor() {
-        this.position = {x: 50, y: 100};
+        this.position = {x: 50, y: canvas.height/2};
         this.velocity = {x: 0, y: 0};
         this.width = 50;
         this.height = 50;

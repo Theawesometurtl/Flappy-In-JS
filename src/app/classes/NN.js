@@ -39,7 +39,7 @@ export class NN {
 
     fullMutate(layer, amount, chance) {
         for (let j = 0; j < this.biasArray[layer].length; j++) {//biases
-            if (Math.random() < 0.01) {
+            if (Math.random() < chance) {
                 this.biasArray[layer][j] += Math.random() -.5;
                 this.biasArray[layer][j] *= (Math.random() + amount) / amount;
             }
@@ -54,14 +54,14 @@ export class NN {
 
         for (let j = 0; j < this.weightArray[layer].length; j++) {
             for (let k = 0; k < this.weightArray[layer][j].length; k++) {
-                if (Math.random() < 0.01) {
+                if (Math.random() < chance) {
                     this.weightArray[layer][j][k] += Math.random() -0.5;
                     this.weightArray[layer][j][k] *= (Math.random() + amount) / amount;
                 }
             }
         }
         
-        return this.fullMutate(layer, amount)
+        return this.fullMutate(layer, amount, chance)
     }
     
 
