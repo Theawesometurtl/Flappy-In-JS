@@ -12,7 +12,7 @@ export class NN {
         this.biasArray[layer] = [];
         //make value for every bias in layer
         for (let j = 0; j < this.neuronsPerLayer[layer]; j++) {
-            this.biasArray[layer][j] = 0.01
+            this.biasArray[layer][j] = 0;
         }
 
         layer++;
@@ -27,7 +27,7 @@ export class NN {
             this.weightArray[layer][j] = []
             //assign weight to neuron connection
             for (let k = 0; k < this.neuronsPerLayer[layer]; k++) {
-                this.weightArray[layer][j][k] = 0.01
+                this.weightArray[layer][j][k] = 0;
             }
         }
 
@@ -36,9 +36,10 @@ export class NN {
 
     }
 
-    fullMutate(layer) {
+    fullMutate(layer, amount) {
         for (let j = 0; j < this.biasArray[layer].length; j++) {//biases
-            this.biasArray[layer][j] *= (Math.random() + 0.5);
+            this.biasArray[layer][j] += Math.random() -.5;
+            this.biasArray[layer][j] *= (Math.random() + amount) / amount;
         }
 
 
@@ -50,11 +51,12 @@ export class NN {
 
         for (let j = 0; j < this.weightArray[layer].length; j++) {
             for (let k = 0; k < this.weightArray[layer][j].length; k++) {
-                this.weightArray[layer][j][k] *= (Math.random() + 0.5);//weights
+                this.weightArray[layer][j][k] += Math.random() -0.5;
+                this.weightArray[layer][j][k] *= (Math.random() + amount) / amount;
             }
         }
         
-        return this.fullMutate(layer)
+        return this.fullMutate(layer, amount)
     }
     
 
@@ -84,7 +86,9 @@ export class NN {
     updateBiases(layer, neuron, outputs) {
         outputs[neuron] = this.biasArray[layer][neuron];
         neuron++;
-        if (neuron === this.biasArray[layer].length) {
+
+
+        if (neuron >= this.biasArray[layer].length) {
             return outputs;
         }
         // console.log(layer, outputs);

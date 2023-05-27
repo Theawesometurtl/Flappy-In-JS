@@ -6,11 +6,22 @@ import { NN } from "../classes/NN";
 */
 
 export function artificialSelection(fitness, randomness) {
+    console.log(fitness);
+    let fitnessCopy = Object.keys(fitness).map(function(key) {
+        return [key, fitness[key]];
+    }); 
+    
+    // Sort the array based on the second element
+    fitnessCopy.sort(function(first, second) {
+        return second[1] - first[1];
+    });
+    console.log(fitnessCopy[0]);
+
     for (const [key, value] of Object.entries(fitness)) {
         fitness[key] *= (Math.random() + randomness) / randomness;
     }
     // Create fitnessCopy array https://stackoverflow.com/questions/25500316/sort-a-dictionary-by-value-in-javascript
-    let fitnessCopy = Object.keys(fitness).map(function(key) {
+    fitnessCopy = Object.keys(fitness).map(function(key) {
         return [key, fitness[key]];
     }); 
     
@@ -26,6 +37,7 @@ export function artificialSelection(fitness, randomness) {
     // console.log(fitness);
 
     fitness = [...fitness, ...fitness];
+    console.log(fitness);
     for (let net = 0; net < fitness.length; net++) {
         fitness[net][1].fullMutate();
     }    

@@ -33,8 +33,8 @@ export function drawWeights(xSpace, ySpace, xPos, yPos, weightArray, layer) {
 }
 
 export function drawWeightLine(xSpace, ySpace, xPos, yPos, layer, j, k, colour) {
-            if (colour < 1) {
-                colour*=225
+            if (colour < 0) {
+                colour= 225 - colour*200
                 colour = rgbToHex(255, colour, colour)
             } else {
                 colour= 225 - colour*200

@@ -1,4 +1,5 @@
 import { entityList, ctx, canvas, pressedKeys, human } from "../../index";
+import { deathCheck } from "../actions/deathCheck";
 
 export class Flappy {
     constructor() {
@@ -21,27 +22,12 @@ export class Flappy {
         this.velocity.x *= this.drag;
         this.velocity.y += this.gravity;
         this.velocity.y *= this.drag;
-        if (this.position.y > canvas.height - this.height/2) {
-            this.die();
+        
+        
+        if (human) {
+            deathCheck(this.position.x, this.position.y, this.width, this.height)
         }
-        let fx = this.position.x;
-        let fy = this.position.y;
-        let fw = this.width;
-        let fh = this.height;
-        let px;
-        let py;
-        let pw;
-        let ph;
-        for (let i = 0; i < entityList.Pipes.length; i++) {
-            px = entityList.Pipes[i].position.x;
-            py = entityList.Pipes[i].position.y;
-            pw = entityList.Pipes[i].width;
-            ph = entityList.Pipes[i].gapHeight;
-            if (fx > px - pw/2 - fw/2 && fx < px + pw/2 + fw/2 && (fy > py + ph/2 - fh/2 || fy < py - ph/2 + fh/2)) {
-                this.die();
-            }
-            
-        }
+
         if (pressedKeys[32] === true && human) {
             this.jump();
         }
