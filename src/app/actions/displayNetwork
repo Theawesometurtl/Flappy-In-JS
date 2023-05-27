@@ -4,35 +4,35 @@ import { ctx } from '../../index';
 
 
 export function displayNetwork(xSpace, ySpace, xPos, yPos, weightArray, biasArray, layer) {
-    drawBiases(xSpace, ySpace, xPos, yPos, biasArray)
+    drawBiases(xSpace, ySpace, xPos, yPos, biasArray, layer)
 
     layer++;
     if (layer === biasArray.length) {
         return
     }
-    drawWeights(xSpace, ySpace, xPos, yPos, weightArray)
+    drawWeights(xSpace, ySpace, xPos, yPos, weightArray, layer)
     
     return displayNetwork(xSpace, ySpace, xPos, yPos, weightArray, biasArray, layer);
 
 }
 
-export function drawBiases(xSpace, ySpace, xPos, yPos, biasArray) {
+export function drawBiases(xSpace, ySpace, xPos, yPos, biasArray, layer) {
     for (let j = 0; j < biasArray[layer].length; j++) {
         drawCircle(12, 'yellow', 'black', 3, (layer * xSpace) + xPos, (j * ySpace) + yPos);
     }
 }
 
-export function drawWeights(xSpace, ySpace, xPos, yPos, weightArray) {
+export function drawWeights(xSpace, ySpace, xPos, yPos, weightArray, layer) {
     for (let j = 0; j < weightArray[layer].length; j++) {
         for (let k = 0; k < weightArray[layer][j].length; k++) {
             let colour = weightArray[layer][j][k]
             colour = Math.round(colour)
-            drawWeightLine(xSpace, ySpace, xPos, yPos, colour)
+            drawWeightLine(xSpace, ySpace, xPos, yPos, layer, j, k, colour)
         }
     }
 }
 
-export function drawWeightLine(xSpace, ySpace, xPos, yPos) {
+export function drawWeightLine(xSpace, ySpace, xPos, yPos, layer, j, k, colour) {
             if (colour < 1) {
                 colour*=225
                 colour = rgbToHex(255, colour, colour)

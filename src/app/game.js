@@ -2,6 +2,7 @@ import { canvas, ctx, globals, entityList, human } from '../index';
 import { Pipes } from './classes/Pipes';
 import { displayNetwork } from './actions/displayNetwork';
 import { activationFunction } from './actions/activationFunction';
+import { artificialSelection } from './actions/artificialSelection';
 
 
 
@@ -20,7 +21,8 @@ export function main() {
             }
         }
     } else {
-        
+        artificialSelection({1:15, 2:19, 3:15.45, 4:15.6, 5:9.1, 6:100}, 1);
+                
         for (let i=0; i<entityList.Flappies.length; i++)   {
             entityList.Flappies[0].draw();
             entityList.Flappies[0].update();
@@ -32,21 +34,23 @@ export function main() {
             entityList.Pipes[i].update();
         }
         for (let i=0; i<entityList.NNs.length; i++) {
-            let flappyY = entityList.Flappies[i].position.y;
+            let flappyY = entityList.Flappies[i].position.y/ canvas.height;
             let flappyVelocity = entityList.Flappies[i].velocity.y;
-            let pipeX = entityList.Pipes[0].position.x;
-            let pipeGapY = entityList.Pipes[0].position.y;
+            let pipeX = entityList.Pipes[0].position.x*2 / canvas.width;
+            let pipeGapY = entityList.Pipes[0].position.y / canvas.height;
+            // console.log(activationFunction(flappyY, flappyVelocity, pipeX, pipeGapY));
             let inputs = activationFunction(flappyY, flappyVelocity, pipeX, pipeGapY);
             let outputs = entityList.NNs[i].update(0, ...inputs);
             if (outputs[0] > .5) {
                 entityList.Flappies[i].jump();
-                ctx.font = "30px Arial";
-                ctx.fillStyle = "white";
-                ctx.fillText(outputs, 10, 50);
             } 
+            ctx.font = "30px Arial";
+            ctx.fillStyle = "white";
+            ctx.fillText(outputs, 10, 50);
+            // console.log(outputs);
         }
         
-        // displayNetwork(100, 50, canvas.width -400, canvas.height - 300, entityList.NNs[0].weightArray, entityList.NNs[0].biasArray, 0);
+        displayNetwork(100, 50, canvas.width -400, canvas.height - 300, entityList.NNs[0].weightArray, entityList.NNs[0].biasArray, 0);
     }
     globals.pipeTimer ++;
     

@@ -12,7 +12,7 @@ export class NN {
         this.biasArray[layer] = [];
         //make value for every bias in layer
         for (let j = 0; j < this.neuronsPerLayer[layer]; j++) {
-            this.biasArray[layer][j] = 0.5
+            this.biasArray[layer][j] = 0.01
         }
 
         layer++;
@@ -27,7 +27,7 @@ export class NN {
             this.weightArray[layer][j] = []
             //assign weight to neuron connection
             for (let k = 0; k < this.neuronsPerLayer[layer]; k++) {
-                this.weightArray[layer][j][k] = 1
+                this.weightArray[layer][j][k] = 0.01
             }
         }
 
@@ -59,20 +59,21 @@ export class NN {
     
 
     update(layer, ...inputs) {
+        
+        layer++;
+        if (layer >= this.neuronsPerLayer.length) {//end of recursion
+            return inputs;
+        }
         let outputs = [];
-        this.updateBiases(layer, 0, outputs);
-        // console.log(outputs)
+
+        this.outputs = this.updateBiases(layer, 0, outputs);
+        // console.log(layer, outputs);
+        
+        outputs = this.updateWeights(layer, 0, 0, outputs, inputs)
+        // console.log(layer, outputs)
         
         outputs = activationFunction(...outputs);
-        // console.log(outputs)
-
-        layer++;
-        if (layer === this.neuronsPerLayer.length) {//end of recursion
-            return outputs;
-        }
-        
-        this.updateWeights(layer, 0, 0, outputs, inputs)
-        // console.log(outputs)
+        // console.log(layer, outputs)
         
 
         // displayNetwork(100, 50, canvas.width -400, canvas.height - 300, 'weight', 'bias', 0, false);
@@ -86,25 +87,26 @@ export class NN {
         if (neuron === this.biasArray[layer].length) {
             return outputs;
         }
-        // console.log(outputs);
+        // console.log(layer, outputs);
         return this.updateBiases(layer, neuron, outputs);
     }
 
     updateWeights(layer, neuron, weight, outputs, inputs) {
         
         
-        outputs[neuron] += this.weightArray[layer][neuron][weight] * inputs[weight];
+        outputs[weight] += this.weightArray[layer][neuron][weight] * inputs[neuron];
         // console.log(outputs, inputs);
-        console.log(layer, neuron, weight);
-        console.log(this.weightArray[layer][neuron].length);
+        // console.log(layer, neuron, weight);
+        // console.log(this.weightArray[layer][neuron].length);
         // console.log(this.weightArray, this.weightArray[layer], this.weightArray[layer][neuron])
-        // console.log(outputs[neuron], this.weightArray[layer][neuron][weight], inputs[weight]);
+        // console.log(outputs[weight], this.weightArray[layer][neuron][weight], inputs[neuron]);
 
         weight++;
-        if (weight === this.weightArray[layer][neuron].length-1) {
+        if (weight >= this.weightArray[layer][neuron].length) {
             neuron++;
             weight = 0;
-            if (neuron === this.biasArray[layer-1].length) {
+            if (neuron >= this.biasArray[layer-1].length) {
+                // console.log(layer, outputs)
                 return outputs
             }
         }
