@@ -1,12 +1,14 @@
 import { NN } from "../classes/NN";
+import { fitnessDictionary } from "../../index.js";
 
 /* I want to make a dictionary of the fitness of 100 NNs, and take the best 50 ones, but also have some controlled randomness to the selection.
 
 
 */
 
-export function artificialSelection(fitness, randomness) {
-    console.log(fitness);
+export function artificialSelection(randomness) {
+    let fitness = fitnessDictionary;
+    console.dir(fitness);
     let fitnessCopy = Object.keys(fitness).map(function(key) {
         return [key, fitness[key]];
     }); 

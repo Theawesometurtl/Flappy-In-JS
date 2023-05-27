@@ -13,7 +13,6 @@ export function start() {
         // entityList.NNs[0].createNeuralNet(0);
         // entityList.NNs[0].fullMutate(0, 10);
         // console.log(entityList.NNs[0].weightArray);
-        let fitnessDictionary = {};
         for (let i = 0; i < 100; i++) {
             let n = new NN(4, 5, 5, 1)
             console.log(n);
@@ -23,7 +22,7 @@ export function start() {
             // fitnessDictionary[i].createNeuralNet(0);
         }
         console.log(fitnessDictionary);
-        simulationReset(100, fitnessDictionary);
+        simulationReset(100);
     }
     setInterval(main, 20);
 

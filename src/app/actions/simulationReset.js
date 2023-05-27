@@ -7,13 +7,14 @@ import { artificialSelection } from "./artificialSelection.js";
 
 
 
-export function simulationReset(flappies, fitnessDictionary) {
+
+export function simulationReset(flappies) {
     globals.timer = 0;
     globals.pipeTimer = 0;
     for (const [key, value] of Object.entries(entityList)) {
         entityList[key] = [];      
     }
-    let fitness = artificialSelection(fitnessDictionary, 100)
+    let fitness = artificialSelection(100)
     entityList.Pipes.push(new Pipes());
     for (let i = 0; i < flappies; i++) {
         entityList.Flappies.push(new Flappy());
