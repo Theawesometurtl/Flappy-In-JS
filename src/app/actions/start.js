@@ -12,16 +12,16 @@ export function start() {
         
         // console.log(entityList.NNs[0].weightArray);
         for (let i = 0; i < 100; i++) {
-            entityList.NNs.push(new NN(4, 5, 5, 1));
+            entityList.NNs.push(new NN(4, 5, 5, 5, 1));
             entityList.NNs[i].createNeuralNet(0);
-            entityList.NNs[i].fullMutate(0, 10);
+            entityList.NNs[i].fullMutate(0, 10, 0.1);
 
             fitnessDictionary[i] = i;
             // fitnessDictionary[i].createNeuralNet(0);
         }
-        console.log(fitnessDictionary);
-        simulationReset(100);
+        // console.log(fitnessDictionary);
+        simulationReset(10);
     }
-    setInterval(main, 20);
+    setInterval(main, 1);
 
 }

@@ -17,28 +17,31 @@ export function artificialSelection(randomness) {
     fitnessCopy.sort(function(first, second) {
         return second[1] - first[1];
     });
-    console.log(entityList.NNs[fitnessCopy[0][0]]);
+    // console.log(entityList.NNs[fitnessCopy[0][0]]);
 
-    for (const [key, value] of Object.entries(fitness)) {
-        fitness[key] *= (Math.random() + randomness) / randomness;
+    // for (const [key, value] of Object.entries(fitness)) {
+    //     fitness[key] *= (Math.random() + randomness) / randomness;
+    // }
+    // // Create fitnessCopy array https://stackoverflow.com/questions/25500316/sort-a-dictionary-by-value-in-javascript
+    // fitnessCopy = Object.keys(fitness).map(function(key) {
+    //     return [key, fitness[key]];
+    // }); 
+    
+    // // Sort the array based on the second element
+    // fitnessCopy.sort(function(first, second) {
+    //     return second[1] - first[1];
+    // });
+    
+    // // Create a new array with only the first 5 fitnessCopy
+    // // console.log(fitnessCopy.length / 2);
+    // fitness = fitnessCopy.slice(0, (fitnessCopy.length / 100));
+    // // fitness.reverse();
+    // // console.log(fitness);
+    // fitnessCopy = []
+    fitness = [];
+    for (let nn = 0; nn < 100 / fitnessCopy.length; nn++) {
+        fitness.push(...fitnessCopy);
     }
-    // Create fitnessCopy array https://stackoverflow.com/questions/25500316/sort-a-dictionary-by-value-in-javascript
-    fitnessCopy = Object.keys(fitness).map(function(key) {
-        return [key, fitness[key]];
-    }); 
-    
-    // Sort the array based on the second element
-    fitnessCopy.sort(function(first, second) {
-        return second[1] - first[1];
-    });
-    
-    // Create a new array with only the first 5 fitnessCopy
-    // console.log(fitnessCopy.length / 2);
-    fitness = fitnessCopy.slice(0, (fitnessCopy.length / 2));
-    // fitness.reverse();
-    // console.log(fitness);
-
-    fitness = [...fitness, ...fitness];
     // console.log(fitness[0]);
 
 
@@ -47,7 +50,7 @@ export function artificialSelection(randomness) {
 
 export function restockEntityList(fitness) {
     //replace fitness values with NNs
-    console.log(fitness);
+    // console.log(fitness);
     for (const [key, value] of Object.entries(fitness)) {
         fitness[key] = entityList.NNs[fitness[key][0]];
         
