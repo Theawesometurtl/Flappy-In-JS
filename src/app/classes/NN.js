@@ -9,7 +9,7 @@ export class NN {
     }
 
     createNeuralNet(layer) {
-        console.log("ran")
+        // console.log("ran")
         this.biasArray[layer] = [];
         //make value for every bias in layer
         for (let j = 0; j < this.neuronsPerLayer[layer]; j++) {
@@ -38,7 +38,6 @@ export class NN {
     }
 
     fullMutate(layer, amount) {
-        console.log('mutated')
         for (let j = 0; j < this.biasArray[layer].length; j++) {//biases
             this.biasArray[layer][j] += Math.random() -.5;
             this.biasArray[layer][j] *= (Math.random() + amount) / amount;
@@ -47,7 +46,7 @@ export class NN {
 
         layer++;//this skips over the first layer of the weight array
         if (layer === this.biasArray.length) {
-            console.log(this.weightArray, this.biasArray)
+            // console.log(this.weightArray, this.biasArray)
             return
         }
 

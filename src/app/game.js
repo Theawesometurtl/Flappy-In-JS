@@ -25,14 +25,15 @@ export function main() {
     } else {
         for (let f=0; f<entityList.Flappies.length; f++)   {
             if (deathCheck(entityList.Flappies[f].position.x, entityList.Flappies[f].position.y, entityList.Flappies[f].width, entityList.Flappies[f].height)) {
-                fitnessDictionary[globals.timer] = entityList.NNs[f]
+                fitnessDictionary[f] = globals.timer;
                 entityList.Flappies.splice(f, 1);
                 if (entityList.Flappies.length === 0) {
                     simulationReset(100, fitnessDictionary);
                 }
+            } else {
+                entityList.Flappies[f].draw();
+                entityList.Flappies[f].update();
             }
-            entityList.Flappies[f].draw();
-            entityList.Flappies[f].update();
         }
         for (let i=0; i<entityList.Pipes.length; i++)   {
             entityList.Pipes[i].draw();

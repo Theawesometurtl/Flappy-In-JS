@@ -1,5 +1,5 @@
 import { NN } from "../classes/NN";
-import { fitnessDictionary } from "../../index.js";
+import { fitnessDictionary, entityList } from "../../index.js";
 
 /* I want to make a dictionary of the fitness of 100 NNs, and take the best 50 ones, but also have some controlled randomness to the selection.
 
@@ -8,8 +8,7 @@ import { fitnessDictionary } from "../../index.js";
 
 export function artificialSelection(randomness) {
     let fitness = fitnessDictionary;
-    console.log(fitness[0]);
-    console.dir(fitness);
+    // console.log(fitness[0]);
     let fitnessCopy = Object.keys(fitness).map(function(key) {
         return [key, fitness[key]];
     }); 
@@ -18,7 +17,7 @@ export function artificialSelection(randomness) {
     fitnessCopy.sort(function(first, second) {
         return second[1] - first[1];
     });
-    console.log(fitnessCopy[0]);
+    console.log(entityList.NNs[fitnessCopy[0][0]]);
 
     for (const [key, value] of Object.entries(fitness)) {
         fitness[key] *= (Math.random() + randomness) / randomness;
@@ -40,11 +39,29 @@ export function artificialSelection(randomness) {
     // console.log(fitness);
 
     fitness = [...fitness, ...fitness];
-    console.log(fitness[0]);
-    for (let net = 0; net < fitness.length; net++) {
-        console.log(fitness[net]);
-        fitness[net][1].fullMutate();
-    }    
+    // console.log(fitness[0]);
+
 
     return fitness;
+}
+
+export function restockEntityList(fitness) {
+    //replace fitness values with NNs
+    console.log(fitness);
+    for (const [key, value] of Object.entries(fitness)) {
+        fitness[key] = entityList.NNs[fitness[key][0]];
+        
+        
+    }
+    // console.log(fitness);
+
+    entityList.NNs = [];
+    //replace NNs with new fitness NNs
+    for (const [key, value] of Object.entries(fitness)) {
+        entityList.NNs.push(fitness[key]);
+        // console.log(entityList.NNs);
+
+    }
+    entityList.Pipes = [];
+    entityList.Flappies = [];
 }

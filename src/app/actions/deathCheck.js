@@ -5,6 +5,9 @@ export function deathCheck(fx, fy, width, height) {
     if (fy > canvas.height - height/2) {
         return true;
     }
+    if (fy < 0 + height/2) { 
+        return true;
+    }
 
     let fw = width;
     let fh = height;

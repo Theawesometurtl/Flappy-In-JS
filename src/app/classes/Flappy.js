@@ -26,14 +26,14 @@ export class Flappy {
         
         if (human) {
             deathCheck(this.position.x, this.position.y, this.width, this.height)
+            if (this.position.y < 0 + this.width / 2) {//ceiling check
+                this.velocity.y *= -0.5;
+                this.position.y = 0 + this.width / 2;
+            }
         }
 
         if (pressedKeys[32] === true && human) {
             this.jump();
-        }
-        if (this.position.y < 0 + this.width / 2) {//ceiling check
-            this.velocity.y *= -0.5;
-            this.position.y = 0 + this.width / 2;
         }
 
     }
