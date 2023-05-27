@@ -17,6 +17,7 @@ export function start() {
             let n = new NN(4, 5, 5, 1)
             console.log(n);
             n.createNeuralNet(0);
+            n.fullMutate(0, 10);
             console.log(n);
             fitnessDictionary[i] = n;
             // fitnessDictionary[i].createNeuralNet(0);

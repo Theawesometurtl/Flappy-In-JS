@@ -8,6 +8,7 @@ import { fitnessDictionary } from "../../index.js";
 
 export function artificialSelection(randomness) {
     let fitness = fitnessDictionary;
+    console.log(fitness[0]);
     console.dir(fitness);
     let fitnessCopy = Object.keys(fitness).map(function(key) {
         return [key, fitness[key]];
@@ -39,8 +40,9 @@ export function artificialSelection(randomness) {
     // console.log(fitness);
 
     fitness = [...fitness, ...fitness];
-    console.log(fitness);
+    console.log(fitness[0]);
     for (let net = 0; net < fitness.length; net++) {
+        console.log(fitness[net]);
         fitness[net][1].fullMutate();
     }    
 
