@@ -1,0 +1,1 @@
+export let activationFunction = (...nums) => nums.map(n => 1 / (1 + Math.exp(-n)))

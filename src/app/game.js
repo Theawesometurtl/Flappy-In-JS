@@ -5,6 +5,7 @@ import { activationFunction } from './actions/activationFunction';
 import { artificialSelection } from './actions/artificialSelection';
 import { deathCheck } from './actions/deathCheck';
 import { simulationReset } from './actions/simulationReset';
+import { parralaxBackground } from './actions/parralaxBackground';
 
 
 
@@ -12,6 +13,9 @@ import { simulationReset } from './actions/simulationReset';
 export function main() {
     ctx.fillStyle = 'grey';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
+    // ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // parralaxBackground(globals.timer, 1, 2, 3, 4, 5);
+
 
     if (human) {
         for (const [key, value] of Object.entries(entityList)) {
