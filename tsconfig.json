@@ -2,7 +2,10 @@
     "compilerOptions": {
         "noImplicitAny": true,
         "target": "ES5",
-        "module": "ES2015"
+        "module": "ES2015",
+        "moduleResolution": "node",
+        "allowJs": false,
+        "baseUrl": "./src",    
     },
     "include": [
         "src/**/*.ts"  // Update this path based on your project structure

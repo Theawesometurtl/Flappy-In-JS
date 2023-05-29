@@ -8,6 +8,9 @@ const TerserPlugin = require("terser-webpack-plugin");
 var HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = merge(common, {
+  resolve: {
+    extensions: ['.ts', '.js', '.json']
+  },
   mode: "production",
   output: {
     filename: "[name].[contentHash].bundle.js",

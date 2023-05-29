@@ -1,7 +1,7 @@
-import { entityList, canvas } from "../../index.js";
+import { entityList, canvas } from "../../index";
 
 
-export function deathCheck(fx, fy, width, height) {
+export function deathCheck(fx: number, fy: number, width: number, height: number): boolean {
     if (fy > canvas.height - height/2) {
         return true;
     }

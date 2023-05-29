@@ -1,7 +1,25 @@
 import { entityList, ctx, canvas, pressedKeys, human } from "../../index";
 import { deathCheck } from "../actions/deathCheck";
 
-export class Flappy {
+interface FlappyInterface {
+    position: {[key: string]: number};
+    velocity: {[key: string]: number};
+    width: number;
+    height: number;
+    jumpVelocity: number;
+    drag: number;
+    gravity: number;
+}
+
+export class Flappy implements FlappyInterface {
+    position: { [key: string]: number; };
+    velocity: { [key: string]: number; };
+    width: number;
+    height: number;
+    jumpVelocity: number;
+    drag: number;
+    gravity: number;
+
     constructor() {
         this.position = {x: 50, y: canvas.height/2};
         this.velocity = {x: 0, y: 0};
@@ -12,11 +30,11 @@ export class Flappy {
         this.gravity = 1;
         
     }
-    jump() {
+    jump():void {
         this.velocity.y = -this.jumpVelocity;
         
     }
-    update() {
+    update():void {
         this.position.x += this.velocity.x;
         this.position.y += this.velocity.y;
         this.velocity.x *= this.drag;

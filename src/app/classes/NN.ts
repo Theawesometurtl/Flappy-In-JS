@@ -1,14 +1,26 @@
 import { ctx } from '../../index'
 import { displayNetwork } from '../actions/displayNetwork';
 import { activationFunction } from '../actions/activationFunction';
-export class NN {
-    constructor(...neuronsPerLayer) {
+
+interface NNInterface {
+    neuronsPerLayer: number[];
+    biasArray: number[][];
+    weightArray: number[][][];
+  }
+  
+
+export class NN implements NNInterface {
+    neuronsPerLayer: number[];
+    biasArray: number[][];
+    weightArray: number[][][];
+
+    constructor(...neuronsPerLayer : number[]) {
         this.neuronsPerLayer = neuronsPerLayer;
         this.biasArray = []
         this.weightArray = []
     }
 
-    createNeuralNet(layer) {
+    createNeuralNet(layer = 0) : void {
         // console.log("ran")
         this.biasArray[layer] = [];
         //make value for every bias in layer
@@ -37,7 +49,7 @@ export class NN {
 
     }
 
-    fullMutate(layer, amount, chance) {
+    fullMutate(layer = 0, amount : number = 100, chance: number = 0.01) : void {
         for (let j = 0; j < this.biasArray[layer].length; j++) {//biases
             if (Math.random() < chance) {
                 this.biasArray[layer][j] += Math.random() -.5;
@@ -65,15 +77,15 @@ export class NN {
     }
     
 
-    update(layer, ...inputs) {
+    update(layer = 0, ...inputs : number[]) : number[] {
         
         layer++;
         if (layer >= this.neuronsPerLayer.length) {//end of recursion
             return inputs;
         }
-        let outputs = [];
+        let outputs : number[] = [];
 
-        this.outputs = this.updateBiases(layer, 0, outputs);
+        outputs = this.updateBiases(layer, 0, outputs);
         // console.log(layer, outputs);
         
         outputs = this.updateWeights(layer, 0, 0, outputs, inputs)
@@ -88,7 +100,7 @@ export class NN {
         return this.update(layer, ...outputs);//recursion (I think linear recursion, but not suure)
     }
 
-    updateBiases(layer, neuron, outputs) {
+    updateBiases(layer = 0, neuron: number = 0, outputs: number[]) : number[] {
         outputs[neuron] = this.biasArray[layer][neuron];
         neuron++;
 
@@ -100,7 +112,7 @@ export class NN {
         return this.updateBiases(layer, neuron, outputs);
     }
 
-    updateWeights(layer, neuron, weight, outputs, inputs) {
+    updateWeights(layer: number = 0, neuron: number = 0, weight:number = 0, outputs: number[], inputs: number[]):number[] {
         
         
         outputs[weight] += this.weightArray[layer][neuron][weight] * inputs[neuron];

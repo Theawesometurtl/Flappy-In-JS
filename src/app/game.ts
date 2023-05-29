@@ -5,7 +5,7 @@ import { activationFunction } from './actions/activationFunction';
 import { artificialSelection } from './actions/artificialSelection';
 import { deathCheck } from './actions/deathCheck';
 import { simulationReset } from './actions/simulationReset';
-import { parralaxBackground } from './actions/parralaxBackground';
+// import { parralaxBackground } from './actions/parralaxBackground';
 
 
 
@@ -18,14 +18,17 @@ export function main() {
 
 
     if (human) {
-        for (const [key, value] of Object.entries(entityList)) {
-            for (let j = 0; j < entityList[key]?.length; j++) {
-                //console.log(key, entityList[key][j]);
-                entityList[key][j].update();
-                entityList[key][j].draw();
-
-            }
+        for (let j = 0; j < entityList.Flappies.length; j++) {
+            //console.log(key, entityList[key][j]);
+            entityList.Flappies[j].update();
+            entityList.Flappies[j].draw();
         }
+        for (let j = 0; j < entityList.Pipes.length; j++) {
+            //console.log(key, entityList[key][j]);
+            entityList.Pipes[j].update();
+            entityList.Pipes[j].draw();
+        }
+
     } else {
         for (let i=0; i<entityList.Pipes.length; i++)   {
             entityList.Pipes[i].draw();
