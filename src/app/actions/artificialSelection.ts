@@ -68,7 +68,7 @@ export function restockEntityList(fitness: number[][]) {
 
     }
     for (let net = globals.NNKeepers; net < globals.simulatedFlappies; net++) {
-        entityList.NNs[net].fullMutate(0, 1000, 0.05);
+        // entityList.NNs[net].fullMutate(0, 1000, 0.05);
         // console.log(entityList.NNs[net].networkNumber)
     }    
 
