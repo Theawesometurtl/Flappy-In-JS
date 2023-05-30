@@ -6,6 +6,7 @@ import { artificialSelection, restockEntityList } from './actions/artificialSele
 import { deathCheck } from './actions/deathCheck';
 import { simulationReset } from './actions/simulationReset';
 import { basicCheck } from './actions/networkCheck';
+import { drawText } from './actions/drawInputs';
 // import { parralaxBackground } from './actions/parralaxBackground';
 
 
@@ -40,12 +41,14 @@ export function main() {
         
         let pipeX = entityList.Pipes[0].position.x*2 / canvas.width;
         let pipeGapY = entityList.Pipes[0].position.y / canvas.height;
+        let flappyY;
+        let flappyVelocity;
         
         
         for (let f=0; f<entityList.Flappies.length; f++) {
             if (entityList.Flappies[f] !== undefined) { 
-                let flappyY = entityList.Flappies[f].position.y/ canvas.height;
-                let flappyVelocity = entityList.Flappies[f].velocity.y;
+                flappyY = entityList.Flappies[f].position.y/ canvas.height;
+                flappyVelocity = entityList.Flappies[f].velocity.y / 8;
                 // console.log(activationFunction(flappyY, flappyVelocity, pipeX, pipeGapY));
                 let inputs: number[] = activationFunction(flappyY, flappyVelocity, pipeX, pipeGapY);
     
@@ -65,15 +68,11 @@ export function main() {
                     entityList.Flappies[f].update();
                 }
             }
-            ctx.font = "30px Arial";
-            ctx.fillStyle = "white";
-            // ctx.fillText(outputs, 10, 50);
-            if (entityList.Flappies[0] !== undefined) {
-            ctx.fillText((entityList.Flappies[0].position.y/ canvas.height).toString(), canvas.width - 100, 50);
-            ctx.fillText(entityList.Flappies[0].velocity.y.toString(), canvas.width - 100, 100);
-            ctx.fillText(pipeX.toString(), canvas.width - 100, 150);
-            ctx.fillText(pipeGapY.toString(), canvas.width - 100, 200);
-            }
+        }
+        
+        // ctx.fillText(outputs, 10, 50);
+        if (entityList.Flappies[0] !== undefined) {
+            drawText(pipeX, pipeGapY, flappyY, flappyVelocity);
         }
         
         displayNetwork(100, 50, canvas.width -400, canvas.height - 300, entityList.NNs[0].weightArray, entityList.NNs[0].biasArray, 0);

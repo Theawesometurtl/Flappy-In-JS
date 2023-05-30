@@ -26,7 +26,7 @@ export function artificialSelection(randomness: number = 100): number[][] {
     console.log(best);
     // Create a new array with only the first 5 fitnessCopy
     // console.log(fitnessCopy.length / 2);
-    fitnessCopy = fitnessCopy.slice(0, (fitnessCopy.length / (fitnessCopy.length / globals.NNKeepers)));
+    fitnessCopy = fitnessCopy.slice(0, globals.NNKeepers);
     // console.log(fitness);
     // fitness.reverse();
     // console.log(fitness);
@@ -63,4 +63,5 @@ export function restockEntityList(fitness: number[][]) {
     for (let net = globals.NNKeepers; net < globals.simulatedFlappies; net++) {
         entityList.NNs[net].fullMutate(0, 1000, 0.05);
     }    
+
 }
