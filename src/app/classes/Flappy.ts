@@ -58,6 +58,16 @@ export class Flappy implements FlappyInterface {
     draw() {
         ctx.fillStyle = "yellow";
         ctx.fillRect(this.position.x -this.width/2, this.position.y - this.height/2, this.width, this.height);
+        ctx.strokeStyle = "black";
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.moveTo(this.position.x- this.width/2, this.position.y - this.height/2);
+        ctx.lineTo(this.position.x + this.width/2, this.position.y - this.height/2);
+        ctx.lineTo(this.position.x + this.width/2, this.position.y + this.height/2);
+        ctx.lineTo(this.position.x - this.width/2, this.position.y + this.height/2);
+        ctx.closePath();
+        ctx.stroke()
+
     }
     die() {
         this.position.y = 100;

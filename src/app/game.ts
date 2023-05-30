@@ -2,9 +2,10 @@ import { canvas, ctx, globals, entityList, human } from '../index';
 import { Pipes } from './classes/Pipes';
 import { displayNetwork } from './actions/displayNetwork';
 import { activationFunction } from './actions/activationFunction';
-import { artificialSelection } from './actions/artificialSelection';
+import { artificialSelection, restockEntityList } from './actions/artificialSelection';
 import { deathCheck } from './actions/deathCheck';
 import { simulationReset } from './actions/simulationReset';
+import { basicCheck } from './actions/networkCheck';
 // import { parralaxBackground } from './actions/parralaxBackground';
 
 
@@ -46,19 +47,12 @@ export function main() {
                 let flappyY = entityList.Flappies[f].position.y/ canvas.height;
                 let flappyVelocity = entityList.Flappies[f].velocity.y;
                 // console.log(activationFunction(flappyY, flappyVelocity, pipeX, pipeGapY));
-                let inputs = activationFunction(flappyY, flappyVelocity, pipeX, pipeGapY);
+                let inputs: number[] = activationFunction(flappyY, flappyVelocity, pipeX, pipeGapY);
     
                 let outputs = entityList.NNs[f].update(0, ...inputs);
                 if (outputs[0] > .5) {
                     entityList.Flappies[f].jump();
                 }
-                ctx.font = "30px Arial";
-                ctx.fillStyle = "white";
-                // ctx.fillText(outputs, 10, 50);
-                // ctx.fillText(inputs[0], canvas.width - 100, 50);
-                // ctx.fillText(inputs[1], canvas.width - 100, 100);
-                // ctx.fillText(inputs[2], canvas.width - 100, 150);
-                // ctx.fillText(inputs[3], canvas.width - 100, 200);
                 // console.log(outputs);
                 if (deathCheck(entityList.Flappies[f].position.x, entityList.Flappies[f].position.y, entityList.Flappies[f].width, entityList.Flappies[f].height)) {
                     globals.fitnessDictionary[f] = globals.timer;
@@ -71,9 +65,19 @@ export function main() {
                     entityList.Flappies[f].update();
                 }
             }
+            ctx.font = "30px Arial";
+            ctx.fillStyle = "white";
+            // ctx.fillText(outputs, 10, 50);
+            if (entityList.Flappies[0] !== undefined) {
+            ctx.fillText((entityList.Flappies[0].position.y/ canvas.height).toString(), canvas.width - 100, 50);
+            ctx.fillText(entityList.Flappies[0].velocity.y.toString(), canvas.width - 100, 100);
+            ctx.fillText(pipeX.toString(), canvas.width - 100, 150);
+            ctx.fillText(pipeGapY.toString(), canvas.width - 100, 200);
+            }
         }
         
         displayNetwork(100, 50, canvas.width -400, canvas.height - 300, entityList.NNs[0].weightArray, entityList.NNs[0].biasArray, 0);
+        //basicCheck()
         globals.timer++;
     }
     globals.pipeTimer ++;

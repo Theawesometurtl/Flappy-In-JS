@@ -49,11 +49,11 @@ export class NN implements NNInterface {
 
     }
 
-    fullMutate(layer = 0, amount : number = 100, chance: number = 0.01) : void {
+    fullMutate(layer = 0, amount : number = 10, chance: number = 0.01) : void {
         for (let j = 0; j < this.biasArray[layer].length; j++) {//biases
             if (Math.random() < chance) {
-                this.biasArray[layer][j] += Math.random() -.5;
-                this.biasArray[layer][j] *= (Math.random() + amount) / amount;
+                this.biasArray[layer][j] += (Math.random() -.5) / amount;
+                this.biasArray[layer][j] *= (Math.random() + amount/2) / amount;
             }
         }
 
@@ -112,7 +112,7 @@ export class NN implements NNInterface {
         return this.updateBiases(layer, neuron, outputs);
     }
 
-    updateWeights(layer: number = 0, neuron: number = 0, weight:number = 0, outputs: number[], inputs: number[]):number[] {
+    updateWeights(layer: number = 0, neuron: number, weight:number, outputs: number[], inputs: number[]):number[] {
         
         
         outputs[weight] += this.weightArray[layer][neuron][weight] * inputs[neuron];

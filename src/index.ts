@@ -4,10 +4,11 @@ import { Pipes } from './app/classes/Pipes';
 import { NN } from './app/classes/NN';
 
 // globals
-let globals = {pipeTimer: 100,
-                timer: 0,
-                simulatedFlappies: 100,
-                fitnessDictionary : {} as { [key: number]: number }
+let globals = {pipeTimer: 100 as number,
+                timer: 0 as number,
+                simulatedFlappies: 100 as number,
+                fitnessDictionary : {} as { [key: number]: number},
+                NNKeepers: 10 as number
 };
 const canvas = document.querySelector('canvas');
 canvas.width = window.innerWidth;

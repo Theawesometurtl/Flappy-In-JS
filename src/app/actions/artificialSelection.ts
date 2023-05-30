@@ -20,19 +20,21 @@ export function artificialSelection(randomness: number = 100): number[][] {
     fitnessCopy.sort(function(first, second) {
         return second[1] - first[1];
     });
-    console.log(fitnessCopy);
+    // console.log(fitnessCopy);
     
+    let best = fitnessCopy[0][1]
+    console.log(best);
     // Create a new array with only the first 5 fitnessCopy
     // console.log(fitnessCopy.length / 2);
-    fitnessCopy = fitnessCopy.slice(0, (fitnessCopy.length / 20));
-    console.log(fitness);
+    fitnessCopy = fitnessCopy.slice(0, (fitnessCopy.length / (fitnessCopy.length / globals.NNKeepers)));
+    // console.log(fitness);
     // fitness.reverse();
     // console.log(fitness);
     let finalFitnessArray: number[][] = [];
     for (let nn = 0; nn < globals.simulatedFlappies / fitnessCopy.length; nn++) {
         finalFitnessArray.push(...fitnessCopy);
     }
-    console.log(finalFitnessArray)
+    // console.log(finalFitnessArray)
     // console.log(fitness[0]);
 
 
@@ -47,6 +49,7 @@ export function restockEntityList(fitness: number[][]) {
     }
     // console.log(fitness);
 
+
     entityList.NNs = [];
     //replace NNs with new fitness NNs
     for (let net: number = 0; net < networkList.length; net++) {
@@ -56,4 +59,8 @@ export function restockEntityList(fitness: number[][]) {
     }
     entityList.Pipes = [];
     entityList.Flappies = [];
+
+    for (let net = globals.NNKeepers; net < globals.simulatedFlappies; net++) {
+        entityList.NNs[net].fullMutate(0, 1000, 0.05);
+    }    
 }

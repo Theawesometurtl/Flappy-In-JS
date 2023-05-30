@@ -13,9 +13,8 @@ export function simulationReset() {
     restockEntityList(fitness);
     globals.timer = 0;
     globals.pipeTimer = 0;
-    for (let net = 0; net < globals.simulatedFlappies; net++) {
-        entityList.NNs[net].fullMutate(0, 1000, 0.01);
-    }    
+    Pipes.numOfPipes = 0;
+    
     entityList.Pipes.push(new Pipes());
     for (let i = 0; i < globals.simulatedFlappies; i++) {
         entityList.Flappies.push(new Flappy());

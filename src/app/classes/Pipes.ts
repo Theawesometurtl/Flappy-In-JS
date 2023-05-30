@@ -19,10 +19,11 @@ export class Pipes implements PipesInterface {
     constructor() {
         this.width = 50
         this.gapHeight = 200
-        this.position = {x: canvas.width + this.width, y: Math.random() * (canvas.height - this.gapHeight) + this.gapHeight/2};
-        this.velocity = {x: -6, y: 0};
-        Pipes.numOfPipes ++;
+        
+        Pipes.numOfPipes++;
         this.pipeNum = Pipes.numOfPipes; 
+        this.position = {x: canvas.width + this.width, y: (this.pipeNum % 10)* (canvas.height - this.gapHeight) + this.gapHeight/2};
+        this.velocity = {x: -6, y: 0};
     }
     update(): void {
         this.position.x += this.velocity.x
