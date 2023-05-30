@@ -8,7 +8,9 @@ let globals = {pipeTimer: 100 as number,
                 timer: 0 as number,
                 simulatedFlappies: 100 as number,
                 fitnessDictionary : {} as { [key: number]: number},
-                NNKeepers: 10 as number
+                NNKeepers: 50 as number,
+                NNBrain: [4, 5, 5, 5, 1] as number[],
+                bestNNs: {} as { [key: number]: string}
 };
 const canvas = document.querySelector('canvas');
 canvas.width = window.innerWidth;

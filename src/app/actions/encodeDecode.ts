@@ -15,13 +15,13 @@ export function encodeNetwork(weights: number[][][], biases: number[][]) {
         encodedNetwork = encodedNetwork + " " + biases[layer].length.toString();
         
     }
-    console.log(encodedNetwork);
+    // console.log(encodedNetwork);
     for (let layer = 0; layer < biases.length; layer++) {
         for (let neuron = 0; neuron < biases[layer].length; neuron++) {
             encodedNetwork = encodedNetwork + " " + biases[layer][neuron].toString()
         }
     }
-    console.log(encodedNetwork);
+    // console.log(encodedNetwork);
 
     for (let layer = 1; layer < weights.length; layer++) {
         for (let neuron = 0; neuron < weights[layer].length; neuron++) {
@@ -47,7 +47,7 @@ export function decodeNetwork(encodedNetwork: string): [biases: number[][], weig
     for (let layer = 0; layer < layers; layer++) {
         neurons[layer] = encodedNetworkFloatArray[c.count]
     }
-    console.log(neurons);
+    // console.log(neurons);
 
     for (let layer = 0; layer < layers; layer++) {
         biases[layer] = [];
@@ -55,7 +55,7 @@ export function decodeNetwork(encodedNetwork: string): [biases: number[][], weig
             biases[layer][neuron] = encodedNetworkFloatArray[c.count];
         }
     }
-    console.log(encodedNetwork);
+    // console.log(encodedNetwork);
     
     for (let layer = 1; layer < layers; layer++) {
         weights[layer] = [];
@@ -66,6 +66,6 @@ export function decodeNetwork(encodedNetwork: string): [biases: number[][], weig
             }
         }
     }
-    console.log(biases, weights);
+    // console.log(biases, weights);
     return [biases, weights];
 }
