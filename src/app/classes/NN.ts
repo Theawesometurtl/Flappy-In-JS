@@ -6,18 +6,23 @@ interface NNInterface {
     neuronsPerLayer: number[];
     biasArray: number[][];
     weightArray: number[][][];
+    networkNumber: number;
   }
   
 
 export class NN implements NNInterface {
+    static NNAmount: number = 0;
     neuronsPerLayer: number[];
     biasArray: number[][];
     weightArray: number[][][];
+    networkNumber: number;
 
     constructor(...neuronsPerLayer : number[]) {
         this.neuronsPerLayer = neuronsPerLayer;
         this.biasArray = []
         this.weightArray = []
+        NN.NNAmount++;
+        this.networkNumber = NN.NNAmount;
     }
 
     createNeuralNet(layer = 0) : void {
@@ -61,6 +66,8 @@ export class NN implements NNInterface {
         layer++;//this skips over the first layer of the weight array
         if (layer === this.biasArray.length) {
             // console.log(this.weightArray, this.biasArray)
+            // console.log('ran')
+
             return
         }
 
@@ -134,6 +141,4 @@ export class NN implements NNInterface {
         
         return this.updateWeights(layer, neuron, weight, outputs, inputs);
     }
-
-
 }

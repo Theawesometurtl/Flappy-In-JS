@@ -43,7 +43,9 @@ export class Flappy implements FlappyInterface {
         
         
         if (human) {
-            deathCheck(this.position.x, this.position.y, this.width, this.height)
+            if (deathCheck(this.position.x, this.position.y, this.width, this.height)) {
+                this.die();
+            }
             if (this.position.y < 0 + this.width / 2) {//ceiling check
                 this.velocity.y *= -0.5;
                 this.position.y = 0 + this.width / 2;

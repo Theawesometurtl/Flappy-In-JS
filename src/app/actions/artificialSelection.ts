@@ -1,5 +1,6 @@
 import { NN } from "../classes/NN";
 import { globals, entityList } from "../../index";
+import { encodeNetwork } from "./encodeDecode";
 
 /* I want to make a dictionary of the fitness of 100 NNs, and take the best 50 ones, but also have some controlled randomness to the selection.
 
@@ -23,7 +24,10 @@ export function artificialSelection(randomness: number = 100): number[][] {
     // console.log(fitnessCopy);
     
     let best = fitnessCopy[0][1]
-    console.log(best);
+    let bestNN = entityList.NNs[fitnessCopy[0][0]];
+    if (best >= 100) {
+        console.log(best, bestNN.networkNumber, encodeNetwork(bestNN.weightArray, bestNN.biasArray));
+    }
     // Create a new array with only the first 5 fitnessCopy
     // console.log(fitnessCopy.length / 2);
     fitnessCopy = fitnessCopy.slice(0, globals.NNKeepers);
@@ -59,9 +63,13 @@ export function restockEntityList(fitness: number[][]) {
     }
     entityList.Pipes = [];
     entityList.Flappies = [];
+    for (let i = 0; i < globals.NNKeepers; i++) {
+        // console.log(entityList.NNs[i].networkNumber, "keepers")
 
+    }
     for (let net = globals.NNKeepers; net < globals.simulatedFlappies; net++) {
         entityList.NNs[net].fullMutate(0, 1000, 0.05);
+        // console.log(entityList.NNs[net].networkNumber)
     }    
 
 }

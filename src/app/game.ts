@@ -30,6 +30,15 @@ export function main() {
             entityList.Pipes[j].update();
             entityList.Pipes[j].draw();
         }
+        let pipeX = entityList.Pipes[0].position.x*2 / canvas.width;
+        let pipeGapY = entityList.Pipes[0].position.y / canvas.height;
+        let flappyY;
+        let flappyVelocity;
+        flappyY = entityList.Flappies[0].position.y/ canvas.height;
+        flappyVelocity = entityList.Flappies[0].velocity.y / 8;
+        if (entityList.Flappies[0] !== undefined) {
+            drawText(pipeX, pipeGapY, flappyY, flappyVelocity);
+        }
 
     } else {
         for (let i=0; i<entityList.Pipes.length; i++)   {

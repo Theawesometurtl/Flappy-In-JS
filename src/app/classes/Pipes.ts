@@ -22,7 +22,7 @@ export class Pipes implements PipesInterface {
         
         Pipes.numOfPipes++;
         this.pipeNum = Pipes.numOfPipes; 
-        this.position = {x: canvas.width + this.width, y: (this.pipeNum % 10)* (canvas.height - this.gapHeight) + this.gapHeight/2};
+        this.position = {x: canvas.width + this.width, y: ((this.pipeNum % 10)/10)* (canvas.height - this.gapHeight) + this.gapHeight/2};
         this.velocity = {x: -6, y: 0};
     }
     update(): void {
@@ -40,8 +40,8 @@ export class Pipes implements PipesInterface {
     draw(): void {
         ctx.fillStyle = "green";
         //top
-        ctx.fillRect(this.position.x, 0, this.width, this.position.y-this.gapHeight/2);
+        ctx.fillRect(this.position.x - this.width/2, 0, this.width, this.position.y-this.gapHeight/2);
         //bottom
-        ctx.fillRect(this.position.x, this.position.y + this.gapHeight/2, this.width, canvas.height + 1000);
+        ctx.fillRect(this.position.x- this.width/2, this.position.y + this.gapHeight/2, this.width, canvas.height + 1000);
     }
 }
