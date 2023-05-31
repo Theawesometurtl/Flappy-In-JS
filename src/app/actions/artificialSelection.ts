@@ -30,7 +30,7 @@ export function artificialSelection(randomness: number = 5): number[][] {
         globals.bestNNs[fitnessCopy[0][1]] = encodeNetwork(bestNN.weightArray, bestNN.biasArray)
     }
 
-    for (let i = 1; i < globals.simulatedFlappies; i++) {
+    for (let i = 1; i < globals.simulatedNNs; i++) {
         fitnessCopy[i][1] *= (Math.random() + randomness) / randomness;
     }
     // Sort the array based on the second element
@@ -46,7 +46,7 @@ export function artificialSelection(randomness: number = 5): number[][] {
     // fitness.reverse();
     // console.log(fitness);
     let finalFitnessArray: number[][] = [];
-    for (let nn = 0; nn < globals.simulatedFlappies / fitnessCopy.length; nn++) {
+    for (let nn = 0; nn < globals.simulatedNNs / fitnessCopy.length; nn++) {
         finalFitnessArray.push(...fitnessCopy);
     }
     // console.log(finalFitnessArray)
@@ -86,8 +86,8 @@ export function restockEntityList(fitness: number[][]) {
         // console.log(entityList.NNs[i].networkNumber, "keepers")
 
     }
-    for (let net = globals.NNKeepers; net < globals.simulatedFlappies; net++) {
-        entityList.NNs[net].fullMutate(0, 50, 0.02);
+    for (let net = globals.NNKeepers; net < globals.simulatedNNs; net++) {
+        entityList.NNs[net].fullMutate(0, 100, 0.05);
         // console.log(entityList.NNs[net].networkNumber)
     }    
 

@@ -8,6 +8,6 @@ function drivingClick() {
 const button1 = document.getElementById("FlappyButton");
 button1.addEventListener("click", flappyClick);
   
-const button2 = document.getElementById("FlappyButton");
+const button2 = document.getElementById("DrivingButton");
 button2.addEventListener("click", drivingClick);
   

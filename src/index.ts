@@ -1,4 +1,4 @@
-import { start } from './app/actions/start';
+import { flappyStart } from './app/actions/flappyStart';
 import { Flappy } from './app/classes/Flappy';
 import { Pipes } from './app/classes/Pipes';
 import { NN } from './app/classes/NN';
@@ -6,7 +6,7 @@ import { NN } from './app/classes/NN';
 // globals
 let globals = {pipeTimer: 100 as number,
                 timer: 0 as number,
-                simulatedFlappies: 100 as number,
+                simulatedNNs: 100 as number,
                 fitnessDictionary : {} as { [key: number]: number},
                 NNKeepers: 25 as number,
                 NNBrain: [4, 5, 5, 5, 1] as number[],
@@ -35,7 +35,7 @@ window.onkeydown = function(e) { pressedKeys[e.keyCode] = true; }
 export {globals, canvas, ctx, entityList, pressedKeys, human};
 
 
-start();
+flappyStart();
 
 
 

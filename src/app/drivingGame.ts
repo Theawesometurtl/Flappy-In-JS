@@ -1,9 +1,7 @@
-import { canvas, ctx, globals, entityList, human } from '../index';
-import { Pipes } from './classes/Pipes';
+import { canvas, ctx, globals, entityList, human } from '../driving';
 import { displayNetwork } from './actions/displayNetwork';
 import { activationFunction } from './actions/activationFunction';
 import { artificialSelection, restockEntityList } from './actions/artificialSelection';
-import { deathCheck } from './actions/deathCheck';
 import { simulationReset } from './actions/simulationReset';
 import { basicCheck } from './actions/networkCheck';
 import { drawText } from './actions/drawInputs';
@@ -20,39 +18,10 @@ export function main() {
 
 
     if (human) {
-        for (let j = 0; j < entityList.Flappies.length; j++) {
-            //console.log(key, entityList[key][j]);
-            entityList.Flappies[j].update();
-            entityList.Flappies[j].draw();
-        }
-        for (let j = 0; j < entityList.Pipes.length; j++) {
-            //console.log(key, entityList[key][j]);
-            entityList.Pipes[j].update();
-            entityList.Pipes[j].draw();
-        }
-        let pipeX = entityList.Pipes[0].position.x*2 / canvas.width;
-        let pipeGapY = entityList.Pipes[0].position.y / canvas.height;
-        let flappyY;
-        let flappyVelocity;
-        flappyY = entityList.Flappies[0].position.y/ canvas.height;
-        flappyVelocity = entityList.Flappies[0].velocity.y / 8;
-        if (entityList.Flappies[0] !== undefined) {
-            drawText(pipeX, pipeGapY, flappyY, flappyVelocity);
-        }
+
 
     } else {
-        for (let i=0; i<entityList.Pipes.length; i++)   {
-            entityList.Pipes[i].draw();
-        }
-        for (let i=0; i<entityList.Pipes.length; i++)   {// bad code, but pipes destroying themselves messes things up
-            entityList.Pipes[i].update();
-        }
-        
-        let pipeX = entityList.Pipes[0].position.x*2 / canvas.width;
-        let pipeGapY = entityList.Pipes[0].position.y / canvas.height;
-        let flappyY;
-        let flappyVelocity;
-        
+
         
         for (let f=0; f<entityList.Flappies.length; f++) {
             if (entityList.Flappies[f] !== undefined) { 
@@ -69,7 +38,7 @@ export function main() {
                 if (deathCheck(entityList.Flappies[f].position.x, entityList.Flappies[f].position.y, entityList.Flappies[f].width, entityList.Flappies[f].height)) {
                     globals.fitnessDictionary[f] = globals.timer;
                     entityList.Flappies[f] = undefined;
-                    if (Object.keys(globals.fitnessDictionary).length === globals.simulatedNNs) {
+                    if (Object.keys(globals.fitnessDictionary).length === globals.simulatedFlappies) {
                         simulationReset();
                     }
                 } else {

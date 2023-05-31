@@ -1,4 +1,4 @@
-import { start } from './app/actions/start';
+import { drivingStart } from './app/actions/drivingStart';
 import { NN } from './app/classes/NN';
 import { Car } from 'app/classes/Car';
 
@@ -32,7 +32,7 @@ window.onkeydown = function(e) { pressedKeys[e.keyCode] = true; }
 export {globals, canvas, ctx, entityList, pressedKeys, human};
 
 
-start();
+drivingStart();
 
 
 
