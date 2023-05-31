@@ -66,7 +66,7 @@ export function restockEntityList(fitness: number[][]) {
         let decodedNetwork = decodeNetwork(encodedNetwork);
         networkList[fit].biasArray = decodedNetwork[0];
         networkList[fit].weightArray = decodedNetwork[1];
-        // networkList[fit] = entityList.NNs[fitness[fit][0]];
+        // networkList[fit] = structuredClone(entityList.NNs[fitness[fit][0]])
     }
     // console.log(fitness);
 
@@ -87,7 +87,7 @@ export function restockEntityList(fitness: number[][]) {
 
     }
     for (let net = globals.NNKeepers; net < globals.simulatedFlappies; net++) {
-        entityList.NNs[net].fullMutate(0, 10, 0.1);
+        entityList.NNs[net].fullMutate(0, 50, 0.02);
         // console.log(entityList.NNs[net].networkNumber)
     }    
 

@@ -1,12 +1,11 @@
 import { start } from './app/actions/start';
-import { Flappy } from './app/classes/Flappy';
-import { Pipes } from './app/classes/Pipes';
 import { NN } from './app/classes/NN';
+import { Car } from 'app/classes/Car';
 
 // globals
-let globals = {pipeTimer: 100 as number,
+let globals = {
                 timer: 0 as number,
-                simulatedFlappies: 100 as number,
+                simulatedNNs: 100 as number,
                 fitnessDictionary : {} as { [key: number]: number},
                 NNKeepers: 25 as number,
                 NNBrain: [4, 5, 5, 5, 1] as number[],
@@ -18,12 +17,10 @@ canvas.height = window.innerHeight;
 const ctx = canvas.getContext('2d');
 
 let entityList: {
-  "Flappies": Flappy[];
-  "Pipes": Pipes[];
+  "Cars": Car[];
   "NNs": NN[];
 } = {
-  "Flappies": [],
-  "Pipes": [],
+  "Cars": [],
   "NNs": [],
 };
 

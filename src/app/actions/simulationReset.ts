@@ -2,7 +2,7 @@ import { entityList, globals } from "../../index";
 import { Pipes } from "../classes/Pipes";
 import { Flappy } from "../classes/Flappy";
 import { NN } from "../classes/NN";
-import { main } from "../game";
+import { main } from "../flappyGame";
 import { artificialSelection, restockEntityList } from "./artificialSelection";
 
 

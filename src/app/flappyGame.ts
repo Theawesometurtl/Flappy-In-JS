@@ -90,7 +90,7 @@ export function main() {
     }
     globals.pipeTimer ++;
     
-    if (globals.pipeTimer % 100 === 0) {
+    if (globals.pipeTimer % 130 === 0) {
         entityList.Pipes.push(new Pipes());
     }
 }
