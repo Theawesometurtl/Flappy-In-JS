@@ -6,9 +6,9 @@ module.exports = {
     extensions: [".ts", ".tsx", ".js"]
   },
   entry: {
+    driving: "./src/driving.ts",
     maincss: "./src/styling/main.css",
     main: "./src/main.ts",
-    driving: "./src/driving.ts",
     // flappy: "./src/index.ts",
     vendor: "./src/vendor.ts"
   },

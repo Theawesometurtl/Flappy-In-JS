@@ -7,8 +7,8 @@ module.exports = {
   },
   mode: "development",
   entry: {
-    main: "./src/main.ts",
     driving: "./src/driving.ts",
+    main: "./src/main.ts",
     // flappy: "./src/index.ts",
   },
   output: {
