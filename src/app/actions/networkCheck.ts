@@ -15,7 +15,7 @@ export function basicCheck() {
     }
     let fitness = artificialSelection()
     restockEntityList(fitness)
-    for (let net = 0; net < globals.simulatedFlappies; net++) {
+    for (let net = 0; net < globals.simulatedNNs; net++) {
         entityList.NNs[net].fullMutate(0, 10, 0.1);
     }    
 }

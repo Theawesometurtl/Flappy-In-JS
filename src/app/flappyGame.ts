@@ -3,7 +3,7 @@ import { Pipes } from './classes/Pipes';
 import { displayNetwork } from './actions/displayNetwork';
 import { activationFunction } from './actions/activationFunction';
 import { artificialSelection, restockEntityList } from './actions/artificialSelection';
-import { deathCheck } from './actions/deathCheck';
+import { flappyDeathCheck } from './actions/deathCheck';
 import { simulationReset } from './actions/simulationReset';
 import { basicCheck } from './actions/networkCheck';
 import { drawText } from './actions/drawInputs';
@@ -66,7 +66,7 @@ export function main() {
                     entityList.Flappies[f].jump();
                 }
                 // console.log(outputs);
-                if (deathCheck(entityList.Flappies[f].position.x, entityList.Flappies[f].position.y, entityList.Flappies[f].width, entityList.Flappies[f].height)) {
+                if (flappyDeathCheck(entityList.Flappies[f].position.x, entityList.Flappies[f].position.y, entityList.Flappies[f].width, entityList.Flappies[f].height)) {
                     globals.fitnessDictionary[f] = globals.timer;
                     entityList.Flappies[f] = undefined;
                     if (Object.keys(globals.fitnessDictionary).length === globals.simulatedNNs) {

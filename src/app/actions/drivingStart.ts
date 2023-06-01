@@ -1,10 +1,13 @@
-import { human, entityList, globals } from "../../driving"
+import { human, entityList, globals } from "../../driving";
 import { NN } from "../classes/NN";
 import { simulationReset } from "./simulationReset";
+import { drivingGame } from "../drivingGame";
+import { Car } from "../classes/Car";
 
 export function drivingStart() {
+    console.log("starting")
     if (human) {
-
+        entityList.Cars.push(new Car());
     } else {
         
         // console.log(entityList.NNs[0].weightArray);

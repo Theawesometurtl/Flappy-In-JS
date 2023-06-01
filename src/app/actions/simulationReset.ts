@@ -9,6 +9,7 @@ import { artificialSelection, restockEntityList } from "./artificialSelection";
 
 
 export function simulationReset() {
+    console.log(new Error().stack)
     let fitness: number[][] = artificialSelection(10);
     restockEntityList(fitness);
     globals.timer = 0;
@@ -16,7 +17,7 @@ export function simulationReset() {
     Pipes.numOfPipes = 0;
     
     entityList.Pipes.push(new Pipes());
-    for (let i = 0; i < globals.simulatedFlappies; i++) {
+    for (let i = 0; i < globals.simulatedNNs; i++) {
         entityList.Flappies.push(new Flappy());
     }
     // console.log(entityList.NNs);

@@ -7,6 +7,8 @@ import { simulationReset } from "./simulationReset";
 import { decodeNetwork } from "./encodeDecode";
 
 export function flappyStart() {    
+    console.log(new Error().stack)
+
     if (human) {
         entityList.Flappies.push(new Flappy());
         entityList.Pipes.push(new Pipes());

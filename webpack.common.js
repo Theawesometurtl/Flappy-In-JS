@@ -8,7 +8,8 @@ module.exports = {
   entry: {
     maincss: "./src/styling/main.css",
     main: "./src/main.ts",
-    flappy: "./src/index.ts",
+    driving: "./src/driving.ts",
+    // flappy: "./src/index.ts",
     vendor: "./src/vendor.ts"
   },
   module: {

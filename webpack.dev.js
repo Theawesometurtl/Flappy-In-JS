@@ -9,7 +9,7 @@ module.exports = merge(common, {
   },
   mode: "development",
   output: {
-    filename: "[name].bundle.js",
+    filename: "[name][hash].bundle.js",
     path: path.resolve(__dirname, "dist")
   },
   plugins: [
@@ -20,17 +20,17 @@ module.exports = merge(common, {
       chunks: ["main", "maincss"]
     }),
     new HtmlWebpackPlugin({
-      filename: "flappy.html",
-      template: "./src/flappy.html",
-      favicon: "./src/favicon.ico",
-      chunks: ["flappy"]
-    }),
-    new HtmlWebpackPlugin({
       filename: "driving.html",
       template: "./src/driving.html",
       favicon: "./src/favicon.ico",
       chunks: ["driving"]
-    })
+    }),
+    // new HtmlWebpackPlugin({
+    //   filename: "flappy.html",
+    //   template: "./src/flappy.html",
+    //   favicon: "./src/favicon.ico",
+    //   chunks: ["flappy"]
+    // }),
   ],
   module: {
     rules: [

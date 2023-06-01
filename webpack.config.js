@@ -8,10 +8,11 @@ module.exports = {
   mode: "development",
   entry: {
     main: "./src/main.ts",
-    flappy: "./src/index.ts"
+    driving: "./src/driving.ts",
+    // flappy: "./src/index.ts",
   },
   output: {
-    filename: "[name]bundle.js",
+    filename: "[name][hash]bundle.js",
     path: path.resolve(__dirname, "dist")
   },
   rules: [

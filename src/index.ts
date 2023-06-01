@@ -3,6 +3,8 @@ import { Flappy } from './app/classes/Flappy';
 import { Pipes } from './app/classes/Pipes';
 import { NN } from './app/classes/NN';
 
+console.log(new Error().stack)
+
 // globals
 let globals = {pipeTimer: 100 as number,
                 timer: 0 as number,

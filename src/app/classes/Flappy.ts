@@ -1,5 +1,5 @@
 import { entityList, ctx, canvas, pressedKeys, human } from "../../index";
-import { deathCheck } from "../actions/deathCheck";
+import { flappyDeathCheck } from "../actions/deathCheck";
 
 interface FlappyInterface {
     position: {[key: string]: number};
@@ -43,7 +43,7 @@ export class Flappy implements FlappyInterface {
         
         
         if (human) {
-            if (deathCheck(this.position.x, this.position.y, this.width, this.height)) {
+            if (flappyDeathCheck(this.position.x, this.position.y, this.width, this.height)) {
                 this.die();
             }
             if (this.position.y < 0 + this.width / 2) {//ceiling check

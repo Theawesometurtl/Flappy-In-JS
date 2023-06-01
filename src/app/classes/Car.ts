@@ -1,4 +1,4 @@
-import { ctx } from "driving";
+import { ctx } from "../../driving";
 
 export class Car {
     position: {[key: string]: number};
@@ -41,7 +41,7 @@ export class Car {
         ctx.fillStyle = 'pink'
         ctx.fill()
     }
-    update() {
+    update(): boolean {
         this.angularVelocity*= this.angularDrag;
         this.angle += this.angularVelocity;
         
@@ -56,12 +56,13 @@ export class Car {
 
         this.position.x += this.velocity.x
         this.position.y += this.velocity.y
-    }
-    steer(left: boolean) {
-        if (left) {
-            this.angularVelocity+= this.angularAcceleration;
-        } else {
-            this.angularVelocity-= this.angularAcceleration;
+
+        if (false) {
+            return true;
         }
+        return false;
+    }
+    steer(direction: number) {
+        this.angularVelocity += (direction-.5) * this.angularAcceleration
     }
 }

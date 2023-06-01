@@ -24,14 +24,14 @@ let entityList: {
   "NNs": [],
 };
 
-let human : boolean = false;
+let human : boolean = true;
 let pressedKeys : {[keyCode: number]: boolean} = {};
 
 window.onkeyup = function(e) { pressedKeys[e.keyCode] = false; }
 window.onkeydown = function(e) { pressedKeys[e.keyCode] = true; }
 export {globals, canvas, ctx, entityList, pressedKeys, human};
 
-
+console.log('ran here')
 drivingStart();
 
 

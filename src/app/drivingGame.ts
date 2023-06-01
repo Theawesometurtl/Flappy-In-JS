@@ -10,7 +10,8 @@ import { drawText } from './actions/drawInputs';
 
 
 
-export function main() {
+export function drivingGame() {
+    console.log('running')
     ctx.fillStyle = 'grey';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     // ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -18,49 +19,51 @@ export function main() {
 
 
     if (human) {
-
+        entityList.Cars[0].steer(1);
+        entityList.Cars[0].update();
+        entityList.Cars[0].draw();
 
     } else {
 
-        
-        for (let f=0; f<entityList.Flappies.length; f++) {
-            if (entityList.Flappies[f] !== undefined) { 
-                flappyY = entityList.Flappies[f].position.y/ canvas.height;
-                flappyVelocity = entityList.Flappies[f].velocity.y / 8;
+        let ray1;
+        let ray2;
+        let ray3;
+        let ray4;
+        let ray5;
+        for (let f=0; f<entityList.NNs.length; f++) {
+            if (entityList.Cars[f] !== undefined) { 
+                ray1 = 1
+                ray2 = 1
+                ray3 = 1
+                ray4 = 1
+                ray5 = 1
+
                 // console.log(activationFunction(flappyY, flappyVelocity, pipeX, pipeGapY));
-                let inputs: number[] = activationFunction(flappyY, flappyVelocity, pipeX, pipeGapY);
+                let inputs: number[] = activationFunction(ray1, ray2, ray3, ray4, ray5);
     
                 let outputs = entityList.NNs[f].update(0, ...inputs);
-                if (outputs[0] > .5) {
-                    entityList.Flappies[f].jump();
-                }
+                entityList.Cars[f].steer(outputs[0])
                 // console.log(outputs);
-                if (deathCheck(entityList.Flappies[f].position.x, entityList.Flappies[f].position.y, entityList.Flappies[f].width, entityList.Flappies[f].height)) {
+                if (entityList.Cars[f].update()) {
                     globals.fitnessDictionary[f] = globals.timer;
-                    entityList.Flappies[f] = undefined;
-                    if (Object.keys(globals.fitnessDictionary).length === globals.simulatedFlappies) {
+                    entityList.Cars[f] = undefined;
+                    if (Object.keys(globals.fitnessDictionary).length === globals.simulatedNNs) {
                         simulationReset();
                     }
                 } else {
-                    entityList.Flappies[f].draw();
-                    entityList.Flappies[f].update();
+                    entityList.Cars[f].draw();
                 }
             }
         }
         
         // ctx.fillText(outputs, 10, 50);
-        if (entityList.Flappies[0] !== undefined) {
-            drawText(pipeX, pipeGapY, flappyY, flappyVelocity);
+        if (entityList.Cars[0] !== undefined) {
+            drawText(ray1, ray2, ray3, ray4, ray5);
         }
         
         displayNetwork(100, 50, canvas.width -400, canvas.height - 300, entityList.NNs[0].weightArray, entityList.NNs[0].biasArray, 0);
         //basicCheck()
         globals.timer++;
-    }
-    globals.pipeTimer ++;
-    
-    if (globals.pipeTimer % 130 === 0) {
-        entityList.Pipes.push(new Pipes());
     }
 }
 
