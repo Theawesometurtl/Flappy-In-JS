@@ -1,6 +1,6 @@
 import { rgbToHex } from './rgbToHex';
 import { drawCircle } from './drawCircle';
-import { ctx } from '../../index';
+import { ctx } from '../../flappy';
 
 
 export function displayNetwork(xSpace: number, ySpace: number, xPos: number, yPos: number, weightArray: number[][][], biasArray: number[][], layer: number = 0): void {

@@ -1,7 +1,7 @@
 import { main } from "../flappyGame";
 import { Flappy } from "../classes/Flappy"
 import { Pipes } from  "../classes/Pipes"
-import { entityList, human, globals } from "../../index";
+import { entityList, human, globals } from "../../flappy";
 import { NN } from "../classes/NN"
 import { simulationReset } from "./simulationReset";
 import { decodeNetwork } from "./encodeDecode";

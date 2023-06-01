@@ -6,11 +6,6 @@ module.exports = {
     extensions: ['.ts', '.js', '.json']
   },
   mode: "development",
-  entry: {
-    driving: "./src/driving.ts",
-    main: "./src/main.ts",
-    // flappy: "./src/index.ts",
-  },
   output: {
     filename: "[name][hash]bundle.js",
     path: path.resolve(__dirname, "dist")

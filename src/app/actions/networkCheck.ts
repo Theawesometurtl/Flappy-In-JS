@@ -1,4 +1,4 @@
-import { globals, entityList } from "../../index";
+import { globals, entityList } from "../../flappy";
 import { artificialSelection, restockEntityList } from "./artificialSelection";
 
 /* 

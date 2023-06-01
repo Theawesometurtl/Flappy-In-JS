@@ -1,4 +1,4 @@
-import { entityList, globals } from "../../index";
+import { entityList, globals } from "../../flappy";
 import { Pipes } from "../classes/Pipes";
 import { Flappy } from "../classes/Flappy";
 import { NN } from "../classes/NN";

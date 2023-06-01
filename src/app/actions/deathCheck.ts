@@ -1,4 +1,4 @@
-import { entityList, canvas } from "../../index";
+import { entityList, canvas } from "../../flappy";
 
 
 export function flappyDeathCheck(fx: number, fy: number, width: number, height: number): boolean {

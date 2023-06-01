@@ -7,10 +7,6 @@ module.exports = merge(common, {
   resolve: {
     extensions: ['.ts', '.js', '.json']
   },
-  entry: {
-    driving: "./src/driving.ts",
-    main: "./src/main.ts",
-  },
   mode: "development",
   output: {
     filename: "[name][hash].bundle.js",

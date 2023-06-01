@@ -1,5 +1,5 @@
 import { NN } from "../classes/NN";
-import { globals, entityList } from "../../index";
+import { globals, entityList } from "../../flappy";
 import { encodeNetwork, decodeNetwork } from "./encodeDecode";
 
 /* I want to make a dictionary of the fitness of 100 NNs, and take the best 50 ones, but also have some controlled randomness to the selection.

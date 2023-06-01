@@ -1,4 +1,4 @@
-import { entityList, ctx, canvas } from "../../index";
+import { entityList, ctx, canvas } from "../../flappy";
 
 interface PipesInterface {
     width: number;

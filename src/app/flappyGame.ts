@@ -1,4 +1,4 @@
-import { canvas, ctx, globals, entityList, human } from '../index';
+import { canvas, ctx, globals, entityList, human } from '../flappy';
 import { Pipes } from './classes/Pipes';
 import { displayNetwork } from './actions/displayNetwork';
 import { activationFunction } from './actions/activationFunction';

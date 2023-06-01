@@ -1,4 +1,4 @@
-import { ctx } from "../../index";
+import { ctx } from "../../flappy";
 
 export function drawCircle(radius: number, fillColour: string, strokeColour: string, strokeWidth: number, posX : number, posY:number): void {
         ctx.beginPath();
