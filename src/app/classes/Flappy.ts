@@ -1,4 +1,4 @@
-import { entityList, ctx, canvas, pressedKeys, human } from "../../flappy";
+import { entityList, ctx, canvas, pressedKeys, human } from "../../sharedGlobals";
 import { flappyDeathCheck } from "../actions/deathCheck";
 
 interface FlappyInterface {

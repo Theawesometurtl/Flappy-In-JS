@@ -1,4 +1,4 @@
-import { human, entityList, globals } from "../../driving";
+import { human, entityList, globals } from "../../sharedGlobals";
 import { NN } from "../classes/NN";
 import { simulationReset } from "./simulationReset";
 import { drivingGame } from "../drivingGame";

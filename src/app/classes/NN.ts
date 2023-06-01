@@ -1,4 +1,3 @@
-import { ctx } from '../../flappy'
 import { displayNetwork } from '../actions/displayNetwork';
 import { activationFunction } from '../actions/activationFunction';
 

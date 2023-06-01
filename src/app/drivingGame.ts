@@ -1,4 +1,4 @@
-import { canvas, ctx, globals, entityList, human } from '../driving';
+import { canvas, ctx, globals, entityList, human } from '../sharedGlobals';
 import { displayNetwork } from './actions/displayNetwork';
 import { activationFunction } from './actions/activationFunction';
 import { artificialSelection, restockEntityList } from './actions/artificialSelection';

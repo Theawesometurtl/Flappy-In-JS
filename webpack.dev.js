@@ -15,14 +15,14 @@ module.exports = merge(common, {
   plugins: [
     new HtmlWebpackPlugin({
       filename: "index.html",
-      template: "./src/index.html",
-      favicon: "./src/favicon.ico",
+      template: "./src/templates/index.html",
+      favicon: "./src/favicons/favicon.ico",
       chunks: ["main", "maincss"]
     }),
     new HtmlWebpackPlugin({
       filename: "driving.html",
-      template: "./src/driving.html",
-      favicon: "./src/favicon.ico",
+      template: "./src/templates/driving.html",
+      favicon: "./src/favicons/favicon.ico",
       chunks: ["driving"]
     }),
     // new HtmlWebpackPlugin({

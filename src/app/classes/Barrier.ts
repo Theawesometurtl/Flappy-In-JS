@@ -1,4 +1,4 @@
-import { ctx } from "driving";
+import { ctx } from "sharedGlobals";
 
 export class Barrier {
     vectors: number[][];

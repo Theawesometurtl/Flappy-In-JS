@@ -1,4 +1,4 @@
-import { ctx, entityList, canvas } from "../../flappy";
+import { ctx, entityList, canvas } from "../../sharedGlobals";
 
 export function drawText(...inputs: number[]) {
     ctx.font = "30px Arial";

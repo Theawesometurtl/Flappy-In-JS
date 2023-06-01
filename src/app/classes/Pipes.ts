@@ -1,5 +1,4 @@
-import { entityList, ctx, canvas } from "../../flappy";
-
+import { ctx, canvas, entityList } from "../../sharedGlobals";
 interface PipesInterface {
     width: number;
     gapHeight: number;

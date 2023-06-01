@@ -1,4 +1,4 @@
-import { ctx } from "../../driving";
+import { ctx } from "../../sharedGlobals";
 
 export class Car {
     position: {[key: string]: number};

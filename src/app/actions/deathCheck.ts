@@ -1,4 +1,4 @@
-import { entityList, canvas } from "../../flappy";
+import { entityList, canvas } from "../../sharedGlobals";
 
 
 export function flappyDeathCheck(fx: number, fy: number, width: number, height: number): boolean {

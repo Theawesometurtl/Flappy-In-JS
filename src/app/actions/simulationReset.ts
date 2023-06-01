@@ -1,4 +1,4 @@
-import { entityList, globals } from "../../flappy";
+import { entityList, globals } from "../../sharedGlobals";
 import { Pipes } from "../classes/Pipes";
 import { Flappy } from "../classes/Flappy";
 import { NN } from "../classes/NN";
