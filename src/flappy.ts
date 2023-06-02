@@ -1,7 +1,3 @@
-import { flappyStart } from './app/actions/flappyStart';
+import { flappyStart } from "./app/actions/flappyStart";
 
 flappyStart();
-
-
-
-

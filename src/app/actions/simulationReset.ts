@@ -9,7 +9,6 @@ import { artificialSelection, restockEntityList } from "./artificialSelection";
 
 
 export function simulationReset() {
-    console.log(new Error().stack)
     let fitness: number[][] = artificialSelection(10);
     restockEntityList(fitness);
     globals.timer = 0;

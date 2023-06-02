@@ -30,7 +30,7 @@ let entityList: {
   "NNs": [],
 };
 
-let human : boolean = false;
+let human : boolean = true;
 let pressedKeys : {[keyCode: number]: boolean} = {};
 
 window.onkeyup = function(e) { pressedKeys[e.keyCode] = false; }

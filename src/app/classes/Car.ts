@@ -1,4 +1,5 @@
 import { ctx } from "../../sharedGlobals";
+import { pythagTheorem } from "../actions/trig";
 
 export class Car {
     position: {[key: string]: number};
@@ -11,51 +12,92 @@ export class Car {
     angularAcceleration: number;
     drag: number;
     angularDrag: number;
-    friction: number;
+    vertices: number[][];
+    vertexCoords: number[][];
 
-    constructor() {
-        this.position = {x: 0, y: 0};
+    constructor(...vertices: number[][]) {
+        this.angularDrag = 0.9;
+        this.position = {x: 100, y: 100};
         this.velocity = {x: 0, y: 0};
         this.angle = 0;
-        this.accelleration = 2;
-        this.length = 50;
-        this.width = 20;
+        this.accelleration = 0.1;
+        this.length = 4;
+        this.width = 10;
         this.angularVelocity = 0;
-        this.angularAcceleration = 5;
-        this.drag = 0.9;
-        this.angularDrag = this.drag;
-        this.friction = 1;
+        this.angularAcceleration = 2;
+        this.drag = .98;
+        this.vertices = [[this.length, this.width], [-this.length, this.width], [-this.length, -this.width], [this.length, -this.width]];
+        this.vertexCoords = [];
+        for (let i = 0; i < this.vertices.length; i++) {
+            this.vertexCoords[i] = [];
+            this.vertexCoords[i][0] = this.vertices[i][0] + this.position.x;
+            this.vertexCoords[i][1] = this.vertices[i][1] + this.position.y;
+        }
     }
 
     draw() {
         ctx.strokeStyle = 'purple';
         ctx.lineWidth = 1;
-        let dFromCentroid = Math.sqrt((this.width/2) ** 2 + (this.length/2) ** 2)
-        ctx.beginPath() //weeeeee trig!
-        ctx.moveTo(dFromCentroid * Math.cos(this.angle * Math.PI / 180), dFromCentroid * Math.sin(this.angle * Math.PI / 180));
-        ctx.lineTo(dFromCentroid * Math.cos((this.angle + 90) * Math.PI / 180), dFromCentroid * Math.sin((this.angle + 90) * Math.PI / 180));
-        ctx.lineTo(dFromCentroid * Math.cos((this.angle + 180) * Math.PI / 180), dFromCentroid * Math.sin((this.angle + 180) * Math.PI / 180));
-        ctx.lineTo(dFromCentroid * Math.cos((this.angle + 270) * Math.PI / 180), dFromCentroid * Math.sin((this.angle + 2700) * Math.PI / 180));
-        ctx.stroke()
-        ctx.closePath()
         ctx.fillStyle = 'pink'
-        ctx.fill()
+
+       ctx.beginPath();
+       
+       
+       ctx.moveTo(this.vertexCoords[0][0], this.vertexCoords[0][1]);
+       for (let i = 1; i < this.vertices.length; i++) {
+          ctx.lineTo(this.vertexCoords[i][0], this.vertexCoords[i][1]);
+       }
+       ctx.closePath();
+       ctx.fill();
+       ctx.stroke();
     }
     update(): boolean {
+        // console.log(this.position, this.velocity, this.angle, this.angularVelocity);
         this.angularVelocity*= this.angularDrag;
         this.angle += this.angularVelocity;
         
         //weeeee more trig!
-        this.velocity.x += this.accelleration * Math.cos(this.angle);
-        this.velocity.y += this.accelleration * Math.sin(this.angle);
-        let totalVelocity = Math.sqrt((this.velocity.x/2) ** 2 + (this.velocity.y/2) ** 2);
-        totalVelocity *= this.drag;
-        let velocityAngle = Math.asin(this.velocity.y/totalVelocity);
-        this.velocity.x = totalVelocity * Math.sin(velocityAngle);
-        this.velocity.y = totalVelocity * Math.cos(velocityAngle);
+        
+        let radians = (Math.PI / 180) * this.angle;
+        let cos = Math.cos(radians);
+        let sin = Math.sin(radians);
+        this.velocity.x += this.accelleration * cos;
+        this.velocity.y += this.accelleration * sin;
+        
+        let totalVelocity = pythagTheorem(this.velocity.x, this.velocity.y);
+        if (totalVelocity !== 0) {
+            let velocityAngle = 0;
+            if (this.velocity.y < 0) {
+                velocityAngle = Math.PI;
+                velocityAngle += - Math.atan((this.velocity.x/-this.velocity.y));
+            } else {
+                velocityAngle += Math.atan((this.velocity.x/this.velocity.y));
+            }
+            // if (this.velocity.x < 0) {
+            //     velocityAngle += Math.PI /4;
+            // }
+            // if (this.velocity.y < 0) {
+            //     velocityAngle += Math.PI* 3 /4;
+            // }
+            totalVelocity *= this.drag;
+            this.velocity.x = totalVelocity * Math.sin(velocityAngle);
+            this.velocity.y = totalVelocity * Math.cos(velocityAngle);
+        }
+        ctx.strokeStyle = 'black';
+        ctx.beginPath();
+        ctx.moveTo(this.position.x, this.position.y);
+        ctx.lineTo(this.velocity.x * 10 + this.position.x, this.velocity.y * 10 + this.position.y);
+        ctx.stroke();
+    
+
 
         this.position.x += this.velocity.x
         this.position.y += this.velocity.y
+        
+        for (let i = 0; i < this.vertices.length; i++) {
+            this.vertexCoords[i][0] = (sin * this.vertices[i][0]) + (cos * this.vertices[i][1]) + this.position.x;
+            this.vertexCoords[i][1] = (sin * this.vertices[i][1]) - (cos * this.vertices[i][0]) + this.position.y;
+        }
 
         if (false) {
             return true;

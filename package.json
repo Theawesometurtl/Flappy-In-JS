@@ -4,6 +4,7 @@
   "description": "I'm going to try and create a simple 2d shooter and try to add the theme absorb into it somewhere idk how this will work but I can try",
   "main": "main.ts",
   "driving": "driving.ts",
+  "flappy": "flappy.ts",
   "scripts": {
     "start": "webpack-dev-server  --config webpack.dev.js --open --stats-children",
     "build": "webpack --config webpack.prod.js"

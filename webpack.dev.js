@@ -25,12 +25,12 @@ module.exports = merge(common, {
       favicon: "./src/favicons/favicon.ico",
       chunks: ["driving"]
     }),
-    // new HtmlWebpackPlugin({
-    //   filename: "flappy.html",
-    //   template: "./src/flappy.html",
-    //   favicon: "./src/favicon.ico",
-    //   chunks: ["flappy"]
-    // }),
+    new HtmlWebpackPlugin({
+      filename: "flappy.html",
+      template: "./src/templates/flappy.html",
+      favicon: "./src/favicons/favicon.ico",
+      chunks: ["flappy"]
+    }),
   ],
   module: {
     rules: [

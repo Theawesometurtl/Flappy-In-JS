@@ -1,4 +1,4 @@
-import { canvas, ctx, globals, entityList, human } from '../sharedGlobals';
+import { canvas, ctx, globals, entityList, human, pressedKeys } from '../sharedGlobals';
 import { displayNetwork } from './actions/displayNetwork';
 import { activationFunction } from './actions/activationFunction';
 import { artificialSelection, restockEntityList } from './actions/artificialSelection';
@@ -11,7 +11,6 @@ import { drawText } from './actions/drawInputs';
 
 
 export function drivingGame() {
-    console.log('running')
     ctx.fillStyle = 'grey';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     // ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -19,9 +18,17 @@ export function drivingGame() {
 
 
     if (human) {
-        entityList.Cars[0].steer(1);
-        entityList.Cars[0].update();
+        if (pressedKeys[65] === true || pressedKeys[37] === true ) {
+            entityList.Cars[0].steer(0);
+        }
+        if (pressedKeys[68] === true || pressedKeys[39] === true ) {
+            entityList.Cars[0].steer(1);
+        }
+        // entityList.Cars[0].steer(1);
         entityList.Cars[0].draw();
+        if (entityList.Cars[0].update()) {
+            let death = true;
+        }
 
     } else {
 
@@ -61,7 +68,7 @@ export function drivingGame() {
             drawText(ray1, ray2, ray3, ray4, ray5);
         }
         
-        displayNetwork(100, 50, canvas.width -400, canvas.height - 300, entityList.NNs[0].weightArray, entityList.NNs[0].biasArray, 0);
+        // displayNetwork(100, 50, canvas.width -400, canvas.height - 300, entityList.NNs[0].weightArray, entityList.NNs[0].biasArray, 0);
         //basicCheck()
         globals.timer++;
     }

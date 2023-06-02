@@ -5,7 +5,6 @@ import { drivingGame } from "../drivingGame";
 import { Car } from "../classes/Car";
 
 export function drivingStart() {
-    console.log("starting")
     if (human) {
         entityList.Cars.push(new Car());
     } else {

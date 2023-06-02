@@ -9,7 +9,7 @@ module.exports = {
     driving: "./src/driving.ts",
     maincss: "./src/styling/main.css",
     main: "./src/main.ts",
-    // flappy: "./src/index.ts",
+    flappy: "./src/flappy.ts",
     vendor: "./src/vendor.ts"
   },
   module: {
