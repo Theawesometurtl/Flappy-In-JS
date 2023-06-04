@@ -3,10 +3,12 @@ import { NN } from "../classes/NN";
 import { simulationReset } from "./simulationReset";
 import { drivingGame } from "../drivingGame";
 import { Car } from "../classes/Car";
+import { Barrier } from "../classes/Barrier";
 
 export function drivingStart() {
     if (human) {
         entityList.Cars.push(new Car());
+        entityList.Barrier.push(new Barrier([0, 0], [600, 0], [600, 600], [0, 600]))
     } else {
         
         // console.log(entityList.NNs[0].weightArray);

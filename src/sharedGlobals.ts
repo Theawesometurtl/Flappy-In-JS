@@ -1,7 +1,8 @@
-import { Car } from 'app/classes/Car';
+import { Car } from './app/classes/Car';
 import { Flappy } from './app/classes/Flappy';
 import { Pipes } from './app/classes/Pipes';
 import { NN } from './app/classes/NN';
+import { Barrier } from './app/classes/Barrier';
 
 
 // globals
@@ -23,11 +24,13 @@ let entityList: {
   "Pipes": Pipes[];
   "Cars": Car[];
   "NNs": NN[];
+  "Barrier": Barrier[];
 } = {
   "Flappies": [],
   "Pipes": [],
   "Cars": [],
   "NNs": [],
+  "Barrier": [],
 };
 
 let human : boolean = true;

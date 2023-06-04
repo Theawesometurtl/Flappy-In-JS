@@ -24,11 +24,12 @@ export function drivingGame() {
         if (pressedKeys[68] === true || pressedKeys[39] === true ) {
             entityList.Cars[0].steer(1);
         }
+        entityList.Barrier[0].draw()
         // entityList.Cars[0].steer(1);
-        entityList.Cars[0].draw();
         if (entityList.Cars[0].update()) {
             let death = true;
         }
+        entityList.Cars[0].draw();
 
     } else {
 

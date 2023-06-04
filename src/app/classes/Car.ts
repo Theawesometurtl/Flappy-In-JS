@@ -1,5 +1,7 @@
-import { ctx } from "../../sharedGlobals";
+import { collisionDetector } from "../actions/deathCheck";
+import { ctx, entityList } from "../../sharedGlobals";
 import { pythagTheorem } from "../actions/trig";
+
 
 export class Car {
     position: {[key: string]: number};
@@ -99,7 +101,7 @@ export class Car {
             this.vertexCoords[i][1] = (sin * this.vertices[i][1]) - (cos * this.vertices[i][0]) + this.position.y;
         }
 
-        if (false) {
+        if (collisionDetector(this.vertexCoords, entityList.Barrier[0].vectors)) {
             return true;
         }
         return false;
