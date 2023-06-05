@@ -35,38 +35,36 @@ export function drivingGame() {
     } else {
 
         entityList.Barrier[0].draw()
-        entityList.Cars[0].draw();
+        // entityList.Cars[0].draw();
         let ray1: number;
         let ray2: number;
         let ray3: number;
         let ray4: number;
         let ray5: number;
-        console.log(entityList.Cars.length, entityList.NNs.length)
         for (let c=0; c<entityList.NNs.length; c++) {
             if (entityList.Cars[c] !== undefined) { 
-                console.log(entityList.Cars[c].position)
-                ray1 = -100 + rayCreator(entityList.Cars[c].position, entityList.Cars[c].angle, entityList.Barrier[0].vectors);
-                ray2 = -50 + rayCreator(entityList.Cars[c].position, entityList.Cars[c].angle, entityList.Barrier[0].vectors);
-                ray3 = 0 + rayCreator(entityList.Cars[c].position, entityList.Cars[c].angle, entityList.Barrier[0].vectors);
-                ray4 = 50 + rayCreator(entityList.Cars[c].position, entityList.Cars[c].angle, entityList.Barrier[0].vectors);
-                ray5 = 100 + rayCreator(entityList.Cars[c].position, entityList.Cars[c].angle, entityList.Barrier[0].vectors);
+                ray1 = rayCreator(entityList.Cars[c].position, 130 - entityList.Cars[c].angle, entityList.Barrier[0].vectors);
+                ray2 = rayCreator(entityList.Cars[c].position, 100 - entityList.Cars[c].angle, entityList.Barrier[0].vectors);
+                ray3 = rayCreator(entityList.Cars[c].position, 90 - entityList.Cars[c].angle, entityList.Barrier[0].vectors);
+                ray4 = rayCreator(entityList.Cars[c].position, 80 - entityList.Cars[c].angle, entityList.Barrier[0].vectors);
+                ray5 = rayCreator(entityList.Cars[c].position, 40 - entityList.Cars[c].angle, entityList.Barrier[0].vectors);
 
-                console.log(ray1, ray2, rayCreator(entityList.Cars[c].position, entityList.Cars[c].angle, entityList.Barrier[0].vectors), ray4, ray5);
+                // console.log(ray1, ray2, rayCreator(entityList.Cars[c].position, entityList.Cars[c].angle, entityList.Barrier[0].vectors), ray4, ray5);
                 // console.log(activationFunction(flappyY, flappyVelocity, pipeX, pipeGapY));
                 let inputs: number[] = activationFunction(ray1, ray2, ray3, ray4, ray5);
     
                 let outputs = entityList.NNs[c].update(0, ...inputs);
                 entityList.Cars[c].steer(outputs[0])
                 // console.log(outputs);
-                // if (entityList.Cars[c].update()) {
-                //     globals.fitnessDictionary[c] = entityList.Cars[c].position.x + entityList.Cars[c].position.y;
-                //     entityList.Cars[c] = undefined;
-                //     if (Object.keys(globals.fitnessDictionary).length === globals.simulatedNNs) {
-                //         simulationReset();
-                //     }
-                // } else {
-                //     entityList.Cars[c].draw();
-                // }
+                if (entityList.Cars[c].update()) {
+                    globals.fitnessDictionary[c] = entityList.Cars[c].position.x + entityList.Cars[c].position.y;
+                    entityList.Cars[c] = undefined;
+                    if (Object.keys(globals.fitnessDictionary).length === globals.simulatedNNs) {
+                        simulationReset(false);
+                    }
+                } else {
+                    entityList.Cars[c].draw();
+                }
             }
         }
         

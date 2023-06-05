@@ -8,10 +8,10 @@ import { Barrier } from './app/classes/Barrier';
 // globals
 let globals = {pipeTimer: 100 as number,
                 timer: 0 as number,
-                simulatedNNs: 1 as number,
+                simulatedNNs: 10 as number,
                 fitnessDictionary : {} as { [key: number]: number},
-                NNKeepers: 1 as number,
-                NNBrain: [5, 5, 5, 5, 1] as number[],
+                NNKeepers: 5 as number,
+                NNBrain: [4, 5, 5, 5, 1] as number[],
                 bestNNs: {} as { [key: number]: string},
                 mousePos: {} as { [key: string]: number}
 };

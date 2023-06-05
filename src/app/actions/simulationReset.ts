@@ -4,21 +4,33 @@ import { Flappy } from "../classes/Flappy";
 import { NN } from "../classes/NN";
 import { main } from "../flappyGame";
 import { artificialSelection, restockEntityList } from "./artificialSelection";
+import { Car } from "../classes/Car";
+import { Barrier } from "../classes/Barrier";
 
 
 
 
-export function simulationReset() {
+export function simulationReset(flappy: boolean) {
     let fitness: number[][] = artificialSelection(10);
     restockEntityList(fitness);
     globals.timer = 0;
-    globals.pipeTimer = 0;
-    Pipes.numOfPipes = 0;
     
-    entityList.Pipes.push(new Pipes());
-    for (let i = 0; i < globals.simulatedNNs; i++) {
-        entityList.Flappies.push(new Flappy());
+    if (flappy) {
+        globals.pipeTimer = 0;
+        Pipes.numOfPipes = 0;
+        
+        entityList.Pipes.push(new Pipes());
+        for (let i = 0; i < globals.simulatedNNs; i++) {
+            entityList.Flappies.push(new Flappy());
+        }
+    } else {
+        for (let i = 0; i < globals.simulatedNNs; i++) {
+            entityList.Cars.push(new Car());
+            entityList.Barrier.push(new Barrier([2,2], [140,17], [392,27], [546,45], [753,54], [828,102], [907,142], [955,201], [994,263], [1006,349], [1005,426], [1009,556], [956,657], [908,646], [871,589], [876,519], [876,450], [878,401], [899,366], [904,313], [874,269], [841,256], [796,221], [747,204], [648,188], [555,174], [488,121], [440,89], [390,113], [280,122], [213,118], [128,110], [11,69], [29,3]));
+
+        }
     }
+    
     // console.log(entityList.NNs);
     // console.log(entityList.Flappies);
     // console.log(entityList.Pipes);

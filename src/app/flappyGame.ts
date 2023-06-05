@@ -67,10 +67,10 @@ export function main() {
                 }
                 // console.log(outputs);
                 if (flappyDeathCheck(entityList.Flappies[f].position.x, entityList.Flappies[f].position.y, entityList.Flappies[f].width, entityList.Flappies[f].height)) {
-                    globals.fitnessDictionary[f] = globals.timer;
+                    globals.fitnessDictionary[f] = globals.timer - Math.abs(entityList.Flappies[f].position.y - entityList.Pipes[0].gapHeight);
                     entityList.Flappies[f] = undefined;
                     if (Object.keys(globals.fitnessDictionary).length === globals.simulatedNNs) {
-                        simulationReset();
+                        simulationReset(true);
                     }
                 } else {
                     entityList.Flappies[f].draw();

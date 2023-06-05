@@ -34,11 +34,11 @@ export function drivingStart() {
 
             globals.fitnessDictionary[i] = i;
         }
-        simulationReset();
+        simulationReset(false);
     }
     if (human) {
         setInterval(drivingGame, 20);
     } else {
-        setInterval(drivingGame, 20);
+        setInterval(drivingGame, 1);
     }
 }

@@ -7,8 +7,6 @@ import { simulationReset } from "./simulationReset";
 import { decodeNetwork } from "./encodeDecode";
 
 export function flappyStart() {    
-    console.log(new Error().stack)
-
     if (human) {
         entityList.Flappies.push(new Flappy());
         entityList.Pipes.push(new Pipes());
@@ -23,12 +21,12 @@ export function flappyStart() {
 
             globals.fitnessDictionary[i] = i;
         }
-        simulationReset();
+        simulationReset(true);
     }
     if (human) {
         setInterval(main, 20);
     } else {
-        setInterval(main, 1);
+        setInterval(main, 20);
     }
 
 }
