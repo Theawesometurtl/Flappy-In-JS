@@ -8,11 +8,12 @@ import { Barrier } from './app/classes/Barrier';
 // globals
 let globals = {pipeTimer: 100 as number,
                 timer: 0 as number,
-                simulatedNNs: 100 as number,
+                simulatedNNs: 1 as number,
                 fitnessDictionary : {} as { [key: number]: number},
-                NNKeepers: 25 as number,
-                NNBrain: [4, 5, 5, 5, 1] as number[],
-                bestNNs: {} as { [key: number]: string}
+                NNKeepers: 1 as number,
+                NNBrain: [5, 5, 5, 5, 1] as number[],
+                bestNNs: {} as { [key: number]: string},
+                mousePos: {} as { [key: string]: number}
 };
 const canvas = document.querySelector('canvas');
 canvas.width = window.innerWidth;
@@ -33,7 +34,7 @@ let entityList: {
   "Barrier": [],
 };
 
-let human : boolean = true;
+let human : boolean = false;
 let pressedKeys : {[keyCode: number]: boolean} = {};
 
 window.onkeyup = function(e) { pressedKeys[e.keyCode] = false; }

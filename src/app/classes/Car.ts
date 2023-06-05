@@ -19,7 +19,7 @@ export class Car {
 
     constructor(...vertices: number[][]) {
         this.angularDrag = 0.9;
-        this.position = {x: 100, y: 100};
+        this.position = {x: 200, y: 50};
         this.velocity = {x: 0, y: 0};
         this.angle = 0;
         this.accelleration = 0.1;
@@ -85,11 +85,11 @@ export class Car {
             this.velocity.x = totalVelocity * Math.sin(velocityAngle);
             this.velocity.y = totalVelocity * Math.cos(velocityAngle);
         }
-        ctx.strokeStyle = 'black';
-        ctx.beginPath();
-        ctx.moveTo(this.position.x, this.position.y);
-        ctx.lineTo(this.velocity.x * 10 + this.position.x, this.velocity.y * 10 + this.position.y);
-        ctx.stroke();
+        // ctx.strokeStyle = 'black';
+        // ctx.beginPath();
+        // ctx.moveTo(this.position.x, this.position.y);
+        // ctx.lineTo(this.velocity.x * 10 + this.position.x, this.velocity.y * 10 + this.position.y);
+        // ctx.stroke();
     
 
 
