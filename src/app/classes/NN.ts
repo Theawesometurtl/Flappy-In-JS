@@ -27,9 +27,9 @@ export class NN implements NNInterface {
         NN.NNAmount++;
         this.networkNumber = NN.NNAmount;
         this.biasMutationRate = 1;
-        this.biasMutationAmount = 8;
+        this.biasMutationAmount = 1;
         this.weightMutationRate = 1;
-        this.weightMutationAmount = 8;
+        this.weightMutationAmount = 1;
     }
 
     createNeuralNet(layer = 0) : void {
@@ -98,15 +98,15 @@ export class NN implements NNInterface {
             return inputs;
         }
         let outputs : number[] = [];
-
+        // console.log(layer, inputs, outputs);
         outputs = this.updateBiases(layer, 0, outputs);
-        // console.log(layer, outputs);
+        // console.log(layer,inputs, outputs);
         
         outputs = this.updateWeights(layer, 0, 0, outputs, inputs)
-        // console.log(layer, outputs)
+        // console.log(layer,inputs, outputs)
         
         outputs = activationFunction(...outputs);
-        // console.log(layer, outputs)
+        // console.log(layer,inputs, outputs)
         
 
         // displayNetwork(100, 50, canvas.width -400, canvas.height - 300, 'weight', 'bias', 0, false);

@@ -68,7 +68,8 @@ export function drivingGame() {
 
                 // console.log(ray1, ray2, rayCreator(entityList.Cars[c].position, entityList.Cars[c].angle, entityList.Barrier[0].vectors), ray4, ray5);
                 // console.log(activationFunction(flappyY, flappyVelocity, pipeX, pipeGapY));
-                let inputs: number[] = activationFunction(ray1, ray2, ray3, ray4, ray5, ray6, ray7, ray8, ray9, ...checkpointD);
+                let inputs: number[] = [ray1/100, ray2/100, ray3/100, ray4/100, ray5/100, ray6/100, ray7/100, ray8/100, ray9/100, checkpointD[0]/100, checkpointD[1]/100];
+                console.log(inputs)
                 
                 let outputs = entityList.NNs[c].update(0, ...inputs);
                 entityList.Cars[c].steer(outputs[0])
@@ -102,7 +103,10 @@ export function drivingGame() {
             // console.log(entityList.Cars[0])
             // console.log(ray1, ray2, ray3, ray4, ray5)
             // console.log(globals.checkpoints[entityList.Cars[0].checkpointReached % globals.checkpoints.length][0], globals.checkpoints[entityList.Cars[0].checkpointReached % globals.checkpoints.length][1])
-            drawText(ray1, ray2, ray3, ray4, ray5, ray6, ray7, ray8, ray9, ...checkpointD);
+            let inputs: number[] = activationFunction(ray1, ray2, ray3, ray4, ray5, ray6, ray7, ray8, ray9, ...checkpointD);
+                
+            let outputs = entityList.NNs[0].update(0, ...inputs);
+            drawText(ray1, ray2, ray3, ray4, ray5, ray6, ray7, ray8, ray9, ...checkpointD, outputs[0]);
         }
         for (let i = 0; i < globals.checkpoints.length; i++) {
             ctx.fillStyle = 'green';

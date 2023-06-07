@@ -116,14 +116,14 @@ export class Car {
     steer(direction: number) {
         if (direction > 0.5) {
             direction = 1 - direction
-            direction = (direction) **2
+            direction = (direction) **0.5
             direction = 0.5 - direction
             this.angularVelocity += direction * this.angularAcceleration;
         } else if (direction < 0.5) {
-            direction = ((direction) ** 2)
-            console.log(direction);
+            direction = ((direction) ** 0.5)
+            // console.log(direction);
             direction = -0.5 + direction
-            console.log(direction);
+            // console.log(direction);
 
             this.angularVelocity += direction * this.angularAcceleration;
         }
