@@ -8,7 +8,7 @@ import { mutate } from "./mutate";
 
 */
 
-export function artificialSelection(randomness: number = 100000): number[][] {
+export function artificialSelection(randomness: number = 1): number[][] {
     let fitness: { [key: number]: number } = globals.fitnessDictionary;
     globals.fitnessDictionary = {};
 

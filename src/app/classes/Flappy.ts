@@ -25,7 +25,7 @@ export class Flappy implements FlappyInterface {
         this.velocity = {x: 0, y: 0};
         this.width = 50;
         this.height = 50;
-        this.jumpVelocity = 22.5;
+        this.jumpVelocity = 21;
         this.drag = 0.9;
         this.gravity = 3;
         

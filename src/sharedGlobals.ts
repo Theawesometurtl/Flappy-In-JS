@@ -11,14 +11,15 @@ let globals = {pipeTimer: 100 as number,
                 simulatedNNs: 100 as number,
                 fitnessDictionary : {} as { [key: number]: number},
                 NNKeepers: 10 as number,
-                NNBrain: [11, 8, 8, 8, 6, 4, 1] as number[],
+                NNBrain: [4, 8, 8, 8, 6, 4, 1] as number[],
                 bestNNs: {} as { [key: number]: string},
                 mousePos: {} as { [key: string]: number},
                 mutationRateMutationRate: .3 as number,
                 mutationMutationAmount: 2 as number,
-                checkpoints: [[324,66], [584,89], [806,165], [945,301], [924,445], [929,576], ] as number[][],
+                // checkpoints: [[324,66], [584,89], [806,165], [945,301], [924,445], [929,576], ] as number[][],
+                checkpoints: [ [208,208], [489,122], [697,132], [907,196], [920,394], [794,481], [550,494], [350,466], [261,349], [453,292], [705,253], [770,334], [580,374]] as number[][],
                 checkpointSize: 50 as number,
-                timerLimit: 300
+                timerLimit: 2000
 };
 const canvas = document.querySelector('canvas');
 canvas.width = window.innerWidth;
