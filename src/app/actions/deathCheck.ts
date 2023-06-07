@@ -111,13 +111,13 @@ it seems linear algebra helps solve this
 //     return [lineIntercept, lineSlope];
 // }
 
-// function inBetween(n1: number, n2: number, inBetween: number): boolean {
-//     let l = [n1, n2, inBetween];
-//     l.sort(function(first, second) {
-//         return second - first;
-//     });
-//     if (l[1] === inBetween) {
-//         return true;
-//     }
-//     return false;
-// }
+export function inBetween(n1: number, n2: number, inBetween: number): boolean {
+    let l = [n1, n2, inBetween];
+    l.sort(function(first, second) {
+        return second - first;
+    });
+    if (l[1] === inBetween) {
+        return true;
+    }
+    return false;
+}

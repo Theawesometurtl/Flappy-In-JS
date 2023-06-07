@@ -7,6 +7,7 @@ import { flappyDeathCheck } from './actions/deathCheck';
 import { simulationReset } from './actions/simulationReset';
 import { basicCheck } from './actions/networkCheck';
 import { drawText } from './actions/drawInputs';
+import { encodeNetwork } from './actions/encodeDecode';
 // import { parralaxBackground } from './actions/parralaxBackground';
 
 
@@ -67,30 +68,34 @@ export function main() {
                 }
                 // console.log(outputs);
                 if (flappyDeathCheck(entityList.Flappies[f].position.x, entityList.Flappies[f].position.y, entityList.Flappies[f].width, entityList.Flappies[f].height)) {
-                    globals.fitnessDictionary[f] = globals.timer - Math.abs(entityList.Flappies[f].position.y - entityList.Pipes[0].gapHeight);
+                    globals.fitnessDictionary[f] = globals.timer - 2 * Math.abs(entityList.Flappies[f].position.y - entityList.Pipes[0].gapHeight);
                     entityList.Flappies[f] = undefined;
                     if (Object.keys(globals.fitnessDictionary).length === globals.simulatedNNs) {
                         simulationReset(true);
                     }
                 } else {
-                    entityList.Flappies[f].draw();
                     entityList.Flappies[f].update();
+                    entityList.Flappies[f].draw();
                 }
             }
         }
         
         // ctx.fillText(outputs, 10, 50);
         if (entityList.Flappies[0] !== undefined) {
-            drawText(pipeX, pipeGapY, flappyY, flappyVelocity);
+            // console.log(entityList.NNs[0].biasMutationAmount)
+            drawText(pipeX, pipeGapY, flappyY, flappyVelocity, entityList.NNs[0].biasMutationAmount, entityList.NNs[0].biasMutationRate, entityList.NNs[0].weightMutationAmount, entityList.NNs[0].weightMutationRate);
         }
         
-        displayNetwork(100, 50, canvas.width -400, canvas.height - 300, entityList.NNs[0].weightArray, entityList.NNs[0].biasArray, 0);
+        displayNetwork(100, 50, canvas.width -700, canvas.height - 500, entityList.NNs[0].weightArray, entityList.NNs[0].biasArray, 0);
         //basicCheck()
         globals.timer++;
+        if (globals.timer > 10000) {
+            console.log(encodeNetwork(entityList.NNs[0].weightArray, entityList.NNs[0].biasArray));
+        }
     }
     globals.pipeTimer ++;
     
-    if (globals.pipeTimer % 130 === 0) {
+    if (globals.pipeTimer % 80 === 0) {
         entityList.Pipes.push(new Pipes());
     }
 }

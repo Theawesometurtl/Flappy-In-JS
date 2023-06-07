@@ -6,16 +6,16 @@ import { Car } from "../classes/Car";
 import { Barrier } from "../classes/Barrier";
 
 
-// canvas.addEventListener("click", function(){
-//     let v = entityList.Barrier[0].vectors
-//     v.push([globals.mousePos.x, globals.mousePos.y]);
-//     entityList.Barrier[0].vectors = v;
-//     let s: string = '';
-//     for (let i = 0; i < v.length; i++) {
-//         s = s + '[' +v[i][0] + ',' + v[i][1] +'], '
-//     }
-//     console.log(s);
-// });
+canvas.addEventListener("click", function(){
+    let v = entityList.Barrier[0].vectors
+    v.push([globals.mousePos.x, globals.mousePos.y]);
+    entityList.Barrier[0].vectors = v;
+    let s: string = '';
+    for (let i = 0; i < v.length; i++) {
+        s = s + '[' +v[i][0] + ',' + v[i][1] +'], '
+    }
+    console.log(s);
+});
 
 export function drivingStart() {
     if (human) {

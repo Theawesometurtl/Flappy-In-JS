@@ -15,6 +15,10 @@ export class NN implements NNInterface {
     biasArray: number[][];
     weightArray: number[][][];
     networkNumber: number;
+    biasMutationRate: number;
+    biasMutationAmount: number;
+    weightMutationRate: number;
+    weightMutationAmount: number;
 
     constructor(...neuronsPerLayer : number[]) {
         this.neuronsPerLayer = neuronsPerLayer;
@@ -22,6 +26,10 @@ export class NN implements NNInterface {
         this.weightArray = []
         NN.NNAmount++;
         this.networkNumber = NN.NNAmount;
+        this.biasMutationRate = 0.02;
+        this.biasMutationAmount = 8;
+        this.weightMutationRate = 0.02;
+        this.weightMutationAmount = 8;
     }
 
     createNeuralNet(layer = 0) : void {
@@ -53,11 +61,11 @@ export class NN implements NNInterface {
 
     }
 
-    fullMutate(layer = 0, amount : number = 10, chance: number = 0.01) : void {
+    fullMutate(layer = 0, amount : number, chance: number = 0.01) : void {
         for (let j = 0; j < this.biasArray[layer].length; j++) {//biases
-            if (Math.random() < chance) {
+            if (Math.random() < this.biasMutationRate) {
                 this.biasArray[layer][j] += Math.random() -.5;
-                this.biasArray[layer][j] *= (Math.random() + amount) / amount;
+                this.biasArray[layer][j] *= (Math.random() -0.5 + this.biasMutationAmount) / this.biasMutationAmount;
             }
         }
 
@@ -72,9 +80,9 @@ export class NN implements NNInterface {
 
         for (let j = 0; j < this.weightArray[layer].length; j++) {
             for (let k = 0; k < this.weightArray[layer][j].length; k++) {
-                if (Math.random() < chance) {
+                if (Math.random() < this.weightMutationRate) {
                     this.weightArray[layer][j][k] += Math.random() -0.5;
-                    this.weightArray[layer][j][k] *= (Math.random() + amount) / amount;
+                    this.weightArray[layer][j][k] *= (Math.random() - 0.5 + this.weightMutationAmount) / this.weightMutationAmount;
                 }
             }
         }

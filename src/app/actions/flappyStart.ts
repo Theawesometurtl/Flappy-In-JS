@@ -16,8 +16,10 @@ export function flappyStart() {
         for (let i = 0; i < globals.simulatedNNs; i++) {
             entityList.NNs.push(new NN(...globals.NNBrain));
             entityList.NNs[i].createNeuralNet(0);
-
-            // entityList.NNs[i].fullMutate(0, 10, 0.1);
+            // let decodededNetwork = 
+            // // entityList.NNs[i].fullMutate(0, 10, 0.1);
+            // entityList.NNs[i].weightArray = decodededNetwork[1];
+            // entityList.NNs[i].biasArray = decodededNetwork[0];
 
             globals.fitnessDictionary[i] = i;
         }
@@ -26,7 +28,7 @@ export function flappyStart() {
     if (human) {
         setInterval(main, 20);
     } else {
-        setInterval(main, 20);
+        setInterval(main, 0);
     }
 
 }

@@ -1,6 +1,7 @@
 import { NN } from "../classes/NN";
 import { globals, entityList } from "../../sharedGlobals";
 import { encodeNetwork, decodeNetwork } from "./encodeDecode";
+import { mutate } from "./mutate";
 
 /* I want to make a dictionary of the fitness of 100 NNs, and take the best 50 ones, but also have some controlled randomness to the selection.
 
@@ -63,9 +64,15 @@ export function restockEntityList(fitness: number[][]) {
         networkList[fit] = new NN(...globals.NNBrain);
         networkList[fit].createNeuralNet();
         let encodedNetwork = encodeNetwork(entityList.NNs[fitness[fit][0]].weightArray, entityList.NNs[fitness[fit][0]].biasArray)
-        let decodedNetwork = decodeNetwork(encodedNetwork);
+        let decodedNetwork = decodeNetwork(encodedNetwork)
         networkList[fit].biasArray = decodedNetwork[0];
         networkList[fit].weightArray = decodedNetwork[1];
+        networkList[fit].biasMutationAmount = entityList.NNs[fitness[fit][0]].biasMutationAmount;
+        networkList[fit].biasMutationRate = entityList.NNs[fitness[fit][0]].biasMutationRate;
+        networkList[fit].weightMutationAmount = entityList.NNs[fitness[fit][0]].weightMutationAmount;
+        networkList[fit].weightMutationRate = entityList.NNs[fitness[fit][0]].weightMutationRate;
+
+
         // networkList[fit] = structuredClone(entityList.NNs[fitness[fit][0]])
     }
     // console.log(fitness);
@@ -89,7 +96,16 @@ export function restockEntityList(fitness: number[][]) {
 
     }
     for (let net = globals.NNKeepers; net < globals.simulatedNNs; net++) {
-        entityList.NNs[net].fullMutate(0, 1, 1);
+        entityList.NNs[net].fullMutate(0, .3, 0.03);
+        let { biasMutationAmount, biasMutationRate, weightMutationAmount, weightMutationRate } = entityList.NNs[net]
+        entityList.NNs[net].biasMutationAmount = mutate(globals.mutationRateMutationRate, globals.mutationMutationAmount, biasMutationAmount);
+        entityList.NNs[net].weightMutationAmount = mutate(globals.mutationRateMutationRate, globals.mutationMutationAmount, weightMutationAmount);
+        entityList.NNs[net].biasMutationRate = mutate(globals.mutationRateMutationRate, globals.mutationMutationAmount, biasMutationRate);
+        entityList.NNs[net].weightMutationRate = mutate(globals.mutationRateMutationRate, globals.mutationMutationAmount, weightMutationRate);
+
+        // console.log(entityList.NNs[net].biasMutationAmount)
+        
+
         // console.log(entityList.NNs[net].networkNumber)
     }    
 

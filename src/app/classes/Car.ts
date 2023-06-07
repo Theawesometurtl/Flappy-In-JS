@@ -1,6 +1,7 @@
 import { collisionDetector } from "../actions/deathCheck";
-import { ctx, entityList } from "../../sharedGlobals";
+import { ctx, entityList, globals } from "../../sharedGlobals";
 import { pythagTheorem } from "../actions/trig";
+import { inBetween } from "../actions/deathCheck"
 
 
 export class Car {
@@ -16,18 +17,19 @@ export class Car {
     angularDrag: number;
     vertices: number[][];
     vertexCoords: number[][];
+    checkpointReached: number;
 
     constructor(...vertices: number[][]) {
-        this.angularDrag = 0.9;
-        this.position = {x: 200, y: 50};
+        this.angularDrag = 0.85;
+        this.position = {x: globals.checkpoints[0][0], y: globals.checkpoints[0][1]};
         this.velocity = {x: 0, y: 0};
         this.angle = 0;
-        this.accelleration = 0.1;
+        this.accelleration = 0.4;
         this.length = 4;
         this.width = 10;
         this.angularVelocity = 0;
-        this.angularAcceleration = 2;
-        this.drag = .98;
+        this.angularAcceleration = 3;
+        this.drag = .8;
         this.vertices = [[this.length, this.width], [-this.length, this.width], [-this.length, -this.width], [this.length, -this.width]];
         this.vertexCoords = [];
         for (let i = 0; i < this.vertices.length; i++) {
@@ -35,6 +37,7 @@ export class Car {
             this.vertexCoords[i][0] = this.vertices[i][0] + this.position.x;
             this.vertexCoords[i][1] = this.vertices[i][1] + this.position.y;
         }
+        this.checkpointReached = 0;
     }
 
     draw() {
@@ -84,6 +87,10 @@ export class Car {
             totalVelocity *= this.drag;
             this.velocity.x = totalVelocity * Math.sin(velocityAngle);
             this.velocity.y = totalVelocity * Math.cos(velocityAngle);
+
+            if (inBetween(globals.checkpoints[this.checkpointReached % globals.checkpoints.length][0] - globals.checkpointSize, globals.checkpoints[this.checkpointReached % globals.checkpoints.length][0] + globals.checkpointSize, this.position.x) && inBetween(globals.checkpoints[this.checkpointReached % globals.checkpoints.length][1] - globals.checkpointSize, globals.checkpoints[this.checkpointReached % globals.checkpoints.length][1] + globals.checkpointSize, this.position.y)) {
+                this.checkpointReached++;
+            }
         }
         // ctx.strokeStyle = 'black';
         // ctx.beginPath();
