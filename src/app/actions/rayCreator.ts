@@ -21,7 +21,7 @@ export function rayCreator(rayPos: {[key: string]: number}, rayAngle: number, ob
     }
     if (closestIntersection !== 0) { //kinda useless if I return either way but whatever
         ctx.strokeStyle = 'red';
-        ctx.lineWidth = 2;
+        ctx.lineWidth = 0.1;
         ctx.beginPath();
         ctx.moveTo(rayPos.x, rayPos.y);
         ctx.lineTo(intersectionPos[0], intersectionPos[1]);

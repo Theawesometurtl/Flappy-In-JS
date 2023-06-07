@@ -8,7 +8,7 @@ import { mutate } from "./mutate";
 
 */
 
-export function artificialSelection(randomness: number = 5): number[][] {
+export function artificialSelection(randomness: number = 100000): number[][] {
     let fitness: { [key: number]: number } = globals.fitnessDictionary;
     globals.fitnessDictionary = {};
 
@@ -26,7 +26,7 @@ export function artificialSelection(randomness: number = 5): number[][] {
     
     let best = fitnessCopy[0][1];
     let bestNN = entityList.NNs[fitnessCopy[0][0]];
-    if (best >= 100) {
+    if (best >= 4) {
         console.log(best, bestNN.networkNumber, encodeNetwork(bestNN.weightArray, bestNN.biasArray));
         globals.bestNNs[fitnessCopy[0][1]] = encodeNetwork(bestNN.weightArray, bestNN.biasArray)
     }

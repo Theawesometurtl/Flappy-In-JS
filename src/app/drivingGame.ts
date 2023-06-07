@@ -83,7 +83,10 @@ export function drivingGame() {
                     ctx.lineTo(entityList.Cars[c].position.x +Math.sin(angleToCheckpoint) * 500, entityList.Cars[c].position.y + Math.cos(angleToCheckpoint) * 500);
                     ctx.stroke();
                     let angleDifference = entityList.Cars[c].angle - Math.abs(angleToCheckpoint)
-                    globals.fitnessDictionary[c] = entityList.Cars[c].checkpointReached + 1/ (Math.abs(checkpointD[0]) + Math.abs(checkpointD[1])) + 1/ Math.abs(angleDifference);
+                    let fitness = entityList.Cars[c].checkpointReached ;
+                    fitness = fitness + 1/ ( 1 + Math.abs(checkpointD[0])/100 + Math.abs(checkpointD[1])/100);
+                    fitness = fitness + 1/ (1 + Math.abs(angleDifference)/10);
+                    globals.fitnessDictionary[c] = fitness;
                     entityList.Cars[c] = undefined;
                     if (Object.keys(globals.fitnessDictionary).length === globals.simulatedNNs) {
                         simulationReset(false);
