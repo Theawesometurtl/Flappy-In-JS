@@ -37,7 +37,11 @@ export class NN implements NNInterface {
         this.biasArray[layer] = [];
         //make value for every bias in layer
         for (let j = 0; j < this.neuronsPerLayer[layer]; j++) {
-            this.biasArray[layer][j] = 0;
+            if (Math.random() < 0.5) {
+                this.biasArray[layer][j] = 1;
+            } else {
+                this.biasArray[layer][j] = -1;
+            }
         }
 
         layer++;
@@ -52,7 +56,11 @@ export class NN implements NNInterface {
             this.weightArray[layer][j] = []
             //assign weight to neuron connection
             for (let k = 0; k < this.neuronsPerLayer[layer]; k++) {
-                this.weightArray[layer][j][k] = 0;
+                if (Math.random() < 0.5) {
+                    this.weightArray[layer][j][k] = 1;
+                } else {
+                    this.weightArray[layer][j][k] = -1;
+                }
             }
         }
 

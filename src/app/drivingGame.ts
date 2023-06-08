@@ -53,23 +53,24 @@ export function drivingGame() {
         let checkpointD;
         for (let c=0; c<entityList.NNs.length; c++) {
             if (entityList.Cars[c] !== undefined) { 
-                ray1 = rayCreator(entityList.Cars[c].position, 130 - entityList.Cars[c].angle, entityList.Barrier[0].vectors);
-                ray2 = rayCreator(entityList.Cars[c].position, 120 - entityList.Cars[c].angle, entityList.Barrier[0].vectors);
-                ray3 = rayCreator(entityList.Cars[c].position, 110 - entityList.Cars[c].angle, entityList.Barrier[0].vectors);
-                ray4 = rayCreator(entityList.Cars[c].position, 100 - entityList.Cars[c].angle, entityList.Barrier[0].vectors);
-                ray5 = rayCreator(entityList.Cars[c].position, 90 - entityList.Cars[c].angle, entityList.Barrier[0].vectors);
-                ray6 = rayCreator(entityList.Cars[c].position, 80 - entityList.Cars[c].angle, entityList.Barrier[0].vectors);
-                ray7 = rayCreator(entityList.Cars[c].position, 70 - entityList.Cars[c].angle, entityList.Barrier[0].vectors);
-                ray8 = rayCreator(entityList.Cars[c].position, 60 - entityList.Cars[c].angle, entityList.Barrier[0].vectors);
-                ray9 = rayCreator(entityList.Cars[c].position, 40 - entityList.Cars[c].angle, entityList.Barrier[0].vectors);
-
+                for (let obstacles = 0; obstacles < entityList.Barrier[0].vectors.length; obstacles++) {
+                    ray1 = rayCreator(entityList.Cars[c].position, 130 - entityList.Cars[c].angle, entityList.Barrier[0].vectors[obstacles]);
+                    ray2 = rayCreator(entityList.Cars[c].position, 120 - entityList.Cars[c].angle, entityList.Barrier[0].vectors[obstacles]);
+                    ray3 = rayCreator(entityList.Cars[c].position, 110 - entityList.Cars[c].angle, entityList.Barrier[0].vectors[obstacles]);
+                    ray4 = rayCreator(entityList.Cars[c].position, 100 - entityList.Cars[c].angle, entityList.Barrier[0].vectors[obstacles]);
+                    ray5 = rayCreator(entityList.Cars[c].position, 90 - entityList.Cars[c].angle, entityList.Barrier[0].vectors[obstacles]);
+                    ray6 = rayCreator(entityList.Cars[c].position, 80 - entityList.Cars[c].angle, entityList.Barrier[0].vectors[obstacles]);
+                    ray7 = rayCreator(entityList.Cars[c].position, 70 - entityList.Cars[c].angle, entityList.Barrier[0].vectors[obstacles]);
+                    ray8 = rayCreator(entityList.Cars[c].position, 60 - entityList.Cars[c].angle, entityList.Barrier[0].vectors[obstacles]);
+                    ray9 = rayCreator(entityList.Cars[c].position, 40 - entityList.Cars[c].angle, entityList.Barrier[0].vectors[obstacles]);
+}
                 let checkpoint = globals.checkpoints[entityList.Cars[c].checkpointReached % globals.checkpoints.length];
                 checkpointD = [checkpoint[0] - entityList.Cars[c].position.x, checkpoint[1] - entityList.Cars[c].position.y]
 
                 // console.log(ray1, ray2, rayCreator(entityList.Cars[c].position, entityList.Cars[c].angle, entityList.Barrier[0].vectors), ray4, ray5);
                 // console.log(activationFunction(flappyY, flappyVelocity, pipeX, pipeGapY));
                 let inputs: number[] = [ray1/100, ray2/100, ray3/100, ray4/100, ray5/100, ray6/100, ray7/100, ray8/100, ray9/100, checkpointD[0]/100, checkpointD[1]/100];
-                console.log(inputs)
+                // console.log(inputs)
                 
                 let outputs = entityList.NNs[c].update(0, ...inputs);
                 entityList.Cars[c].steer(outputs[0])

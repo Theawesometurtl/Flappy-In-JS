@@ -108,9 +108,10 @@ export class Car {
             this.vertexCoords[i][1] = (sin * this.vertices[i][1]) - (cos * this.vertices[i][0]) + this.position.y;
         }
 
-        if (collisionDetector(this.vertexCoords, entityList.Barrier[0].vectors)) {
+        for (let obstacles = 0; obstacles < entityList.Barrier[0].vectors.length; obstacles++) {
+            if (collisionDetector(this.vertexCoords, entityList.Barrier[0].vectors[obstacles])) {
             return true;
-        }
+        }}
         return false;
     }
     steer(direction: number) {

@@ -29,9 +29,9 @@ export function flappyDeathCheck(fx: number, fy: number, width: number, height: 
 }
 
 export function collisionDetector(obj1Vectors: number[][], obj2Vectors: number[][]): boolean {
-    for (let i = 0; i < obj1Vectors.length; i++) { 
-        for (let j = 0; j < obj2Vectors.length; j++) {
-            let r = intersect(obj1Vectors[i], wrapIndex(obj1Vectors, i+1), obj2Vectors[j], wrapIndex(obj2Vectors, j + 1));
+    for (let i = 0; i < obj1Vectors.length-1; i++) { 
+        for (let j = 0; j < obj2Vectors.length -1; j++) {
+            let r = intersect(obj1Vectors[i], obj1Vectors[i+1], obj2Vectors[j], obj2Vectors[j + 1]);
             // console.log(i, j)
             if (r[0]) {
                 console.log("intersection");
