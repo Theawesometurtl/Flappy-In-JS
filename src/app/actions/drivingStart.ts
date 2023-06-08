@@ -10,7 +10,7 @@ import { decodeNetwork } from "./encodeDecode";
 
 
 export function drivingStart() {
-    let barrier: number[][][] = JSON.parse(localStorage.getItem("barrier"));
+    const barrier: number[][][]= JSON.parse(localStorage.getItem("barrier"));
     if (human) {
         entityList.Cars.push(new Car());
         entityList.Barrier.push(new Barrier(...barrier))
@@ -35,7 +35,7 @@ export function drivingStart() {
         simulationReset(false);
     }
     if (human) {
-        // setInterval(drivingGame, 20);
+        setInterval(drivingGame, 20);
     } else {
         setInterval(drivingGame, 1);
     }

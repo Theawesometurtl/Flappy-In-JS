@@ -38,7 +38,7 @@ module.exports = merge(common, {
       chunks: ["drawTrack"]
     }),
     new HtmlWebpackPlugin({
-      filename: "customDriving.html",
+      filename: "customSimulation.html",
       template: "./src/templates/customSimulation.html",
       favicon: "./src/favicons/favicon.ico",
       chunks: ["customSimulation"]

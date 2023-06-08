@@ -13,7 +13,7 @@ import { pythagTheorem } from './actions/trig';
 
 
 export function drivingGame() {
-    ctx.fillStyle = 'grey';
+    ctx.fillStyle = '#ff5757';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     // ctx.clearRect(0, 0, canvas.width, canvas.height);
     // parralaxBackground(globals.timer, 1, 2, 3, 4, 5);

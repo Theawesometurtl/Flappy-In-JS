@@ -43,7 +43,7 @@ export class Car {
     draw() {
         ctx.strokeStyle = 'purple';
         ctx.lineWidth = 1;
-        ctx.fillStyle = 'pink'
+        ctx.fillStyle = 'white';
 
        ctx.beginPath();
        
