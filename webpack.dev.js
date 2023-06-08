@@ -31,6 +31,18 @@ module.exports = merge(common, {
       favicon: "./src/favicons/favicon.ico",
       chunks: ["flappy"]
     }),
+    new HtmlWebpackPlugin({
+      filename: "drawTrack.html",
+      template: "./src/templates/drawTrack.html",
+      favicon: "./src/favicons/favicon.ico",
+      chunks: ["drawTrack"]
+    }),
+    new HtmlWebpackPlugin({
+      filename: "customDriving.html",
+      template: "./src/templates/customSimulation.html",
+      favicon: "./src/favicons/favicon.ico",
+      chunks: ["customSimulation"]
+    }),
   ],
   module: {
     rules: [

@@ -10,6 +10,8 @@ module.exports = {
     maincss: "./src/styling/main.css",
     main: "./src/main.ts",
     flappy: "./src/flappy.ts",
+    customDriving: "./src/customSimulation.ts",
+    drawTrack: "./src/drawTrack.ts",
     vendor: "./src/vendor.ts"
   },
   module: {
