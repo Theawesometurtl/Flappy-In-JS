@@ -18,7 +18,7 @@ export function drivingGame() {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     // ctx.clearRect(0, 0, canvas.width, canvas.height);
     // parralaxBackground(globals.timer, 1, 2, 3, 4, 5);
-    
+
     globals.delay = 20 - parseInt(document.getElementById("rangeValue").innerHTML.split(" ")[0]) * 0.02;
     var checkbox = document.getElementById("checkbox")  as HTMLInputElement;
     
@@ -88,10 +88,10 @@ export function drivingGame() {
                     let angleToCheckpoint = Math.atan((checkpointD[0]) / (checkpointD[1]))
                     ctx.strokeStyle = 'yellow';
                     ctx.lineWidth = 2;
-                    ctx.beginPath();
-                    ctx.moveTo(entityList.Cars[c].position.x, entityList.Cars[c].position.y);
-                    ctx.lineTo(entityList.Cars[c].position.x +Math.sin(angleToCheckpoint) * 500, entityList.Cars[c].position.y + Math.cos(angleToCheckpoint) * 500);
-                    ctx.stroke();
+                    // ctx.beginPath();
+                    // ctx.moveTo(entityList.Cars[c].position.x, entityList.Cars[c].position.y);
+                    // ctx.lineTo(entityList.Cars[c].position.x +Math.sin(angleToCheckpoint) * 500, entityList.Cars[c].position.y + Math.cos(angleToCheckpoint) * 500);
+                    // ctx.stroke();
                     let angleDifference = entityList.Cars[c].angle - Math.abs(angleToCheckpoint)
                     let fitness = entityList.Cars[c].checkpointReached ;
                     fitness = fitness + 1/ ( 1 + Math.abs(checkpointD[0])/100 + Math.abs(checkpointD[1])/100);

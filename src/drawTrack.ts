@@ -27,6 +27,7 @@ canvas.addEventListener("click", function(){
             ctx.fillStyle = 'green';
             ctx.lineWidth = 0;
             ctx.fillRect(globals.checkpoints[i][0] - globals.checkpointSize/2, globals.checkpoints[i][1] - globals.checkpointSize/2, globals.checkpointSize, globals.checkpointSize);
+            console.log(globals.checkpoints[i]);
         }
     }
 });

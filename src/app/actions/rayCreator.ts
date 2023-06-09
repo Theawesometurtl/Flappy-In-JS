@@ -23,16 +23,15 @@ export function rayCreator(rayPos: {[key: string]: number}, rayAngle: number, ob
 
         }
     }
-    if (closestIntersection !== largeNum) { //kinda useless if I return either way but whatever
-        ctx.strokeStyle = 'red';
-        ctx.lineWidth = 0.1;
-        ctx.beginPath();
-        ctx.moveTo(rayPos.x, rayPos.y);
-        ctx.lineTo(intersectionPos[0], intersectionPos[1]);
-        // ctx.lineTo(rayPos2[0], rayPos2[1]);
-        // console.log(rayPos2)
+    ctx.strokeStyle = 'red';
+    ctx.lineWidth = 0.1;
+    ctx.beginPath();
+    ctx.moveTo(rayPos.x, rayPos.y);
+    ctx.lineTo(intersectionPos[0], intersectionPos[1]);
+    // ctx.lineTo(rayPos2[0], rayPos2[1]);
+    // console.log(rayPos2)
 
-        ctx.stroke()
-        return closestIntersection;
-    }
+    ctx.stroke()
+    return closestIntersection;
+    
 }
