@@ -87,10 +87,7 @@ export function restockEntityList(fitness: number[][]) {
     }
     // console.log(networkList.length);
 
-    entityList.Pipes = [];
-    entityList.Flappies = [];
-    entityList.Barrier = [];
-    entityList.Cars = [];
+
     for (let i = 0; i < globals.NNKeepers; i++) {
         // console.log(entityList.NNs[i].networkNumber, "keepers")
 

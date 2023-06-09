@@ -1,4 +1,4 @@
-import { human, entityList, globals, canvas } from "../../sharedGlobals";
+import { entityList, globals, canvas } from "../../sharedGlobals";
 import { NN } from "../classes/NN";
 import { simulationReset } from "./simulationReset";
 import { drivingGame } from "../drivingGame";
@@ -12,7 +12,7 @@ import { setDynamicInterval } from "./setDynamicInterval";
 
 export function drivingStart() {
     const barrier: number[][][]= JSON.parse(localStorage.getItem("barrier"));
-    if (human) {
+    if (globals.human) {
         entityList.Cars.push(new Car());
         entityList.Barrier.push(new Barrier(...barrier))
 
@@ -35,9 +35,5 @@ export function drivingStart() {
         }
         simulationReset(false);
     }
-    if (human) {
-        setDynamicInterval(drivingGame);
-    } else {
-        setInterval(drivingGame);
-    }
+    
 }

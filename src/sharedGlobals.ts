@@ -21,6 +21,7 @@ let globals = {pipeTimer: 100 as number,
                 checkpointSize: 50 as number,
                 timerLimit: 2000,
                 delay: 20,
+                human: true as boolean,
 };
 const canvas = document.querySelector('canvas');
 canvas.width = window.innerWidth;
@@ -41,9 +42,19 @@ let entityList: {
   "Barrier": [],
 };
 
-let human : boolean = false;
+
 let pressedKeys : {[keyCode: number]: boolean} = {};
 
 window.onkeyup = function(e) { pressedKeys[e.keyCode] = false; }
 window.onkeydown = function(e) { pressedKeys[e.keyCode] = true; }
-export {globals, canvas, ctx, entityList, pressedKeys, human};
+var checkbox = document.getElementById("checkbox");
+
+if (checkbox != null) {
+  checkbox.addEventListener("keydown", function(event) {
+    if (event.keyCode === 32) {
+      event.preventDefault();
+    }
+  });
+}
+
+export {globals, canvas, ctx, entityList, pressedKeys};

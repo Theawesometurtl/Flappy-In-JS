@@ -1,14 +1,18 @@
 import { main } from "../flappyGame";
 import { Flappy } from "../classes/Flappy"
 import { Pipes } from  "../classes/Pipes"
-import { entityList, human, globals } from "../../sharedGlobals";
+import { entityList, globals } from "../../sharedGlobals";
 import { NN } from "../classes/NN"
 import { simulationReset } from "./simulationReset";
 import { decodeNetwork } from "./encodeDecode";
 import { setDynamicInterval } from "./setDynamicInterval";
 
 export function flappyStart() {    
-    if (human) {
+    entityList.Pipes = [];
+    entityList.Flappies = [];
+    entityList.Barrier = [];
+    entityList.Cars = []; 
+    if (globals.human) {
         entityList.Flappies.push(new Flappy());
         entityList.Pipes.push(new Pipes());
     } else {
@@ -26,10 +30,6 @@ export function flappyStart() {
         }
         simulationReset(true);
     }
-    if (human) {
-        setDynamicInterval(main);
-    } else {
-        setDynamicInterval(main);
-    }
+    
 
 }

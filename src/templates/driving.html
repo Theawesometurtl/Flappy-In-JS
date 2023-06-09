@@ -2,6 +2,28 @@
     Driving Game 
 </title>
 
-<canvas height="200px"  width="200px" id="canvas"></canvas>
+<div class="container">
 
+    <div class="toggle-button-cover">
+        <div class="button-cover">
+            <div class="button r" id="button-1">
+                <input type="checkbox" class="checkbox", id="checkbox" />
+                <div class="knobs"></div>
+                <div class="layer"></div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <span id="rangeValue">0</span>
+        <Input class="range" type="range" name "" value="0" min="0" max="1000" onChange="rangeSlide(this.value)" onmousemove="rangeSlide(this.value)"></Input>
+    </div>
+    <script type="text/javascript">
+        function rangeSlide(value) {
+            document.getElementById('rangeValue').innerHTML = value + " Simulation Speed";
+        }
+    </script>
+  </div>
+
+
+<canvas id="myCanvas" height="200px"  width="200px" id="canvas"></canvas>
 

@@ -34,7 +34,6 @@ export function collisionDetector(obj1Vectors: number[][], obj2Vectors: number[]
             let r = intersect(obj1Vectors[i], obj1Vectors[i+1], obj2Vectors[j], obj2Vectors[j + 1]);
             // console.log(i, j)
             if (r[0]) {
-                console.log("intersection");
                 return true;
             }
             

@@ -1,5 +1,5 @@
 import { Pipes } from './classes/Pipes';
-import { canvas, ctx, globals, entityList, human } from '../sharedGlobals';
+import { canvas, ctx, globals, entityList } from '../sharedGlobals';
 import { displayNetwork } from './actions/displayNetwork';
 import { activationFunction } from './actions/activationFunction';
 import { artificialSelection, restockEntityList } from './actions/artificialSelection';
@@ -8,6 +8,7 @@ import { simulationReset } from './actions/simulationReset';
 import { basicCheck } from './actions/networkCheck';
 import { drawText } from './actions/drawInputs';
 import { encodeNetwork } from './actions/encodeDecode';
+import { flappyStart } from './actions/flappyStart';
 // import { parralaxBackground } from './actions/parralaxBackground';
 
 
@@ -20,7 +21,7 @@ export function main() {
     // parralaxBackground(globals.timer, 1, 2, 3, 4, 5);
 
 
-    if (human) {
+    if (globals.human) {
         for (let j = 0; j < entityList.Flappies.length; j++) {
             //console.log(key, entityList[key][j]);
             entityList.Flappies[j].update();
@@ -39,6 +40,12 @@ export function main() {
         flappyVelocity = entityList.Flappies[0].velocity.y / 8;
         if (entityList.Flappies[0] !== undefined) {
             drawText(pipeX, pipeGapY, flappyY, flappyVelocity);
+        }
+        globals.delay =  20 - parseInt(document.getElementById("rangeValue").innerHTML.split(" ")[0]) * 0.02;
+        var checkbox = document.getElementById("checkbox")  as HTMLInputElement;
+        if (checkbox.checked) {
+            globals.human = false;
+            flappyStart();
         }
 
     } else {
@@ -91,6 +98,14 @@ export function main() {
         globals.timer++;
         if (globals.timer > 10000) {
             console.log(encodeNetwork(entityList.NNs[0].weightArray, entityList.NNs[0].biasArray));
+        }
+        globals.delay = 20 - parseInt(document.getElementById("rangeValue").innerHTML.split(" ")[0]) * 0.02;
+        var checkbox = document.getElementById("checkbox")  as HTMLInputElement;
+  
+        if (!checkbox.checked) {
+            globals.human = true;
+            flappyStart();
+
         }
     }
     globals.pipeTimer ++;

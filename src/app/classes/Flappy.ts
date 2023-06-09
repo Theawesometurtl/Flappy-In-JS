@@ -1,4 +1,4 @@
-import { entityList, ctx, canvas, pressedKeys, human } from "../../sharedGlobals";
+import { entityList, ctx, canvas, pressedKeys, globals } from "../../sharedGlobals";
 import { flappyDeathCheck } from "../actions/deathCheck";
 
 interface FlappyInterface {
@@ -42,7 +42,7 @@ export class Flappy implements FlappyInterface {
         this.velocity.y *= this.drag;
         
         
-        if (human) {
+        if (globals.human) {
             if (flappyDeathCheck(this.position.x, this.position.y, this.width, this.height)) {
                 this.die();
             }
@@ -52,7 +52,7 @@ export class Flappy implements FlappyInterface {
             }
         }
 
-        if (pressedKeys[32] === true && human) {
+        if (pressedKeys[32] === true && globals.human) {
             this.jump();
         }
 
