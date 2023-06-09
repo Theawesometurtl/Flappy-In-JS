@@ -13,7 +13,7 @@ import { pythagTheorem } from './actions/trig';
 
 
 export function drivingGame() {
-    ctx.fillStyle = '#ff5757';
+    ctx.fillStyle = 'grey';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     // ctx.clearRect(0, 0, canvas.width, canvas.height);
     // parralaxBackground(globals.timer, 1, 2, 3, 4, 5);
@@ -53,17 +53,16 @@ export function drivingGame() {
         let checkpointD;
         for (let c=0; c<entityList.NNs.length; c++) {
             if (entityList.Cars[c] !== undefined) { 
-                for (let obstacles = 0; obstacles < entityList.Barrier[0].vectors.length; obstacles++) {
-                    ray1 = rayCreator(entityList.Cars[c].position, 130 - entityList.Cars[c].angle, entityList.Barrier[0].vectors[obstacles]);
-                    ray2 = rayCreator(entityList.Cars[c].position, 120 - entityList.Cars[c].angle, entityList.Barrier[0].vectors[obstacles]);
-                    ray3 = rayCreator(entityList.Cars[c].position, 110 - entityList.Cars[c].angle, entityList.Barrier[0].vectors[obstacles]);
-                    ray4 = rayCreator(entityList.Cars[c].position, 100 - entityList.Cars[c].angle, entityList.Barrier[0].vectors[obstacles]);
-                    ray5 = rayCreator(entityList.Cars[c].position, 90 - entityList.Cars[c].angle, entityList.Barrier[0].vectors[obstacles]);
-                    ray6 = rayCreator(entityList.Cars[c].position, 80 - entityList.Cars[c].angle, entityList.Barrier[0].vectors[obstacles]);
-                    ray7 = rayCreator(entityList.Cars[c].position, 70 - entityList.Cars[c].angle, entityList.Barrier[0].vectors[obstacles]);
-                    ray8 = rayCreator(entityList.Cars[c].position, 60 - entityList.Cars[c].angle, entityList.Barrier[0].vectors[obstacles]);
-                    ray9 = rayCreator(entityList.Cars[c].position, 40 - entityList.Cars[c].angle, entityList.Barrier[0].vectors[obstacles]);
-}
+                ray1 = rayCreator(entityList.Cars[c].position, 130 - entityList.Cars[c].angle, entityList.Barrier[0].vectors);
+                ray2 = rayCreator(entityList.Cars[c].position, 120 - entityList.Cars[c].angle, entityList.Barrier[0].vectors);
+                ray3 = rayCreator(entityList.Cars[c].position, 110 - entityList.Cars[c].angle, entityList.Barrier[0].vectors);
+                ray4 = rayCreator(entityList.Cars[c].position, 100 - entityList.Cars[c].angle, entityList.Barrier[0].vectors);
+                ray5 = rayCreator(entityList.Cars[c].position, 90 - entityList.Cars[c].angle, entityList.Barrier[0].vectors);
+                ray6 = rayCreator(entityList.Cars[c].position, 80 - entityList.Cars[c].angle, entityList.Barrier[0].vectors);
+                ray7 = rayCreator(entityList.Cars[c].position, 70 - entityList.Cars[c].angle, entityList.Barrier[0].vectors);
+                ray8 = rayCreator(entityList.Cars[c].position, 60 - entityList.Cars[c].angle, entityList.Barrier[0].vectors);
+                ray9 = rayCreator(entityList.Cars[c].position, 40 - entityList.Cars[c].angle, entityList.Barrier[0].vectors);
+            
                 let checkpoint = globals.checkpoints[entityList.Cars[c].checkpointReached % globals.checkpoints.length];
                 checkpointD = [checkpoint[0] - entityList.Cars[c].position.x, checkpoint[1] - entityList.Cars[c].position.y]
 

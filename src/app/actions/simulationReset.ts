@@ -33,7 +33,7 @@ export function simulationReset(flappy: boolean) {
         const barrier = JSON.parse(localStorage.getItem('barrier'));
         console.log(barrier);
         entityList.Barrier.push(new Barrier(...barrier))
-        console.log(entityList.Barrier[0    ])
+        console.log(entityList.Barrier[0])
     }
     
     // console.log(entityList.NNs);

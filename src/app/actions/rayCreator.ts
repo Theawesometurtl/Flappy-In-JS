@@ -2,7 +2,7 @@ import { intersect } from "./deathCheck";
 import { pythagTheorem } from "./trig";
 import { ctx } from "../../sharedGlobals";
 
-export function rayCreator(rayPos: {[key: string]: number}, rayAngle: number, obstacles: number[][]): number {
+export function rayCreator(rayPos: {[key: string]: number}, rayAngle: number, obstacles: number[][][]): number {
     let i;
     let largeNum = 10000;
     rayAngle = rayAngle * Math.PI / 180;
@@ -10,16 +10,20 @@ export function rayCreator(rayPos: {[key: string]: number}, rayAngle: number, ob
     // console.log(rayAngle)
     let closestIntersection = largeNum;
     let intersectionPos = [rayPos2[0], rayPos2[1]];
-    for (let o = 0; o < obstacles.length-1; o++) {
-        i = intersect([rayPos.x, rayPos.y], rayPos2, obstacles[o], obstacles[(o + 1) % obstacles.length]);
-        if (i[0] && pythagTheorem(i[1] - rayPos.x, i[2] - rayPos.y) < closestIntersection) {
-            closestIntersection = pythagTheorem(i[1] - rayPos.x, i[2] - rayPos.y);
-            intersectionPos = [i[1], i[2]];
-            // console.log("new intersection");
-            // console.log(rayPos, rayPos2, intersectionPos, closestIntersection)
+    for (let o = 0; o < obstacles.length; o++) {
+        for (let line = 0; line < obstacles[o].length-1; line++) {
+            i = intersect([rayPos.x, rayPos.y], rayPos2, obstacles[o][line], obstacles[o][(line + 1) % obstacles[o].length]);
+            console.log(i)
+            if (i[0] && pythagTheorem(i[1] - rayPos.x, i[2] - rayPos.y) < closestIntersection) {
+                closestIntersection = pythagTheorem(i[1] - rayPos.x, i[2] - rayPos.y);
+                intersectionPos = [i[1], i[2]];
+                // console.log("new intersection");
+                // console.log(rayPos, rayPos2, intersectionPos, closestIntersection)
+            }
+
         }
     }
-    if (closestIntersection !== 0) { //kinda useless if I return either way but whatever
+    if (closestIntersection !== largeNum) { //kinda useless if I return either way but whatever
         ctx.strokeStyle = 'red';
         ctx.lineWidth = 0.1;
         ctx.beginPath();

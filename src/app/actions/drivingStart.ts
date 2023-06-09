@@ -37,6 +37,6 @@ export function drivingStart() {
     if (human) {
         setInterval(drivingGame, 20);
     } else {
-        setInterval(drivingGame, 1);
+        setInterval(drivingGame, 20);
     }
 }

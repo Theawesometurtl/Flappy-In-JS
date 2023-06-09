@@ -110,8 +110,9 @@ export class Car {
 
         for (let obstacles = 0; obstacles < entityList.Barrier[0].vectors.length; obstacles++) {
             if (collisionDetector(this.vertexCoords, entityList.Barrier[0].vectors[obstacles])) {
-            return true;
-        }}
+                return true;
+            }
+        }
         return false;
     }
     steer(direction: number) {
