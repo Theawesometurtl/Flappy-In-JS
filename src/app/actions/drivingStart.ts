@@ -5,6 +5,7 @@ import { drivingGame } from "../drivingGame";
 import { Car } from "../classes/Car";
 import { Barrier } from "../classes/Barrier";
 import { decodeNetwork } from "./encodeDecode";
+import { setDynamicInterval } from "./setDynamicInterval";
 
 
 
@@ -35,8 +36,8 @@ export function drivingStart() {
         simulationReset(false);
     }
     if (human) {
-        setInterval(drivingGame, 20);
+        setDynamicInterval(drivingGame);
     } else {
-        setInterval(drivingGame, 20);
+        setInterval(drivingGame);
     }
 }

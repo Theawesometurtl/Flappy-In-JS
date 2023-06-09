@@ -12,7 +12,8 @@ module.exports = {
     flappy: "./src/flappy.ts",
     customSimulation: "./src/customSimulation.ts",
     drawTrack: "./src/drawTrack.ts",
-    vendor: "./src/vendor.ts"
+    vendor: "./src/vendor.ts",
+    gamecss: "./src/styling/game.css"
   },
   module: {
     rules: [

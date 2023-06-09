@@ -23,13 +23,13 @@ module.exports = merge(common, {
       filename: "driving.html",
       template: "./src/templates/driving.html",
       favicon: "./src/favicons/favicon.ico",
-      chunks: ["driving"]
+      chunks: ["driving", "gamecss"]
     }),
     new HtmlWebpackPlugin({
       filename: "flappy.html",
       template: "./src/templates/flappy.html",
       favicon: "./src/favicons/favicon.ico",
-      chunks: ["flappy"]
+      chunks: ["flappy", "gamecss"]
     }),
     new HtmlWebpackPlugin({
       filename: "drawTrack.html",
@@ -41,7 +41,7 @@ module.exports = merge(common, {
       filename: "customSimulation.html",
       template: "./src/templates/customSimulation.html",
       favicon: "./src/favicons/favicon.ico",
-      chunks: ["customSimulation"]
+      chunks: ["customSimulation", "gamecss"]
     }),
   ],
   module: {

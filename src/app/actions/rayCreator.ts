@@ -13,7 +13,7 @@ export function rayCreator(rayPos: {[key: string]: number}, rayAngle: number, ob
     for (let o = 0; o < obstacles.length; o++) {
         for (let line = 0; line < obstacles[o].length-1; line++) {
             i = intersect([rayPos.x, rayPos.y], rayPos2, obstacles[o][line], obstacles[o][(line + 1) % obstacles[o].length]);
-            console.log(i)
+            // console.log(i)
             if (i[0] && pythagTheorem(i[1] - rayPos.x, i[2] - rayPos.y) < closestIntersection) {
                 closestIntersection = pythagTheorem(i[1] - rayPos.x, i[2] - rayPos.y);
                 intersectionPos = [i[1], i[2]];

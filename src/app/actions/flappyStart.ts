@@ -5,6 +5,7 @@ import { entityList, human, globals } from "../../sharedGlobals";
 import { NN } from "../classes/NN"
 import { simulationReset } from "./simulationReset";
 import { decodeNetwork } from "./encodeDecode";
+import { setDynamicInterval } from "./setDynamicInterval";
 
 export function flappyStart() {    
     if (human) {
@@ -26,9 +27,9 @@ export function flappyStart() {
         simulationReset(true);
     }
     if (human) {
-        setInterval(main, 20);
+        setDynamicInterval(main);
     } else {
-        setInterval(main, 20);
+        setDynamicInterval(main);
     }
 
 }
