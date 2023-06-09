@@ -1,0 +1,13 @@
+
+  
+  .range-style {
+    width: 400px;
+    height: 60px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: -2px -2px 8px white, 2px 2px 8px rgba(black, 0.5);
+  }
+  .container {
+    display: flex;
+  }
