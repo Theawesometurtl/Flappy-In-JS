@@ -8,6 +8,7 @@ import { decodeNetwork } from "./encodeDecode";
 import { setDynamicInterval } from "./setDynamicInterval";
 
 export function flappyStart() {    
+    globals.generationNum = 0;
     entityList.Pipes = [];
     entityList.Flappies = [];
     entityList.Barrier = [];

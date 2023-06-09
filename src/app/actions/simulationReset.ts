@@ -15,6 +15,7 @@ export function simulationReset(flappy: boolean) {
     entityList.Flappies = [];
     entityList.Barrier = [];
     entityList.Cars = [];
+    globals.generationNum++;
 
     let fitness: number[][] = artificialSelection(10);
     restockEntityList(fitness);

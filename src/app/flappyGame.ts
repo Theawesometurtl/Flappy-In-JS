@@ -90,8 +90,9 @@ export function main() {
         // ctx.fillText(outputs, 10, 50);
         if (entityList.Flappies[0] !== undefined) {
             // console.log(entityList.NNs[0].biasMutationAmount)
-            drawText(pipeX, pipeGapY, flappyY, flappyVelocity, entityList.NNs[0].biasMutationAmount, entityList.NNs[0].biasMutationRate, entityList.NNs[0].weightMutationAmount, entityList.NNs[0].weightMutationRate);
+            drawText(canvas.width-100, 50, 50, pipeX, pipeGapY, flappyY, flappyVelocity, entityList.NNs[0].biasMutationAmount, entityList.NNs[0].biasMutationRate, entityList.NNs[0].weightMutationAmount, entityList.NNs[0].weightMutationRate);
         }
+        drawText(650, 45, 100, "Generation: " + globals.generationNum.toString())
         
         displayNetwork(100, 50, canvas.width -700, canvas.height - 500, entityList.NNs[0].weightArray, entityList.NNs[0].biasArray, 0);
         //basicCheck()
