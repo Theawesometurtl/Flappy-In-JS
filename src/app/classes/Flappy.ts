@@ -42,15 +42,7 @@ export class Flappy implements FlappyInterface {
         this.velocity.y *= this.drag;
         
         
-        if (globals.human) {
-            if (flappyDeathCheck(this.position.x, this.position.y, this.width, this.height)) {
-                this.die();
-            }
-            if (this.position.y < 0 + this.width / 2) {//ceiling check
-                this.velocity.y *= -0.5;
-                this.position.y = 0 + this.width / 2;
-            }
-        }
+        
 
         if (pressedKeys[32] === true && globals.human) {
             this.jump();

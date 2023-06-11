@@ -15,33 +15,34 @@ import { flappyStart } from './actions/flappyStart';
 
 
 export function main() {
-    ctx.fillStyle = '#ff5757';
+    ctx.fillStyle = '#b0332a';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     // ctx.clearRect(0, 0, canvas.width, canvas.height);
     // parralaxBackground(globals.timer, 1, 2, 3, 4, 5);
 
 
     if (globals.human) {
-        for (let j = 0; j < entityList.Flappies.length; j++) {
-            //console.log(key, entityList[key][j]);
-            entityList.Flappies[j].update();
-            entityList.Flappies[j].draw();
-        }
+        //console.log(key, entityList[key][j]);
+        entityList.Flappies[0].update();
+        entityList.Flappies[0].draw();
+
         for (let j = 0; j < entityList.Pipes.length; j++) {
             //console.log(key, entityList[key][j]);
             entityList.Pipes[j].update();
             entityList.Pipes[j].draw();
         }
-        let pipeX = entityList.Pipes[0].position.x*2 / canvas.width;
-        let pipeGapY = entityList.Pipes[0].position.y / canvas.height;
-        let flappyY;
-        let flappyVelocity;
-        flappyY = entityList.Flappies[0].position.y/ canvas.height;
-        flappyVelocity = entityList.Flappies[0].velocity.y / 8;
-        if (entityList.Flappies[0] !== undefined) {
-            drawText(pipeX, pipeGapY, flappyY, flappyVelocity);
+        // let pipeX = entityList.Pipes[0].position.x*2 / canvas.width;
+        // let pipeGapY = entityList.Pipes[0].position.y / canvas.height;
+        // let flappyY;
+        // let flappyVelocity;
+        // flappyY = entityList.Flappies[0].position.y/ canvas.height;
+        // flappyVelocity = entityList.Flappies[0].velocity.y / 8;
+        // if (entityList.Flappies[0] !== undefined) {
+        //     drawText(pipeX, pipeGapY, flappyY, flappyVelocity);
+        // }
+        if (flappyDeathCheck(entityList.Flappies[0].position.x, entityList.Flappies[0].position.y, entityList.Flappies[0].width, entityList.Flappies[0].height)) {
+            flappyStart();
         }
-        globals.delay =  20 - parseInt(document.getElementById("rangeValue").innerHTML.split(" ")[0]) * 0.02;
         var checkbox = document.getElementById("checkbox")  as HTMLInputElement;
         if (checkbox.checked) {
             globals.human = false;
@@ -90,11 +91,12 @@ export function main() {
         // ctx.fillText(outputs, 10, 50);
         if (entityList.Flappies[0] !== undefined) {
             // console.log(entityList.NNs[0].biasMutationAmount)
-            drawText(canvas.width-100, 50, 50, pipeX, pipeGapY, flappyY, flappyVelocity, entityList.NNs[0].biasMutationAmount, entityList.NNs[0].biasMutationRate, entityList.NNs[0].weightMutationAmount, entityList.NNs[0].weightMutationRate);
+            //entityList.NNs[0].biasMutationAmount, entityList.NNs[0].biasMutationRate, entityList.NNs[0].weightMutationAmount, entityList.NNs[0].weightMutationRate
+            drawText(canvas.width-100, 50, 50, pipeX, pipeGapY, flappyY, flappyVelocity);
         }
         drawText(650, 45, 100, "Generation: " + globals.generationNum.toString())
         
-        displayNetwork(100, 50, canvas.width -700, canvas.height - 500, entityList.NNs[0].weightArray, entityList.NNs[0].biasArray, 0);
+        displayNetwork(100, 50, canvas.width -620, canvas.height - 375, entityList.NNs[0].weightArray, entityList.NNs[0].biasArray, 0);
         //basicCheck()
         globals.timer++;
         if (globals.timer > 10000) {

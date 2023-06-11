@@ -30,6 +30,6 @@ button3.addEventListener("click", drawTrackClick);
 const button4 = document.getElementById("CircularRaceTrack");
 button4.addEventListener("click", circularRaceTrack);
 
-const button5 = document.getElementById("Maze");
-button5.addEventListener("click", Maze);
+// const button5 = document.getElementById("Maze");
+// button5.addEventListener("click", Maze);
   

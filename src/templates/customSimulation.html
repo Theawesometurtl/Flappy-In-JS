@@ -14,14 +14,9 @@
         </div>
     </div>
     <div>
-        <span id="rangeValue">0</span>
-        <Input class="range" type="range" name "" value="0" min="0" max="1000" onChange="rangeSlide(this.value)" onmousemove="rangeSlide(this.value)"></Input>
+        <span id="rangeValue">0 Simulation Speed</span>
+        <Input class="range" id="range" type="range" value="0" min="0" max="1000"></Input>
     </div>
-    <script type="text/javascript">
-        function rangeSlide(value) {
-            document.getElementById('rangeValue').innerHTML = value + " Simulation Speed"; 
-        }
-    </script>
   </div>
 
 

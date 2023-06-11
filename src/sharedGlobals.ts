@@ -48,13 +48,28 @@ let pressedKeys : {[keyCode: number]: boolean} = {};
 
 window.onkeyup = function(e) { pressedKeys[e.keyCode] = false; }
 window.onkeydown = function(e) { pressedKeys[e.keyCode] = true; }
-var checkbox = document.getElementById("checkbox");
+const checkbox = document.getElementById("checkbox");
+const rangeValue = document.getElementById("rangeValue");
+const range: HTMLInputElement = document.querySelector<HTMLInputElement>('#range');
+
+
 
 if (checkbox != null) {
   checkbox.addEventListener("keydown", function(event) {
     if (event.keyCode === 32) {
       event.preventDefault();
     }
+  });
+}
+
+if (range != null && rangeValue != null) {
+  range.addEventListener("change", function(event) {
+    rangeValue.innerHTML = range.value + " Simulation Speed";
+    globals.delay = 20 - parseInt(range.value) * 0.02;
+  });
+  range.addEventListener("mousemove", function(event) {
+    rangeValue.innerHTML = range.value + " Simulation Speed";
+    globals.delay = 20 - parseInt(range.value) * 0.02;
   });
 }
 

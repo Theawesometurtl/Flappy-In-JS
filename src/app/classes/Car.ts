@@ -24,12 +24,12 @@ export class Car {
         this.position = {x: globals.checkpoints[0][0], y: globals.checkpoints[0][1]};
         this.velocity = {x: 0, y: 0};
         this.angle = 0;
-        this.accelleration = 0.8;
+        this.accelleration = 0.4;
         this.length = 4;
         this.width = 10;
         this.angularVelocity = 0;
         this.angularAcceleration = 3;
-        this.drag = .9;
+        this.drag = .95;
         this.vertices = [[this.length, this.width], [-this.length, this.width], [-this.length, -this.width], [this.length, -this.width]];
         this.vertexCoords = [];
         for (let i = 0; i < this.vertices.length; i++) {

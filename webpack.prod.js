@@ -18,14 +18,14 @@ module.exports = merge(common, {
   optimization: {
     minimizer: [
       new TerserPlugin(),
-      new HtmlWebpackPlugin({
-        template: "./src/index.html",
-        minify: {
-          removeAttributeQuotes: true,
-          collapseWhitespace: true,
-          removeComments: true
-        }
-      })
+      // new HtmlWebpackPlugin({
+      //   template: "./src/templates/index.html",
+        // minify: {
+        //   removeAttributeQuotes: true,
+        //   collapseWhitespace: true,
+        //   removeComments: true
+        // }
+      // })
     ]
   },
   plugins: [
@@ -35,31 +35,56 @@ module.exports = merge(common, {
       filename: "index.html",
       template: "./src/templates/index.html",
       favicon: "./src/favicons/favicon.ico",
-      chunks: ["main", "maincss"]
+      chunks: ["main", "maincss"],
+      minify: {
+        removeAttributeQuotes: true,
+        collapseWhitespace: true,
+        removeComments: true
+      }
     }),
     new HtmlWebpackPlugin({
       filename: "driving.html",
       template: "./src/templates/driving.html",
       favicon: "./src/favicons/favicon.ico",
-      chunks: ["driving", "gamecss"]
+      chunks: ["driving", "gamecss"],
+      minify: {
+        removeAttributeQuotes: true,
+        collapseWhitespace: true,
+        removeComments: true
+      }
     }),
     new HtmlWebpackPlugin({
       filename: "flappy.html",
       template: "./src/templates/flappy.html",
       favicon: "./src/favicons/favicon.ico",
-      chunks: ["flappy", "gamecss"]
+      chunks: ["flappy", "gamecss"],
+      minify: {
+        removeAttributeQuotes: true,
+        collapseWhitespace: true,
+        removeComments: true
+      }
     }),
     new HtmlWebpackPlugin({
       filename: "drawTrack.html",
       template: "./src/templates/drawTrack.html",
       favicon: "./src/favicons/favicon.ico",
-      chunks: ["drawTrack"]
+      chunks: ["drawTrack"],
+      minify: {
+        removeAttributeQuotes: true,
+        collapseWhitespace: true,
+        removeComments: true
+      }
     }),
     new HtmlWebpackPlugin({
       filename: "customSimulation.html",
       template: "./src/templates/customSimulation.html",
       favicon: "./src/favicons/favicon.ico",
-      chunks: ["customSimulation", "gamecss"]
+      chunks: ["customSimulation", "gamecss"],
+      minify: {
+        removeAttributeQuotes: true,
+        collapseWhitespace: true,
+        removeComments: true
+      }
     }),
     ],
   module: {

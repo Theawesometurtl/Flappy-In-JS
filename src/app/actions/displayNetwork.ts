@@ -19,7 +19,7 @@ export function displayNetwork(xSpace: number, ySpace: number, xPos: number, yPo
 export function drawBiases(xSpace: number, ySpace: number, xPos: number, yPos: number, biasArray: number[][], layer: number = 0): void {
     for (let j = 0; j < biasArray[layer].length; j++) {
         changeColour(biasArray[layer][j]),
-        drawCircle(12, changeColour(biasArray[layer][j]),  'black', 3, (layer * xSpace) + xPos, (j * ySpace) + yPos);
+        drawCircle(9, changeColour(biasArray[layer][j]),  'black', 3, (layer * xSpace) + xPos, (j * ySpace) + yPos);
     }
 }
 

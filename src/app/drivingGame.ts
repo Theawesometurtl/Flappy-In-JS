@@ -14,12 +14,11 @@ import { drivingStart } from './actions/drivingStart';
 
 
 export function drivingGame() {
-    ctx.fillStyle = 'grey';
+    ctx.fillStyle = '#af73b1';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     // ctx.clearRect(0, 0, canvas.width, canvas.height);
     // parralaxBackground(globals.timer, 1, 2, 3, 4, 5);
 
-    globals.delay = 20 - parseInt(document.getElementById("rangeValue").innerHTML.split(" ")[0]) * 0.02;
     var checkbox = document.getElementById("checkbox")  as HTMLInputElement;
     
     
@@ -123,10 +122,10 @@ export function drivingGame() {
         for (let i = 0; i < globals.checkpoints.length; i++) {
             ctx.fillStyle = 'green';
             ctx.lineWidth = 0;
-            ctx.fillRect(globals.checkpoints[i][0] - globals.checkpointSize/2, globals.checkpoints[i][1] - globals.checkpointSize/2, globals.checkpointSize, globals.checkpointSize);
+            ctx.fillRect(globals.checkpoints[i][0] - globals.checkpointSize/4, globals.checkpoints[i][1] - globals.checkpointSize/4, globals.checkpointSize/2, globals.checkpointSize/2);
         }
         
-        displayNetwork(100, 50, canvas.width -400, canvas.height - 300, entityList.NNs[0].weightArray, entityList.NNs[0].biasArray, 0);
+        displayNetwork(50, 30, canvas.width -300, canvas.height - 200, entityList.NNs[0].weightArray, entityList.NNs[0].biasArray, 0);
         //basicCheck()
         globals.timer++;
 
