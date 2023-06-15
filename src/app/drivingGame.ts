@@ -73,10 +73,13 @@ export function drivingGame() {
                 
                 let checkpoint = globals.checkpoints[entityList.Cars[c].checkpointReached % globals.checkpoints.length];
                 checkpointD = [checkpoint[0] - entityList.Cars[c].position.x, checkpoint[1] - entityList.Cars[c].position.y]
+                let xVel = entityList.Cars[c].velocity.x;
+                let yVel = entityList.Cars[c].velocity.y;
+                let angularVelocity = entityList.Cars[c].angularVelocity;
                 
                 // console.log(ray1, ray2, rayCreator(entityList.Cars[c].position, entityList.Cars[c].angle, entityList.Barrier[0].vectors), ray4, ray5);
                 // console.log(activationFunction(flappyY, flappyVelocity, pipeX, pipeGapY));
-                let inputs: number[] = [ray1/100, ray2/100, ray3/100, ray4/100, ray5/100, ray6/100, ray7/100, ray8/100, ray9/100, checkpointD[0]/100, checkpointD[1]/100];
+                let inputs: number[] = [ray1/100, ray2/100, ray3/100, ray4/100, ray5/100, ray6/100, ray7/100, ray8/100, ray9/100, checkpointD[0]/100, checkpointD[1]/100, xVel/10, yVel/10, angularVelocity];
                 // console.log(inputs)
                 
                 let outputs = entityList.NNs[c].update(0, ...inputs);

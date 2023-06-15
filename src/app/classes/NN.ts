@@ -26,9 +26,9 @@ export class NN implements NNInterface {
         this.weightArray = []
         NN.NNAmount++;
         this.networkNumber = NN.NNAmount;
-        this.biasMutationRate = 1;
+        this.biasMutationRate = 0.1;
         this.biasMutationAmount = 1;
-        this.weightMutationRate = 1;
+        this.weightMutationRate = 0.1;
         this.weightMutationAmount = 1;
     }
 

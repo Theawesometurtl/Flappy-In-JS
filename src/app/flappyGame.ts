@@ -102,8 +102,7 @@ export function main() {
         if (globals.timer > 10000) {
             console.log(encodeNetwork(entityList.NNs[0].weightArray, entityList.NNs[0].biasArray));
         }
-        globals.delay = 20 - parseInt(document.getElementById("rangeValue").innerHTML.split(" ")[0]) * 0.02;
-        var checkbox = document.getElementById("checkbox")  as HTMLInputElement;
+
   
         if (!checkbox.checked) {
             globals.human = true;
