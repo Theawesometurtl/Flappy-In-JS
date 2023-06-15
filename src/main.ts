@@ -1,3 +1,14 @@
+
+if (localStorage.getItem("preTrained") === null) {
+    localStorage.setItem("preTrained", JSON.stringify(true));
+}
+
+if (JSON.parse(localStorage.getItem("preTrained")) === false) {
+    const trainingCheckbox = document.getElementById("checkbox") as HTMLInputElement;
+    trainingCheckbox.checked = true;
+}
+
+
 function flappyClick() {
     window.location.href = "./flappy.html";
 }
@@ -18,6 +29,16 @@ function Maze() {
     localStorage.setItem("checkpoint", JSON.stringify([[355, 379], [300, 589]]));
 }
 
+function trainingToggle() {
+    const trainingCheckbox = document.getElementById("checkbox") as HTMLInputElement;
+    if (!trainingCheckbox.checked) {
+        localStorage.setItem("preTrained",JSON.stringify(true)); 
+    } else {
+        localStorage.setItem("preTrained", JSON.stringify(false));
+    }
+    console.log(localStorage.getItem("preTrained"));
+}
+
 const button1 = document.getElementById("FlappyButton");
 button1.addEventListener("click", flappyClick);
   
@@ -30,6 +51,8 @@ button3.addEventListener("click", drawTrackClick);
 const button4 = document.getElementById("CircularRaceTrack");
 button4.addEventListener("click", circularRaceTrack);
 
+const trainingCheckbox = document.getElementById("checkbox");
+trainingCheckbox.addEventListener("change", trainingToggle);
+
 // const button5 = document.getElementById("Maze");
 // button5.addEventListener("click", Maze);
-  

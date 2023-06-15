@@ -1,4 +1,149 @@
-* {background-color: #af73b1}
+#app-cover {
+  display: table;
+  width: 600px;
+  margin: 80px auto;
+  counter-reset: button-counter;
+}
+
+.row {
+  display: table-row;
+}
+
+.toggle-button-cover {
+  display: table-cell;
+  position: relative;
+  width: 100px;
+  height: 80px;
+  box-sizing: border-box;
+}
+
+.button-cover {
+  background-color: #af73b1;
+  box-shadow: 0 10px 20px -8px #af73b1;
+  border-radius: 4px;
+}
+
+.button-cover:before {
+  counter-increment: button-counter;
+  content: counter(button-counter);
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  color: #fff;
+  font-size: 12px;
+  line-height: 1;
+  z-index: -1;
+}
+
+.button-cover,
+.knobs,
+.layer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.knobs {
+  background-color: #fff;
+  
+}
+
+.button {
+  position: relative;
+  top: 50%;
+  width: 74px;
+  height: 36px;
+  margin: -20px auto 0 auto;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+.button.r,
+.button.r .layer {
+  background-color: #fff;
+  border-radius: 100px;
+}
+
+.button.b2 {
+  background-color: #fff;
+  border-radius: 2px;
+}
+
+.checkbox {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 3;
+  background-color: #fff;
+}
+
+.knobs {
+  z-index: 2;
+}
+
+.layer {
+  width: 100%;
+  background-color: #fff;
+  transition: 0.3s ease all;
+  z-index: 1;
+}
+
+/* Button 1 */
+#button-1 .knobs:before {
+  content: "On";
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 20px;
+  height: 10px;
+  color: #fff;
+  font-size: 10px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1;
+  padding: 9px 4px;
+  background-color: #03a9f4;
+  border-radius: 50%;
+  transition: 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15) all;
+}
+
+#button-1 .checkbox:checked + .knobs:before {
+  content: "Off";
+  left: 42px;
+  background-color: #f44336;
+}
+
+#button-1 .checkbox:checked ~ .layer {
+  background-color: #fff;
+}
+
+#button-1 .knobs,
+#button-1 .knobs:before,
+#button-1 .layer {
+  transition: 0.3s ease all;
+}
+
+.range-style {
+  width: 400px;
+  height: 60px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: -2px -2px 8px white, 2px 2px 8px rgba(black, 0.5);
+  z-index: 1;
+}
+.container {
+  display: flex;
+  z-index:99;
+}
+
+
+* {background-color: #af73b1;}
 
 .styled-button {
     background-color: #4cac4f; /* Green background */
