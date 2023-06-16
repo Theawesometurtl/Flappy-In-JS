@@ -19,6 +19,8 @@ export function main() {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     // ctx.clearRect(0, 0, canvas.width, canvas.height);
     // parralaxBackground(globals.timer, 1, 2, 3, 4, 5);
+    var checkbox = document.getElementById("checkbox")  as HTMLInputElement;
+    
 
 
     if (globals.human) {
