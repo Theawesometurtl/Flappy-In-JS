@@ -1,4 +1,4 @@
-import { ctx, canvas, entityList } from "../../sharedGlobals";
+import { ctx, canvas, entityList, globals } from "../../sharedGlobals";
 interface PipesInterface {
     width: number;
     gapHeight: number;
@@ -33,6 +33,7 @@ export class Pipes implements PipesInterface {
             for (pipe in entityList.Pipes) {
                 if (entityList.Pipes[pipe].pipeNum === this.pipeNum) {
                     entityList.Pipes.splice(pipe, 1);
+                    globals.pipesPassed++;
                 }
             }
         }

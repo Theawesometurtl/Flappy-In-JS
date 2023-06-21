@@ -10,6 +10,7 @@ import { setDynamicInterval } from "./setDynamicInterval";
 export function flappyStart() {    
     globals.generationNum = 0;
     globals.pipeTimer = 0;
+    globals.pipesPassed = 0;
     entityList.Pipes = [];
     entityList.Flappies = [];
     entityList.Barrier = [];

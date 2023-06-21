@@ -94,7 +94,7 @@ export function main() {
         if (entityList.Flappies[0] !== undefined) {
             // console.log(entityList.NNs[0].biasMutationAmount)
             //entityList.NNs[0].biasMutationAmount, entityList.NNs[0].biasMutationRate, entityList.NNs[0].weightMutationAmount, entityList.NNs[0].weightMutationRate
-            drawText(canvas.width-100, 50, 50, pipeX, pipeGapY, flappyY, flappyVelocity);
+            //drawText(canvas.width-100, 50, 50, pipeX, pipeGapY, flappyY, flappyVelocity);
         }
         drawText(650, 45, 100, "Generation: " + globals.generationNum.toString())
         
@@ -104,14 +104,15 @@ export function main() {
         if (globals.timer > 10000) {
             console.log(encodeNetwork(entityList.NNs[0].weightArray, entityList.NNs[0].biasArray));
         }
-
-  
+        
+        
         if (!checkbox.checked) {
             globals.human = true;
             flappyStart();
-
+            
         }
     }
+    drawText(1000, 45, 100, "Pipe Number: " + globals.pipesPassed.toString())
     globals.pipeTimer ++;
     
     if (globals.pipeTimer % 80 === 0) {

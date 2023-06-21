@@ -117,7 +117,7 @@ export function drivingGame() {
             let inputs: number[] = activationFunction(ray1, ray2, ray3, ray4, ray5, ray6, ray7, ray8, ray9, ...checkpointD);
             
             let outputs = entityList.NNs[0].update(0, ...inputs);
-            drawText(canvas.width-100, 50, 50, ray1, ray2, ray3, ray4, ray5, ray6, ray7, ray8, ray9, ...checkpointD, outputs[0]);
+            //drawText(canvas.width-100, 50, 50, ray1, ray2, ray3, ray4, ray5, ray6, ray7, ray8, ray9, ...checkpointD, outputs[0]);
         }
         drawText(650, 45, 100, "Generation: " + globals.generationNum.toString())
 

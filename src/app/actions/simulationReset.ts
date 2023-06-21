@@ -24,6 +24,7 @@ export function simulationReset(flappy: boolean) {
     if (flappy) {
         globals.pipeTimer = 0;
         Pipes.numOfPipes = 0;
+        globals.pipesPassed = 0;
         
         entityList.Pipes.push(new Pipes());
         for (let i = 0; i < globals.simulatedNNs; i++) {

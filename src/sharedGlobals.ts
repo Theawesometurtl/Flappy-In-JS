@@ -23,6 +23,7 @@ let globals = {pipeTimer: 100 as number,
                 delay: 20,
                 human: true as boolean,
                 generationNum: 0 as number,
+                pipesPassed: 0 as number,
 };
 const canvas = document.querySelector('canvas');
 canvas.width = window.innerWidth;
