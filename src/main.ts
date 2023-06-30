@@ -43,6 +43,9 @@ function trainingToggle() {
     }
     console.log(localStorage.getItem("preTrained"));
 }
+function videoExplanation() {
+    window.location.href = "https://youtu.be/p8uk8ov3pWM";
+}
 
 const button1 = document.getElementById("FlappyButton");
 button1.addEventListener("click", flappyClick);
@@ -58,6 +61,9 @@ button4.addEventListener("click", circularRaceTrack);
 
 const button5 = document.getElementById("mazyRaceTrack");
 button5.addEventListener("click", mazyRaceTrack);
+
+const videoButton = document.getElementById("videoExplanation");
+videoButton.addEventListener("click", videoExplanation);
 
 const trainingCheckbox = document.getElementById("checkbox");
 trainingCheckbox.addEventListener("change", trainingToggle);

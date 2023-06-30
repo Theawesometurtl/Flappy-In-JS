@@ -150,6 +150,7 @@
     border: none; /* Remove border */
     color: white; /* White text color */
     padding: 12px 24px; /* Add padding */
+    margin-top: 5;
     text-align: center; /* Center text */
     text-decoration: none; /* Remove underline */
     display: inline-block; /* Make it inline */
@@ -169,3 +170,61 @@
     margin-top: 200;
     height: 50%;
   }
+
+  /* display background color black on navbar scroll */
+.navbarScroll.navbarDark {
+  background-color: black;
+}
+
+
+#contact {
+  padding-bottom: 4rem;
+}
+
+/* services section css */
+.servicesText.card {
+  height: 280px;
+  cursor: pointer;
+}
+
+.servicesIcon {
+  font-size: 36px;
+  text-align: center;
+  width: 100%;
+}
+
+.servicesText:hover {
+  border: 1px solid #008000;
+}
+
+/* social media icons styling */
+.social-icons {
+  font-size: 36px;
+  cursor: pointer;
+}
+
+
+
+/* footer styling */
+#footer {
+  background-color: #808080;
+  text-align: center;
+}
+
+.neat-button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #555555; /* Dark grey background color */
+  color: white;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.neat-button:hover {
+  background-color: #444444; /* Dark grey hover background color */
+}
+
+.neat-button:active {
+  background-color: #333333; /* Dark grey active background color */
+}
