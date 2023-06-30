@@ -1,2 +1,2 @@
 # Flappy-In-JS
-I am going to build a simple flappy bird game in JS, with HTML, then I will add a NN to it, hopefully one I make myself
+I built a couple of simple games in Typescript, then built my own AI from scratch (no libraries), and trained the AI to be better than the average human. Here is a link to the project: https://theawesometurtl.github.io/Flappy-In-JS/ 
