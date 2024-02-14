@@ -1,6 +1,5 @@
 import { drivingStart } from './app/actions/drivingStart';
-import { canvas, globals } from './sharedGlobals';
-import { findMousePos } from './app/actions/findMousePos';
+import { globals } from './sharedGlobals';
 import { setDynamicInterval } from './app/actions/setDynamicInterval';
 import { drivingGame } from './app/drivingGame';
 
